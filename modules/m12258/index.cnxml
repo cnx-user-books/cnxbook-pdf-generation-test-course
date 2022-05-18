@@ -1,0 +1,170 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Low-Level File I/O VI and Functions</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>563ab657-dc08-4da8-aa78-09c1fbb374fe</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p1">
+      Use the following low-level File I/O VI and functions to perform
+      basic file I/O operations:
+      <list id="p1l1" list-type="labeled-item">
+	<item><label>Open/Create/Replace File</label>
+	  
+	    <media id="idm2793568" alt=""><image src="../../media/OpenFileIcon.png" mime-type="image/png"/></media>
+	  Opens an existing file, creates a new file, or replaces an
+	  existing file, programmatically or interactively using a
+	  file dialog box. You can optionally specify a dialog prompt,
+	  default file name, start path, or filter pattern. If file
+	  path is empty, the VI displays a dialog box from which you
+	  can select a file. 
+	</item>
+	<item><label>Read File</label>
+	  
+	    <media id="idm154816" alt=""><image src="../../media/ReadFileIcon.png" mime-type="image/png"/></media>
+	  Reads data from an open file specified by refnum and returns
+	  it in data. Reading begins at the current file mark or a
+	  location specified by pos mode and pos offset. How the data
+	  is read depends on the format of the specified file. 
+	</item>
+	<item><label>Write File</label>
+	  
+	    <media id="idm660352" alt=""><image src="../../media/WriteFileIcon.png" mime-type="image/png"/></media>
+	  Writes data to an open file specified by refnum. Writing
+	  begins at a location specified by pos mode and pos offset
+	  for byte stream files and at the end of the file for datalog
+	  files. data, header, and the format of the specified file
+	  determine the amount of data written. 
+	</item>
+	<item><label>Close File</label>
+	  
+	    <media id="idm10499040" alt=""><image src="../../media/CloseFileIcon.png" mime-type="image/png"/></media>
+	  Closes an open file specified by refnum and returns the path
+	  to the file associated with the refnum. Error I/O operates
+	  uniquely in this function, which closes regardless of
+	  whether an error occurred in a preceding operation. This
+	  ensures that files are closed correctly. 
+	</item>
+      </list>
+    </para>
+    <section id="s1">
+      <title>Error Handling</title>
+	<media id="idm10496288" alt="" display="block"><image src="../../media/Error.png" id="s1f1" mime-type="image/png"/></media>
+      <para id="s1p1">
+	The low-level File I/O VIs and functions return error
+	information. Wire the error information from the beginning of
+	the VI to the end. Include an error handler VI, such as the
+	<link target-id="s1f1">Simple Error Handler</link> VI located on
+	the <code>Time &amp; Dialog</code> palette, at the end of the
+	VI to determine if the VI ran without errors. Use the error in
+	and error out clusters in each VI you use or build to pass the
+	error information through the VI.
+      </para>
+    </section>
+    <section id="s2">
+      <title>Saving Data in a New or Existing File</title>
+      <para id="s2p1">
+	You can write any data type to a file you open or create with
+	the File I/O VIs and functions. If other users or applications
+	need to access the file, write string data in ASCII format to
+	the file. Refer to the <cite><cite-title>LabVIEW Basics II: Development
+	Course Manual</cite-title></cite> for more information about writing
+	LabVIEW datalog or binary files.
+      </para>
+      <para id="s2p2">
+	You can access files either programmatically or interactively
+	through a file dialog box. To access a file through a dialog
+	box, do not wire <code>file path</code> in the
+	<code>Open/Create/Replace File</code> VI. However, you can
+	save time by programmatically wiring the default filename and
+	path to the VI. <link target-id="s2t1"/> describes how pathnames
+	are organized.
+      </para>
+      <table frame="all" id="s2t1" summary="">
+	<tgroup cols="2" align="left" colsep="1" rowsep="1">
+	  <thead valign="top">
+	    <row>
+	      <entry align="center">Platform</entry>
+	      <entry align="center">Pathname</entry>
+	    </row>
+	  </thead>
+	  <tbody valign="top">
+	    <row>
+	      <entry>Windows</entry>
+	      <entry>
+		Consists of the drive name, a colon,
+		backslash-separated directory names, and the
+		filename. For example,
+		<code>c:\testdata\test1.dat</code> is the pathname to
+		a file named <code>test1.dat</code> in the
+		<code>testdata</code> directory.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>UNIX</entry> 
+	      <entry>
+		UNIX Consists of forward slash-separated directory
+		names and the filename. For example,
+		<code>/home/testdata/test1.dat</code> is the pathname
+		to a file named <code>test1.dat</code> in the
+		<code>testdata</code> directory in the
+		<code>/home</code> directory. Filenames and pathnames
+		are case sensitive.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>Mac OS</entry>
+	      <entry>
+		Consists of the volume name (the name of the disk), a
+		colon, colon-separated folder names, and the
+		filename. For example, <code>Hard
+		Disk:testdata:test1.dat</code> is the pathname to a
+		file named <code>test1.dat</code> in a folder named
+		<code>testdata</code> on a disk named <code>Hard
+		Disk</code>.
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+      <para id="s2p3">
+	The block diagram shown in <link target-id="s2f1"/> shows how to
+	write string data to a file while programmatically wiring the
+	filename and pathname. If the file already exists, it is
+	replaced; otherwise a new file is created.
+      </para>
+      <figure id="s2f1">
+	<media id="idp296720" alt=""><image src="../../media/pathnameex.png" mime-type="image/png"/></media>
+      </figure>
+      <para id="s2p4">
+	The <code>Open/Create/Replace File</code> VI opens the file
+	<code>test1.dat</code>. The VI also generates a
+	<code>refnum</code> and an error cluster.
+      </para>
+      <para id="s2p5">
+	When you open a file, device, or network connection, LabVIEW
+	creates a <code>refnum</code> associated with that file,
+	device, or network connection. All operations you perform on
+	open files, devices, or network connections use
+	<code>refnum</code>s to identify each object.
+      </para>
+      <para id="s2p6">
+	The error cluster and <code>refnum</code> pass in
+	sequence from one node to the next. Because a node cannot
+	execute until it receives all its inputs, passing these two
+	parameters forces the nodes to run in order and creates a data
+	dependency. The <code>Open/Create/Replace File</code> VI
+	passes the refnum and error cluster to the <code>Write
+	File</code> function, which writes the data to disk. When the
+	<code>Write File</code> function finishes execution, it passes
+	the refnum and error cluster to the <code>Close File</code>
+	function, which closes the file. The <code>Simple Error
+	Handler</code> VI examines the error cluster and displays a
+	dialog box if an error occurred. If an error occurs in one
+	node, subsequent nodes do not execute, and the VI passes the
+	error cluster to the <code>Simple Error Handler</code> VI.
+      </para>
+    </section>
+
+  </content>
+  
+</document>

@@ -1,0 +1,2052 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML"> 
+
+  <title>Complex Fourier Series</title>
+
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m0042</md:content-id>
+  <md:title>Complex Fourier Series</md:title>
+  <md:abstract>Definition of the complex Fourier series.</md:abstract>
+  <md:uuid>3ec43400-bf31-48e6-ac14-9ffd6b33a3b5</md:uuid>
+</metadata>
+
+<content>
+
+
+    <para id="p01">
+      In an earlier <link document="m0008" target-id="swsuper" strength="3">module</link>, we showed that a
+      square wave could be expressed as a superposition of pulses. As useful as 
+this decomposition was in this example, it
+      does not generalize well to other periodic signals:
+      How can a
+      superposition of pulses equal a smooth signal like a sinusoid?
+      Because of the importance of sinusoids to linear systems, you
+      might wonder whether they could be added together to represent a
+      large number of periodic signals. You would be right and in good
+      company as well.
+      <link url="http://www-groups.dcs.st- and.ac.uk/~history/Mathematicians/Euler.html">Euler</link> 
+
+      and 
+      <link url="http://www-groups.dcs.st- and.ac.uk/~history/Mathematicians/Guass.html">Gauss</link>
+
+      in particular worried about this problem, and 
+      <link url="http://www-groups.dcs.st- and.ac.uk/~history/Mathematicians/Fourier.html">Jean Baptiste Fourier</link> 
+      got the credit even though tough mathematical issues were not
+      settled until later. They worked on what is now known as the
+      <term>Fourier series</term>:
+      representing <emphasis>any</emphasis> periodic signal as a superposition 
+of sinusoids.  
+    </para>
+    
+    <para id="introduction">But the Fourier series goes well beyond being 
+another signal decomposition method.
+     Rather, the Fourier series begins our journey to appreciate how a signal 
+can be described in either the time-domain or the frequency-domain with 
+<emphasis>no</emphasis> compromise.
+      Let 
+      <m:math>
+	    <m:apply><m:ci type="fn">s</m:ci><m:ci>t</m:ci></m:apply>
+      </m:math> 
+      be a <emphasis>periodic</emphasis> signal with period 
+      <m:math><m:ci>T</m:ci></m:math>.       
+      We want to show that periodic signals, even those that have
+      constant-valued segments like a square wave, can be expressed as
+      sum of <term>harmonically</term> related sine waves:
+      sinusoids having frequencies that are integer multiples of the 
+<term>fundamental frequency</term>.
+      Because the signal has period
+      <m:math><m:ci>T</m:ci></m:math>,
+      the fundamental frequency is
+      <m:math>
+        <m:apply><m:divide/><m:cn>1</m:cn><m:ci>T</m:ci></m:apply>
+      </m:math>.
+      The complex Fourier series expresses the signal as a superposition of 
+complex exponentials having frequencies
+      <m:math>
+        <m:apply><m:divide/><m:ci>k</m:ci><m:ci>T</m:ci></m:apply>
+      </m:math>,
+      <m:math>
+        <m:apply><m:eq/>
+          <m:ci>k</m:ci>
+          <m:set>
+            <m:mtext>…</m:mtext>
+            <m:apply><m:minus/><m:cn>1</m:cn></m:apply>
+            <m:cn>0</m:cn>
+            <m:cn>1</m:cn>
+            <m:mtext>…</m:mtext>
+          </m:set>
+        </m:apply>
+      </m:math>.
+      
+      <equation id="complexfourierseries">  
+	<m:math> 
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">s</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply><m:sum/>
+	      <m:bvar><m:ci>k</m:ci></m:bvar>
+	      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply>
+</m:lowlimit>
+	      <m:uplimit><m:infinity/></m:uplimit>
+	      <m:apply><m:times/>
+	        <m:ci><m:msub><m:mi>c</m:mi><m:mi>k</m:mi></m:msub></m:ci>
+		    <m:apply><m:exp/>
+		      <m:apply><m:times/>
+		        <m:imaginaryi/>
+		        <m:apply><m:divide/>
+		          <m:apply><m:times/>
+			        <m:cn>2</m:cn><m:pi/><m:ci>k</m:ci>
+<m:ci>t</m:ci>
+		          </m:apply>
+		          <m:ci>T</m:ci>
+		        </m:apply>
+		      </m:apply>
+		    </m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      with   
+      <m:math>
+	      <m:apply><m:eq/> 
+	        <m:ci><m:msub><m:mi>c</m:mi><m:mi>k</m:mi></m:msub></m:ci>
+	        <m:apply><m:times/>
+	          <m:apply><m:divide/>
+		        <m:cn>1</m:cn>
+		        <m:cn>2</m:cn>
+	          </m:apply>
+	          <m:apply><m:minus/>
+		        <m:ci><m:msub><m:mi>a</m:mi><m:mi>k</m:mi></m:msub>
+</m:ci>
+		        
+		          <m:apply><m:times/>
+		            <m:imaginaryi/>
+		            <m:ci><m:msub><m:mi>b</m:mi><m:mi>k</m:mi></m:msub>
+</m:ci>
+		          </m:apply>
+		        
+	          </m:apply>
+	        </m:apply>
+	      </m:apply>
+      </m:math>.  
+      The real and imaginary parts of the <term>Fourier coefficients</term>
+      <m:math>
+	    <m:ci><m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>k</m:mi>
+		  </m:msub>
+	    </m:ci>
+      </m:math>
+      are written in this unusual way for convenience in defining the classic 
+Fourier series.
+      The zeroth coefficient equals the signal's average value and is real-
+valued for real-valued signals:
+      <m:math>
+        <m:apply><m:eq/>
+          <m:msub><m:ci>c</m:ci><m:cn>0</m:cn></m:msub>
+          <m:msub><m:ci>a</m:ci><m:cn>0</m:cn></m:msub>
+        </m:apply>
+      </m:math>.
+      The family of functions
+      <m:math>
+		<m:set>
+		<m:apply><m:exp/>
+		  <m:apply><m:times/>
+		    <m:imaginaryi/>
+		    <m:apply><m:divide/>
+		      <m:apply><m:times/>
+			    <m:cn>2</m:cn>
+			    <m:pi/>
+			    <m:ci>k</m:ci>
+			    <m:ci>t</m:ci>
+		      </m:apply>
+		      <m:ci>T</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	  </m:set>
+      </m:math>
+      are called <term>basis functions</term> and
+      form the foundation of the Fourier series. No matter what the
+      periodic signal might be, these functions are always present and
+      form the representation's building blocks. They depend on the
+      signal period
+      <m:math>
+	<m:ci>T</m:ci>
+      </m:math>, 
+      and are indexed by
+      <m:math>
+	<m:ci>k</m:ci>
+      </m:math>. 
+      <note id="id7327480" type="Key point"><label>Key point</label> 
+	Assuming we know the period, knowing the Fourier coefficients
+	is equivalent to knowing the signal.
+	Thus, it makes no difference if we have a time-domain or a frequency-
+domain characterization of the signal. 
+      </note></para>
+
+    <exercise id="exer">
+      <problem id="id1171930998230">
+	<para id="probpara1">
+	  What is the complex Fourier series for a sinusoid?
+	</para>
+      </problem>
+      <solution id="id1171928490899">
+	<para id="solpara1">
+	  Because of Euler's relation, 
+
+	  <equation id="euler">
+	    <m:math display="block">
+	      <m:apply><m:eq/>
+		    <m:apply><m:sin/>
+		      <m:apply><m:times/>
+		        <m:cn>2</m:cn>
+		        <m:pi/>
+		        <m:ci>f</m:ci>
+		        <m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply><m:minus/>
+		      <m:apply><m:times/>
+		        <m:apply><m:divide/>
+		          <m:cn>1</m:cn>
+		          <m:apply><m:times/>
+		            <m:cn>2</m:cn>
+		            <m:imaginaryi/>
+		          </m:apply>
+		        </m:apply>
+		        <m:apply><m:exp/>
+		          <m:apply><m:plus/>
+		            <m:apply><m:times/>
+			          <m:imaginaryi/>
+			          <m:cn>2</m:cn>
+			          <m:pi/>
+			          <m:ci>f</m:ci>
+			          <m:ci>t</m:ci>
+		            </m:apply>
+		          </m:apply>
+		        </m:apply>
+		      </m:apply>
+		      <m:apply><m:times/>
+		        <m:apply><m:divide/>
+		          <m:cn>1</m:cn>
+		          <m:apply><m:times/>
+			        <m:cn>2</m:cn>
+			        <m:imaginaryi/>
+		          </m:apply>
+		        </m:apply>
+		        <m:apply><m:exp/>
+		          <m:apply><m:minus/>
+		            <m:apply><m:times/>
+			          <m:imaginaryi/>
+			          <m:cn>2</m:cn>
+			          <m:pi/>
+			          <m:ci>f</m:ci>
+			          <m:ci>t</m:ci>
+		            </m:apply>
+		          </m:apply>
+		        </m:apply>
+		      </m:apply>
+		    </m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  Thus, 
+
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>,
+
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mrow>
+		    <m:mo>−</m:mo> 
+		    <m:mn>1</m:mn>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+	       <m:minus/>
+               <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>, 
+	  and the other coefficients are zero.
+	</para>
+      </solution>
+    </exercise>
+
+    <para id="para1">
+      To find the Fourier coefficients, we note the orthogonality property
+      <equation id="eqn1">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>t</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>0</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci>T</m:ci>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>k</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:ci>T</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>l</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:ci>T</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:piecewise>
+	      <m:piece>
+		<m:ci>T</m:ci>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>k</m:ci>
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:piece>
+	      <m:piece>
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:neq/>
+		  <m:ci>k</m:ci>
+		  <m:ci>l</m:ci>
+		</m:apply>
+	      </m:piece>
+	    </m:piecewise>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      Assuming for the moment that the complex Fourier series "works," we can 
+find a signal's complex Fourier coefficients, its <term>spectrum</term>, by 
+exploiting the orthogonality properties of harmonically related complex 
+exponentials.
+      Simply multiply each side of <link target-id="complexfourierseries"/> by
+      <m:math>
+        <m:apply><m:exp/>
+          <m:apply><m:minus/>
+            <m:apply><m:times/>
+              <m:imaginaryi/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>l</m:ci>
+			  <m:ci>t</m:ci>
+            </m:apply>
+          </m:apply>
+        </m:apply>
+      </m:math> and integrate over the interval
+      <m:math>
+        <m:mfenced open="[" close="]">
+          <m:cn>0</m:cn>
+          <m:ci>T</m:ci>
+        </m:mfenced>
+      </m:math>.
+
+      <equation id="complex">
+	<m:math display="block">
+	<m:mtable columnalign="left">
+	  <m:mtr>
+	    <m:mtd>
+	      <m:apply><m:eq/>
+	        <m:ci><m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>k</m:mi>
+	          </m:msub>
+	        </m:ci>
+	        <m:apply><m:times/>
+	          <m:apply><m:divide/>
+		        <m:cn>1</m:cn>
+		        <m:ci>T</m:ci>
+	          </m:apply>
+	          <m:apply><m:int/>
+		        <m:bvar><m:ci>t</m:ci></m:bvar>
+		        <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		        <m:uplimit><m:ci>T</m:ci></m:uplimit>
+		        <m:apply><m:times/>
+		          <m:apply><m:ci type="fn">s</m:ci><m:ci>t</m:ci>
+</m:apply>
+		          <m:apply><m:exp/>
+		            <m:apply><m:minus/>
+		              <m:apply><m:times/>
+			            <m:imaginaryi/>
+		                <m:apply><m:divide/>
+			              <m:apply><m:times/>
+			                <m:cn>2</m:cn>
+			                <m:pi/>
+			                <m:ci>k</m:ci>
+			                <m:ci>t</m:ci>
+			              </m:apply>
+			              <m:ci>T</m:ci>
+		                </m:apply>
+		              </m:apply>
+		            </m:apply>
+		          </m:apply>
+	            </m:apply>
+	          </m:apply>
+	        </m:apply>
+	      </m:apply>
+	    </m:mtd>
+	  </m:mtr>
+	  
+	  <m:mtr>
+	    <m:mtd>
+	      <m:apply><m:eq/>
+	        <m:ci><m:msub>
+		      <m:mi>c</m:mi>
+		      <m:mi>0</m:mi>
+		      </m:msub>
+	        </m:ci>
+	        <m:apply><m:times/>
+	          <m:apply><m:divide/>
+		        <m:cn>1</m:cn>
+		        <m:ci>T</m:ci>
+	          </m:apply>
+	          <m:apply><m:int/>
+		        <m:bvar><m:ci>t</m:ci></m:bvar>
+		        <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		        <m:uplimit><m:ci>T</m:ci></m:uplimit>
+		        <m:apply><m:ci type="fn">s</m:ci><m:ci>t</m:ci>
+</m:apply>
+	          </m:apply>
+	        </m:apply>
+	      </m:apply>
+	    </m:mtd>
+	  </m:mtr>
+	</m:mtable>
+	</m:math>
+    </equation>
+   </para>
+   
+    <example id="squarewave">
+      <para id="sqwaveex1">Finding the Fourier series coefficients for the 
+square wave
+	<m:math>
+	  <m:apply><m:ci type="fn">
+	      <m:msub><m:mi>sq</m:mi><m:mi>T</m:mi></m:msub></m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math>
+        is very simple.
+	Mathematically, this signal can be expressed as
+
+	<m:math display="block">
+	  <m:apply><m:eq/>
+	    <m:apply><m:ci type="fn">
+		<m:msub><m:mi>sq</m:mi><m:mi>T</m:mi></m:msub></m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:piecewise>
+	      <m:piece>
+		<m:cn>1</m:cn>
+		<m:apply><m:lt/>
+		  <m:cn>0</m:cn>
+		  <m:apply><m:lt/>
+		    <m:ci>t</m:ci>
+		    <m:apply><m:divide/><m:ci>T</m:ci><m:cn>2</m:cn></m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:piece>
+	      <m:piece>
+		<m:apply><m:minus/><m:cn>1</m:cn></m:apply>
+		<m:apply><m:lt/>
+		  <m:apply><m:divide/><m:ci>T</m:ci><m:cn>2</m:cn></m:apply>
+		  <m:apply><m:lt/>
+		    <m:ci>t</m:ci>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:piece>
+	    </m:piecewise>
+	  </m:apply>
+	</m:math>
+
+	The expression for the Fourier coefficients has the form
+	
+	<equation id="fouriercoefficients">
+	  <m:math>
+	    <m:apply><m:eq/>
+		  <m:ci><m:msub><m:mi>c</m:mi><m:mi>k</m:mi></m:msub></m:ci>
+	      <m:apply><m:minus/>
+		    <m:apply><m:times/>
+		      <m:apply><m:divide/>
+		        <m:cn>1</m:cn>
+		        <m:ci>T</m:ci>
+		      </m:apply>
+		      <m:apply><m:int/>
+		        <m:bvar><m:ci>t</m:ci></m:bvar>
+		        <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+		        <m:uplimit>
+		          <m:apply><m:divide/><m:ci>T</m:ci><m:cn>2</m:cn>
+</m:apply>
+		        </m:uplimit>
+		        <m:apply><m:exp/>
+                  <m:apply><m:minus/>
+                    <m:apply><m:times/>
+                      <m:imaginaryi/>
+                      <m:apply><m:divide/>
+			             <m:apply><m:times/>
+			               <m:cn>2</m:cn> <m:pi/> <m:ci>k</m:ci> 
+<m:ci>t</m:ci>
+			             </m:apply>
+			             <m:ci>T</m:ci>
+			          </m:apply>
+		            </m:apply>
+                  </m:apply>
+                </m:apply>
+              </m:apply>
+            </m:apply>
+
+		    <m:apply><m:times/>
+		      <m:apply><m:divide/>
+		        <m:cn>1</m:cn>
+		        <m:ci>T</m:ci>
+		      </m:apply>
+		      <m:apply><m:int/>
+		        <m:bvar><m:ci>t</m:ci></m:bvar>
+		        <m:lowlimit>
+		          <m:apply><m:divide/><m:ci>T</m:ci><m:cn>2</m:cn>
+</m:apply>
+		        </m:lowlimit>
+		        <m:uplimit><m:ci>T</m:ci></m:uplimit>
+		        <m:apply><m:exp/>
+                  <m:apply><m:minus/>
+                    <m:apply><m:times/>
+                      <m:imaginaryi/>
+                      <m:apply><m:divide/>
+			             <m:apply><m:times/>
+			               <m:cn>2</m:cn> <m:pi/> <m:ci>k</m:ci> 
+<m:ci>t</m:ci>
+			             </m:apply>
+			             <m:ci>T</m:ci>
+			          </m:apply>
+		            </m:apply>
+                  </m:apply>
+                </m:apply>
+              </m:apply>
+            </m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+    
+    <note id="id1171937911085">
+    When integrating an expression containing <m:math><m:imaginaryi/></m:math>, 
+treat it just like any other constant.
+    </note>
+    
+	The two integrals are very similar, one equaling the negative of the 
+other.
+	The final expression becomes
+
+	<equation id="sqcoefficients"><m:math>
+	    <m:apply><m:eq/>
+	      <m:ci><m:msub><m:mi>c</m:mi><m:mi>k</m:mi></m:msub></m:ci>
+	      <m:apply><m:times/>
+	        <m:apply><m:divide/>
+	          <m:apply><m:minus/><m:cn>2</m:cn></m:apply>
+	          <m:apply><m:times/>
+	            <m:imaginaryi/>
+	            <m:cn>2</m:cn> <m:pi/> <m:ci>k</m:ci>
+	          </m:apply>
+	        </m:apply>
+	        <m:apply><m:minus/>
+	          <m:apply><m:power/>
+	            <m:apply><m:minus/><m:cn>1</m:cn></m:apply>
+	            <m:ci>k</m:ci>
+	          </m:apply>
+	          <m:cn>1</m:cn>
+	        </m:apply>
+	      </m:apply>
+
+	      <m:piecewise>
+		    <m:piece>
+		      <m:apply><m:divide/>
+		        <m:cn>2</m:cn>
+		        <m:apply><m:times/>
+		          <m:imaginaryi/>
+		          <m:pi/>
+		          <m:ci>k</m:ci>
+		        </m:apply>
+		      </m:apply>
+		      <m:ci><m:mi>k</m:mi><m:mtext> odd</m:mtext></m:ci>
+		    </m:piece>
+		    <m:piece>
+		      <m:cn>0</m:cn>
+		      <m:ci><m:mi>k</m:mi><m:mtext> even</m:mtext></m:ci>
+		    </m:piece>
+	      </m:piecewise>
+	    </m:apply>
+	  </m:math>
+	</equation><equation id="eqn3">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">sq</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar>
+		<m:ci>k</m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply>
+		  <m:in/>
+		  <m:ci>k</m:ci>
+		  <m:set>
+		    <m:ci>…</m:ci>
+		    <m:cn>-3</m:cn>
+		    <m:cn>-1</m:cn>
+		    <m:cn>1</m:cn>
+		    <m:cn>3</m:cn>
+		    <m:ci>…</m:ci>
+		  </m:set>
+		</m:apply>
+	      </m:condition>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:pi/>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>k</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:ci>T</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+
+	Consequently, the square wave equals a sum of complex exponentials, but
+	only those having frequencies equal to odd multiples of the
+	fundamental frequency
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:ci>T</m:ci>
+	  </m:apply>
+	</m:math>.  The coefficients decay slowly as the frequency
+	index <m:math><m:ci>k</m:ci></m:math> increases.  This index
+	corresponds to the <m:math><m:ci>k</m:ci></m:math>-th harmonic
+	of the signal's period.
+      </para>
+    </example>
+
+    <para id="para2">
+      A signal's Fourier series spectrum      
+      <m:math display="inline">
+	<m:ci>
+	  <m:msub>
+	    <m:mi>c</m:mi>
+	    <m:mi>k</m:mi>
+	  </m:msub></m:ci>
+      </m:math>      
+      has interesting properties.
+    </para>
+
+    <rule id="rule1" type="property"><label>Property</label>
+      <statement id="id1171933390251">
+	<para id="rule1para1">If 	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">s</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>	  
+	  is real,	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:conjugate/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>c</m:mi>
+		  <m:mrow>
+		    <m:mo>−</m:mo>
+		    <m:mi>k</m:mi>
+		  </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> (real-valued periodic signals have conjugate-symmetric
+	  spectra).
+	</para>
+      </statement>
+    </rule>
+
+    <para id="rule1para2">This result follows from the integral that calculates 
+the      
+      <m:math display="inline">
+	<m:ci>
+	  <m:msub>
+	    <m:mi>c</m:mi>
+	    <m:mi>k</m:mi>
+	  </m:msub>
+	</m:ci>
+      </m:math>      
+      from the signal. Furthermore, this result means that      
+      <m:math display="inline">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:real/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>c</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:real/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>c</m:mi>
+		<m:mrow>
+		  <m:mo>−</m:mo>
+		  <m:mi>k</m:mi>
+		</m:mrow>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>:       
+      The real part of the Fourier coefficients for real-valued
+      signals is even. Similarly,      
+      <m:math display="inline">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:imaginary/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>c</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:imaginary/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mrow>
+		    <m:mo>−</m:mo>
+		    <m:mi>k</m:mi>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>:       
+      The imaginary parts of the Fourier coefficients have odd
+      symmetry. Consequently, if you are given the Fourier
+      coefficients for positive indices and zero and are told the
+      signal is real-valued, you can find the negative-indexed
+      coefficients, hence the entire spectrum. This kind of symmetry,      
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:conjugate/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>c</m:mi>
+		  <m:mrow>
+		    <m:mo>−</m:mo>
+		    <m:mi>k</m:mi>
+		  </m:mrow>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, 
+      is known as <term>conjugate symmetry</term>.
+    </para>
+     
+	
+    <rule id="rule2" type="property"><label>Property</label>
+      <statement id="id1171927026680">
+	<para id="rule2para1">
+	  If 	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">s</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:ci type="fn">s</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, 	  
+	  which says the signal has even symmetry about the origin,	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mrow>
+		    <m:mo>−</m:mo>
+		    <m:mi>k</m:mi>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:math>.
+	</para>	
+      </statement>
+    </rule>
+
+
+    <para id="rule2para2">
+      Given the previous property for real-valued signals, the Fourier
+      coefficients of even signals are real-valued. A real-valued
+      Fourier expansion amounts to an expansion in terms of only
+      cosines, which is the simplest example of an even signal.
+    </para>
+
+
+    <rule id="rule3" type="property"><label>Property</label>
+      <statement id="id2652791">
+	<para id="rule3para1">
+	  If 	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci type="fn">s</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:ci type="fn">s</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, 
+	  which says the signal has odd symmetry,	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mrow>
+		    <m:mo>−</m:mo>
+		    <m:mi>k</m:mi>
+		  </m:mrow>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>c</m:mi>
+		    <m:mi>k</m:mi>
+		  </m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</para>	
+      </statement>
+    </rule>
+
+
+    <para id="rule3para2">
+      Therefore, the Fourier coefficients are purely imaginary. The
+      square wave is a great example of an odd-symmetric signal.
+    </para>
+
+
+    <rule id="rule4" type="property"><label>Property</label>
+      <statement id="id7955614">
+	<para id="rule4para1">The spectral coefficients for a periodic signal 
+delayed by
+	  <m:math><m:ci>τ</m:ci></m:math>,
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">s</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>t</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>,	  
+	  are	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>k</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>, 
+	  where 	  
+	  <m:math display="inline">
+	    <m:ci>
+	      <m:msub>
+		<m:mi>c</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>	  
+	  denotes the spectrum of	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="fn">s</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  Delaying a signal by 	  
+	  <m:math display="inline">
+	    <m:ci>τ</m:ci> 
+	  </m:math> 	  
+	  seconds results in a spectrum having a <term>linear phase
+	  shift</term> of	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:ci>k</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+		<m:ci>T</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>	  
+	  in comparison to the spectrum of the undelayed signal. Note
+	  that the spectral magnitude is unaffected. Showing this
+	  property is easy.
+	</para>
+      </statement>
+      <proof id="id1171928473592">
+	<para id="rule4para3">
+
+	  <equation id="showproperty">
+	    <m:math display="block">
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:cn>0</m:cn>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:ci>T</m:ci>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn">s</m:ci>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>t</m:ci>
+			  <m:ci>τ</m:ci>
+			</m:apply>
+		      </m:apply>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:imaginaryi/>
+			  </m:apply>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>k</m:ci>
+			      <m:ci>t</m:ci>
+			    </m:apply>
+			    <m:ci>T</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>	  
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>T</m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn">s</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:imaginaryi/>
+			  </m:apply>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>k</m:ci>
+			      <m:apply>
+				<m:plus/>
+				<m:ci>t</m:ci>
+				<m:ci>τ</m:ci>
+			      </m:apply>
+			    </m:apply>
+			    <m:ci>T</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:minus/>
+			<m:imaginaryi/>
+		      </m:apply>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>k</m:ci>
+			  <m:ci>τ</m:ci>
+			</m:apply>
+			<m:ci>T</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar>
+		      <m:ci>t</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>T</m:ci>
+			<m:ci>τ</m:ci>
+		      </m:apply>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci type="fn">s</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:apply>
+			    <m:minus/>
+			    <m:imaginaryi/>
+			  </m:apply>
+			  <m:apply>
+			    <m:divide/>
+			    <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>k</m:ci>
+			      <m:ci>t</m:ci>
+			    </m:apply>
+			    <m:ci>T</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  
+	  Note that the range of integration extends over a
+	  period of the integrand.  Consequently, it should not matter
+	  how we integrate over a period, which means that	  
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>t</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>T</m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		</m:uplimit>
+		<m:ci>
+		  <m:mfenced>
+		    <m:mi>·</m:mi>
+		  </m:mfenced>
+		</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>t</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:ci>T</m:ci>
+		</m:uplimit>
+		<m:ci>
+		  <m:mfenced>
+		    <m:mi>·</m:mi>
+		  </m:mfenced>
+		</m:ci>
+	      </m:apply>
+            </m:apply>
+	  </m:math>, 
+	  and we have our result.
+	</para>
+      </proof>
+    </rule>
+
+    <para id="para3">
+    The complex Fourier series obeys <term>Parseval's Theorem</term>, one of the 
+most important results in signal analysis.
+      This general mathematical result says
+you can calculate a signal's power in either the time domain or the frequency 
+domain.
+      <rule id="parseval" type="theorem">
+	<title>Parseval's Theorem</title>
+	<statement id="id3500753">
+	  <para id="parsevalpara1">	    
+	    Average power calculated in the time domain equals the power
+	    calculated in the frequency domain.
+	  </para>
+
+	  <para id="parsevalpara2">
+	    <equation id="parsevaleqn">
+	      <m:math display="block">
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:ci>T</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:int/>
+		      <m:bvar>
+			<m:ci>t</m:ci>
+		      </m:bvar>
+		      <m:lowlimit>
+			<m:cn>0</m:cn>
+		      </m:lowlimit>
+		      <m:uplimit>
+			<m:ci>T</m:ci>
+		      </m:uplimit>
+		      <m:apply>
+			<m:power/>
+			<m:apply>
+			  <m:ci type="fn">s</m:ci>
+			  <m:ci>t</m:ci>
+			</m:apply>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:sum/>
+		    <m:bvar>
+		      <m:ci>k</m:ci>
+		    </m:bvar>
+		    <m:lowlimit>
+		      <m:apply>
+			<m:minus/>
+			<m:infinity/>
+		      </m:apply>
+		    </m:lowlimit>
+		    <m:uplimit>
+		      <m:infinity/>
+		    </m:uplimit>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:abs/>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>c</m:mi>
+			    <m:mi>k</m:mi>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	    
+	    This result is a (simpler) re-expression of how to
+	    calculate a signal's power than with the real-valued
+	    Fourier series expression for power.
+	  </para>
+	</statement>
+      </rule>
+    </para>
+
+     <para id="expar1">Let's calculate the Fourier coefficients of the periodic 
+pulse signal
+      shown <link target-id="pps" strength="3">here</link>.
+
+     <figure id="pps">
+      <media id="id1171936780781" alt="">
+        <image src="../../media/sig14.png" mime-type="image/png"/>
+        <image for="pdf" src="../../media/sig14.eps" mime-type="application/postscript"/>
+      </media>
+      <caption> Periodic pulse signal.</caption>
+    </figure>
+
+       The pulse width is	
+      <m:math display="inline">
+	<m:ci>Δ</m:ci>
+      </m:math>, 
+      the period 	
+      <m:math display="inline">
+	<m:ci>T</m:ci>
+      </m:math>, 
+      and the amplitude 	
+      <m:math display="inline">
+	<m:ci>A</m:ci>
+      </m:math>.	
+      The complex Fourier spectrum of this signal is given by
+      
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>c</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar>
+		<m:ci>t</m:ci>
+	      </m:bvar>
+	      <m:lowlimit>
+		<m:cn>0</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:ci>Δ</m:ci>
+	      </m:uplimit>
+	      <m:apply><m:times/>
+	         <m:ci>A</m:ci>
+             <m:apply><m:exp/>
+		<m:apply>
+		    <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+	  	      <m:imaginaryi/>
+ 		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>k</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply><m:minus/>
+	    <m:apply><m:times/>
+	      <m:apply><m:divide/>
+		<m:ci>A</m:ci>
+		<m:apply><m:times/>
+		  <m:imaginaryi/>
+		  <m:cn>2</m:cn>
+		  <m:pi/>
+		  <m:ci>k</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply><m:minus/>
+	        <m:apply><m:exp/>
+		  <m:apply><m:minus/>
+		  <m:apply><m:divide/>
+		    <m:apply><m:times/>
+		      <m:imaginaryi/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>k</m:ci>
+		      <m:ci>Δ</m:ci>
+		    </m:apply>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+            </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      At this point, simplifying this expression requires knowing an
+      interesting property.
+      
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>θ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>θ</m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>θ</m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>θ</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	      <m:imaginaryi/>
+	      <m:apply>
+		<m:sin/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>θ</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      
+      Armed with this result, we can simply express the Fourier
+      series coefficients for our pulse sequence.
+      
+      <equation id="pulsespec">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>c</m:mi>
+		<m:mi>k</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>A</m:ci>
+	      <m:apply>
+		<m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:pi/>
+		      <m:ci>k</m:ci>
+		      <m:ci>Δ</m:ci>
+		    </m:apply>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:sin/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+		      <m:pi/>
+		      <m:ci>k</m:ci>
+		      <m:ci>Δ</m:ci>
+		    </m:apply>
+		    <m:ci>T</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:pi/>
+		  <m:ci>k</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+      Because this signal is real-valued, we find that the
+      coefficients do indeed have conjugate symmetry:      
+      <m:math display="inline">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>c</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:conjugate/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>c</m:mi>
+		<m:mrow>
+		  <m:mo>−</m:mo>
+		  <m:mi>k</m:mi>
+		</m:mrow>
+	      </m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+      
+      The periodic pulse signal has neither even nor odd symmetry;
+      consequently, no additional symmetry exists in the spectrum.
+      Because the spectrum is complex valued, to plot it we need to
+      calculate its magnitude and phase.
+      
+      <equation id="eqn2">
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:abs/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub>
+	      </m:ci>   
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>A</m:ci>
+	      <m:apply>
+		<m:abs/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:pi/>
+			<m:ci>k</m:ci>
+			<m:ci>Δ</m:ci>
+		      </m:apply>
+		      <m:ci>T</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:pi/>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply> 
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:arg/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:pi/>
+		    <m:ci>k</m:ci>
+		    <m:ci>Δ</m:ci>
+		  </m:apply>
+		  <m:ci>T</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:pi/>
+		<m:apply>
+		  <m:ci type="fn">neg</m:ci>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:sin/>
+		      <m:apply>
+			<m:divide/>
+			<m:apply>
+			  <m:times/>
+			  <m:pi/>
+			  <m:ci>k</m:ci>
+			  <m:ci>Δ</m:ci>
+			</m:apply>
+			<m:ci>T</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:pi/>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">sign</m:ci>
+		  <m:ci>k</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+ 
+      The function
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">neg</m:ci>
+	  <m:ci>·</m:ci>
+	</m:apply>
+      </m:math>
+      equals -1 if its argument is negative and zero otherwise.
+      The somewhat complicated expression for the phase results
+      because the sine term can be negative; magnitudes must be
+      positive, leaving the occasional negative values to be accounted
+      for as a phase shift of      
+      <m:math display="inline">
+	<m:pi/>
+      </m:math>.      
+    </para>
+
+    <figure id="periodic">
+      <title>Periodic Pulse Sequence</title> 
+      <media id="id1171936688220" alt="">
+        <image src="../../media/spectrum3.png" mime-type="image/png"/>
+        <image for="pdf" src="../../media/spectrum3.eps" mime-type="application/postscript"/>
+      </media>
+      <caption> 
+	The magnitude and phase of the periodic pulse sequence's
+	spectrum is shown for positive-frequency indices.  Here	
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>Δ</m:ci>
+	      <m:ci>T</m:ci>
+	    </m:apply>
+	    <m:cn>0.2</m:cn>
+	  </m:apply>
+	</m:math>	
+	and 	
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>A</m:ci>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>.
+      </caption>
+    </figure>
+
+    
+    <para id="para3meteo">
+      Also note the presence of a linear phase term (the first term in      
+      <m:math>
+	<m:apply>
+	  <m:arg/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>c</m:mi>
+	      <m:mi>k</m:mi>
+	    </m:msub>
+	  </m:ci>
+	</m:apply>
+      </m:math>      
+      is proportional to frequency       
+      <m:math>
+	<m:apply><m:divide/>
+	  <m:ci>k</m:ci>
+	  <m:ci>T</m:ci>
+	</m:apply>
+      </m:math>).      
+      Comparing this term with that predicted from delaying a signal,
+      a delay of      
+      <m:math>
+	<m:apply>
+	  <m:divide/>
+	  <m:ci>Δ</m:ci>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math>      
+      is present in our signal. Advancing the signal by this amount
+      centers the pulse about the origin, leaving an even signal,
+      which in turn means that its spectrum is real-valued.  Thus, our
+      calculated spectrum is consistent with the properties of the
+      Fourier spectrum.
+    </para>
+
+
+    <exercise id="exer1">
+      <problem id="id4477257">
+	<para id="probpara1meteo">
+	  What is the value of 	  
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>c</m:mi>
+		<m:mn>0</m:mn>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>?	  
+	  Recalling that this spectral coefficient corresponds to the
+	  signal's average value, does your answer make sense?
+	</para>
+      </problem>
+      
+      <solution id="id7681366">
+	<para id="solpara1meteo">
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>c</m:mi>
+		  <m:mn>0</m:mn>
+		</m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>A</m:ci>
+		  <m:ci>Δ</m:ci>
+		</m:apply>
+		<m:ci>T</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>. 
+	  This quantity clearly corresponds to the periodic pulse
+	  signal's average value.	  
+	</para>
+      </solution>
+    </exercise>
+
+
+    <para id="para4">The phase plot shown in <link target-id="periodic" strength="3"/>
+      requires some explanation as it does not seem to agree with what
+      <link target-id="eqn2" strength="3"/> suggests. There, the phase has
+      a linear component, with a jump of
+      <m:math>
+	<m:pi/>
+      </m:math>
+      every time the sinusoidal term changes sign. We must realize that 
+      any integer multiple of
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:cn>2</m:cn>
+	  <m:pi/>
+	</m:apply>
+      </m:math>
+      can be added to a phase at each frequency <emphasis>without</emphasis>
+      affecting the value of the complex spectrum. We see
+      that at frequency index 4 the phase is nearly      
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:pi/>
+	</m:apply>
+      </m:math>.
+      The phase at index 5 is undefined because the magnitude is zero
+      in this example.  At index 6, the formula suggests that the
+      phase of the linear term should be less than
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:pi/>
+	</m:apply>
+      </m:math> (more negative). 
+      In addition, we expect a shift of
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:pi/>
+	</m:apply>
+      </m:math>
+      in the phase between indices 4 and 6. Thus, the phase value
+      predicted by the formula is a little less than
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:pi/>
+	  </m:apply>
+	</m:apply>
+      </m:math>. 
+      Because we can add
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:cn>2</m:cn>
+	  <m:pi/>
+	</m:apply>
+      </m:math>      
+      without affecting the value of the spectrum at index 6, the
+      result is a slightly negative number as shown. Thus, the formula
+      and the plot do agree. In phase calculations like those made in
+      MATLAB, values are usually confined to the range
+      <m:math>
+	<m:interval closure="closed-open">
+	  <m:apply>
+	    <m:minus/>
+	    <m:pi/>
+	  </m:apply>
+	  <m:pi/>
+	</m:interval>
+      </m:math>
+      by adding some (possibly negative) multiple of
+      <m:math>
+	<m:apply>
+	  <m:times/>
+	  <m:cn>2</m:cn>
+	  <m:pi/>
+	</m:apply>
+      </m:math>
+      to each phase value.
+    </para></content>
+</document>

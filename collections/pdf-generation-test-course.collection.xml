@@ -1,0 +1,54 @@
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10278</md:content-id>
+    <md:title>PDF Generation Test Course</md:title>
+    <md:language>en</md:language>
+    <md:license url="http://creativecommons.org/licenses/by/1.0">Creative Commons Attribution License</md:license>
+    <md:uuid>9661f1f3-10e6-4930-a8a7-b441b2e91822</md:uuid>
+<md:slug>pdf-generation-test-course</md:slug>
+</metadata>
+  <col:content>
+    <col:subcollection>
+      <md:title>CALS Tables</md:title>
+      <col:content>
+        <col:module document="m11797"/>
+        <col:module document="m11799"/>
+        <col:module document="m10099"/>
+        <col:module document="m11091"/>
+        <col:module document="m11090"/>
+        <col:module document="m13751"/>
+        <col:module document="m10119"/>
+        <col:module document="m14789"/>
+        <col:module document="m15554"/>
+        <col:module document="m13757"/>
+        <col:module document="m14503"/>
+        <col:module document="m11602"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>cnxn media targets</md:title>
+      <col:content>
+        <col:module document="m12200"/>
+        <col:module document="m12205"/>
+        <col:module document="m12258"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>Equation Breaking</md:title>
+      <col:content>
+        <col:module document="m0039"/>
+        <col:module document="m0042"/>
+        <col:module document="m10250"/>
+        <col:module document="m10510"/>
+        <col:module document="m12075"/>
+        <col:module document="m12077"/>
+      </col:content>
+    </col:subcollection>
+    <col:subcollection>
+      <md:title>cnxns, anyone?</md:title>
+      <col:content>
+        <col:module document="m11604"/>
+      </col:content>
+    </col:subcollection>
+  </col:content>
+</col:collection>

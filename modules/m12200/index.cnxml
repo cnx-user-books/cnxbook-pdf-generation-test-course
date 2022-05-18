@@ -1,0 +1,459 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Reduce Samples VI</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>db896fa0-e2d3-4b42-92e8-76c139632952</md:uuid>
+</metadata>
+  
+  <content>
+    <exercise id="ex1">
+      <problem id="idp8030336">
+	<para id="para1">
+	  In the following exercises, you will open a blank VI and add
+	  Express VIs and structures to the block diagram to build a new
+	  VI. When you complete the exercise, the front panel of the VI
+	  will appear similar to the <link target-id="f1"/>.
+	  <figure id="f1">
+	    <media id="idm684512" alt=""><image src="../../media/reducesamplesfp.png" mime-type="image/png"/></media>
+	  </figure>
+	</para>
+	<section id="section1">
+	  <title>Opening a Blank VI</title>
+	  <para id="para2">
+	    If no template is available for the task you want to create,
+	    you can start with a blank VI and add Express VIs to
+	    accomplish the specific task. Complete the following steps to
+	    open a blank VI.
+	  </para>
+	  <list id="list1" list-type="enumerated">
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      In the <code>LabVIEW</code> dialog box, click the arrow on
+	      the <code>New</code> button and select <code>Blank VI</code>
+	      from the shortcut menu or press the <code>Ctrl-N</code> keys
+	      to open a blank VI.
+	      <!--different para-->
+	      Notice that a blank front panel and block diagram appear.
+	    </item>
+	    <item>
+	      <media id="idp6424544" alt=""><image src="../../media/thumbtack.png" id="m1" mime-type="image/png"/></media> 
+	      If the <code>Functions</code> palette is not visible,
+	      right-click any blank space on the block diagram to display
+	      the <code>Functions</code> palette. Click the thumbtack,
+	      shown in <link target-id="m1"/>, in the upper left corner of
+	      the <code>Functions</code> palette to place the palette on
+	      the screen.
+	    </item>
+	  </list>
+	  <note type="note" id="idp79616">
+	    You can right-click a blank space on the block diagram or the
+	    front panel to display the <code>Functions</code> or
+	    <code>Controls</code> palettes.
+	  </note>
+	</section>
+	<section id="section2">
+	  <title>Adding an Express VI that Simulates a Signal</title>
+	  <para id="para3">
+	    Complete the following steps to find the Express VI you want
+	    to use and then add it to the block diagram.
+	  </para>
+	  <list id="list2" list-type="enumerated">
+	    <item>
+	      <media id="idp5437264" alt=""><image src="../../media/helpbutton.png" id="m2" mime-type="image/png"/></media> If
+	      the <code>Context Help</code> window is not visible, press
+	      the <code>Ctrl-H</code> keys to open the <code>Context
+		Help</code> window. You also can press the <code>Show
+		Context Help Window</code> button, shown in <link target-id="m2"/>, to open the <code>Context Help</code> window.
+	    </item>
+	    <item>
+	      <!--needs to be corrected, should be seperate paragraphs-->
+	      Select the <code>Input</code> palette on the
+	      <code>Functions</code> palette and move the cursor over the
+	      Express VIs on the <code>Input</code> palette.
+	      <!--different para-->
+	      Notice that the <code>Context Help</code> window displays
+	      information about the function of each Express VI.
+	    </item>
+	    <item>
+	      From the information provided in the <code>Context
+		Help</code> window, find the Express VI that can simulate a
+	      sine wave signal.
+	    </item>
+	    <item>
+	      Select the Express VI and place it on the block diagram. The
+	      <code>Configure Simulate Signal</code> dialog box appears.
+	    </item>
+	    <item>
+	      Idle the cursor over the various options in the
+	      <code>Configure Simulate Signal</code> dialog box, such as
+	      <code>Frequency (Hz)</code>, <code>Amplitude</code>, and
+	      <code>Samples per second (Hz)</code>. Read the information
+	      that appears in the <code>Context Help</code> window.
+	    </item>
+	    <item>
+	      Configure the <code>Simulate Signal</code> Express VI to
+	      generate a sine wave with a frequency of
+	      <m:math>
+		<m:cn>10.7</m:cn>
+	      </m:math> and amplitude of
+	      <m:math>
+		<m:cn>2</m:cn>
+	      </m:math>.
+	    </item>
+	    <item>
+	      Notice how the signal displayed in the <code>Result
+		Preview</code> window changes to reflect the configured sine
+	      wave.
+	    </item>
+	    <item>
+	      Close the <code>Configure Simulate Signal</code> dialog box
+	      by clicking the <code>OK</code> button.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+
+	      Move the cursor over the <code>Simulate Signal</code>
+	      Express VI and read the information that appears in the
+	      <code>Context Help</code> window.
+	      <!--different para-->	  
+	      Notice that the <code>Context Help</code> window now
+	      displays the configuration of the <code>Simulate
+		Signal</code> Express VI.
+	    </item>
+	    <item>
+	      Save this VI as <code>Reduce Samples.vi</code> in the
+	      <code>C:\Exercises\LabVIEW Basics I</code> directory.
+	    </item>
+	  </list>
+	</section>
+	<section id="section3">
+	  <title>Modifying the Signal</title>
+	  <para id="para4">
+	    Complete the following steps to use the <cite><cite-title>LabVIEW
+	      Help</cite-title></cite> to search for the Express VI that reduces the
+	    number of samples in a signal.
+	  </para>
+	  <list id="list3" list-type="enumerated">
+	    <item>
+	      Select <code>Help&gt;&gt;VI, Function, &amp; How-To Help</code> to
+	      open the <cite><cite-title>LabVIEW Help</cite-title></cite>.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+
+	      Click the <code>Search</code> tab and type <code>sample
+		compression</code> in the <code>Type in the word(s) to
+		search for</code> text box.
+	      <!--different para-->
+	      Notice that this word choice reflects what you want this
+	      Express VI to do-compress, or reduce, the number of samples
+	      in a signal.
+	    </item>
+	    <item>
+	      To begin the search, press the <code>Enter</code> key or
+	      click the <code>List Topics</code> button.
+	    </item>
+	    <item>
+	      Double-click the <code>Sample Compression</code> topic to
+	      display the topic that describes the <code>Sample
+		Compression</code> Express VI.
+	    </item>
+	    <item>
+	      After you read the description of the Express VI, click the
+	      <code>Place on the block diagram</code> button to select the
+	      Express VI.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Move the cursor to the block diagram.
+	      <!--different para-->
+	      Notice how LabVIEW attaches the <code>Sample
+		Compression</code> Express VI to the cursor.
+	    </item>
+	    <item>
+	      Place the <code>Sample Compression</code> Express VI on the
+	      block diagram to the right of the <code>Simulate
+		Signal</code> Express VI.
+	    </item>
+	    <item>
+	      Configure the <code>Sample Compression</code> Express VI to
+	      reduce the signal by a factor of
+	      <m:math>
+		<m:cn>25</m:cn>
+	      </m:math> using the mean of these values. 
+	    </item>
+	    <item>
+	      Close the <code>Configure Sample Compression</code> dialog
+	      box.
+	    </item>
+	    <item>
+	      Using the <code>Wiring</code> tool, wire the
+	      <code>Sine</code> output in the <code>Simulate Signal</code>
+	      Express VI to the <code>Signals</code> input in the
+	      <code>Sample Compression</code> Express VI.
+	    </item>
+	  </list>
+	</section>
+	<section id="section4">
+	  <title>Customizing the Front Panel</title>
+	  <para id="para5">
+	    In a <link document="m12196">previous exercise</link>, you added
+	    controls and indicators to the front panel using the
+	    <code>Controls</code> palette. You also can add controls and
+	    indicators from the block diagram. Complete the following
+	    steps to create controls and indicators as shown in <link target-id="f2"/>.
+	    <figure id="f2">
+	      <media id="idp6545264" alt=""><image src="../../media/reducesamplesbdnoWL.png" mime-type="image/png"/></media>
+	    </figure>
+	  </para>
+	  <list id="list4" list-type="enumerated">
+	    <item>
+	      Right-click the <code>Mean</code> output in the <code>Sample
+		Compression</code> Express VI and select
+	      <code>Create&gt;&gt;Numeric Indicator</code> from the shortcut
+	      menu to create a numeric indicator.
+	    </item>
+	    <item>
+	      Right-click the <code>Mean</code> output of the <code>Sample
+		Compression</code> Express VI and select <code>Insert
+		Input/Output</code> from the shortcut menu to insert the
+	      <code>Enable</code> input.
+	    </item>
+	    <item>
+	      Right-click the <code>Enable</code> input and select
+	      <code>Create&gt;&gt;Control</code> from the shortcut menu to
+	      create the <code>Enable</code>switch.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Right-click the wire linking the <code>Sine</code> output in
+	      the <code>Simulate Signal</code> Express VI to the
+	      <code>Signals</code> input in the <code>Signal
+		Compression</code> Express VI and select <code>Create&gt;&gt;Graph
+		Indicator</code> from the shortcut menu.
+	      <!--different para-->
+	      Notice that you can create controls and indicators from the
+	      block diagram. When you create controls and indicators using
+	      this method, LabVIEW automatically creates terminals that
+	      are labeled and formatted correctly.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Using the <code>Wiring</code> tool, wire the
+	      <code>Mean</code> output in the <code>Sample
+		Compression</code> Express VI to the <code>Sine</code> graph
+	      indicator terminal created in the previous step.
+	      <!--different para-->
+	      Notice that the <code>Merge Signals</code> function appears.
+	    </item>
+	    <item>
+	      Arrange the objects on the block diagram so that they appear
+	      similar to <link target-id="f2"/>.
+	      <note type="tip" id="idp8973680">
+		You can right-click any wire and select <code>Clean Up
+		  Wire</code> from the shortcut menu to automatically route
+		an existing wire.
+	      </note>
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Display the front panel.
+	      <!--different para-->
+	      Notice that the controls and indicators you added
+	      automatically appear on the front panel with labels that
+	      correspond to their function.
+	    </item>
+	    <item>
+	      Save this VI.
+	    </item>
+	  </list>
+	</section>
+	<section id="section5">
+	  <title>Configuring the VI to Run Continuously Until the User Stops
+	    It</title>
+	  <para id="para6">
+	    In the current state, the VI runs once, generates one signal,
+	    then stops executing. To run the VI until a condition is met,
+	    you can add a <code>While Loop</code> to the block
+	    diagram. Complete the following steps to add a <code>While
+	      Loop</code>.
+	  </para>
+	  <list id="list5" list-type="enumerated">
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Display the front panel and run the VI.
+	      <!--different para-->
+	      Notice how the VI runs once and then stops. Also notice how
+	      there is no <code>Stop</code> button.
+	    </item>
+	    <item>
+	      Display the block diagram and select the While Loop on the
+	      <code>Functions&gt;&gt;Execution Control</code> palette.
+	    </item>
+	    <item>
+	      Move the cursor to the upper left corner of the block
+	      diagram. Place the top left corner of the <code>While
+		Loop</code> here.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Click and drag the cursor diagonally to enclose
+	      <emphasis>all</emphasis> the Express VIs and wires, as shown
+	      in <link target-id="f3"/>.
+	      <figure id="f3">
+		<media id="idp6548944" alt=""><image src="../../media/reducesamplesbdnoWL.png" mime-type="image/png"/></media>
+	      </figure>
+	      <!--different para-->
+	      <media id="idp6727456" alt=""><image src="../../media/whileloop.png" id="m3" mime-type="image/png"/></media>
+	      Notice that the <code>While Loop</code>, shown in <link target-id="m3"/>, appears with a <code>Stop</code> button wired
+	      to the condition terminal. This <code>While Loop</code> is
+	      configured to stop when the user clicks the
+	      <code>Stop</code> button.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Display the front panel and run the VI.
+	      <!--different para-->
+	      Notice that the VI now runs until you click the
+	      <code>Stop</code> button. A <code>While Loop</code> executes
+	      the functions inside the loop until the user presses the
+	      <code>Stop</code> button. Refer to <link document="m12212">Repetition and Loops</link> for more information
+	      about <code>While Loops</code>.
+	    </item>
+	  </list>
+	</section>
+	<section id="section6">
+	  <title>Controlling the Speed of Execution</title>
+	  <para id="para7">
+	    To plot the points on the waveform graph more slowly, you can
+	    add a time delay to the block diagram. Complete the following
+	    steps to control the speed at which the VI executes.
+	  </para>
+	  <list id="list6" list-type="enumerated">
+	    <item>
+	      On the block diagram, select the <code>Time Delay</code>
+	      Express VI on the <code>Functions&gt;&gt;Execution Control</code>
+	      palette and place it inside the loop.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Type 
+	      <m:math>
+		<m:cn>.250</m:cn>
+	      </m:math> in the <code>Time delay (seconds)</code> text box.
+	      <!--different para-->
+	      This time delay specifies how fast the loop runs. With a
+	      <m:math>
+		<m:cn>.250</m:cn>
+	      </m:math> second
+	      time delay, the loop iterates once every quarter of a
+	      second.
+	    </item>
+	    <item>
+	      Close the <code>Configure Time Delay</code> dialog box.
+	    </item>
+	    <item>
+	      Save this VI.
+	    </item>
+	    <item>
+	      Display the front panel and run the VI.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Click the <code>Enable</code> switch and notice the change
+	      on the graph.
+	      <!--different para-->
+	      Notice how if the <code>Enable</code> switch is on, the
+	      graph displays the reduced signal. If the
+	      <code>Enable</code> switch is off, the graph does not
+	      display the reduced signal.
+	    </item>
+	    <item>
+	      Click the <code>Stop</code> button to stop the VI.
+	    </item>
+	  </list>
+	</section>
+	<section id="section8">
+	  <title>Using a Table to Display Data</title>
+	  <para id="para8">
+	    Complete the following steps to display a collection of mean
+	    values in a table on the front panel.
+	  </para>
+	  <list id="list7" list-type="enumerated">
+	    <item>
+	      On the front panel, select the Express Table indicator on
+	      the <code>Controls&gt;&gt;Text Indicators</code> palette and place
+	      it on the front panel to the right of the waveform graph.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Display the block diagram.
+	      <!--different para-->
+	      Notice that the <code>Table</code> terminal appears wired to
+	      the <code>Build Table</code> Express VI automatically.
+	    </item>
+	    <item>
+	      <media id="idm808816" alt=""><image src="../../media/clickanddrag.png" id="m4" mime-type="image/png"/></media>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      If the <code>Build Table</code> Express VI and the
+	      <code>Table</code> terminal are not selected already, click
+	      an open space on the block diagram to the left of the
+	      <code>Build Table</code> Express VI and the
+	      <code>Table</code> terminal. Drag the cursor diagonally
+	      until the selection rectangle encloses the <code>Build
+		Table</code> Express VI and the <code>Table</code> terminal,
+	      shown in <link target-id="m4"/>.
+	      <!--different para-->
+	      A moving dashed outline called a marquee highlights the
+	      <code>Build Table</code> Express VI, the <code>Table</code>
+	      terminal, and the wire joining the two.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Drag the objects into the <code>While Loop</code> to the
+	      right of the <code>Mean</code> terminal.
+	      <!--different para-->
+	      Notice that the <code>While Loop</code> automatically
+	      resizes to enclose the <code>Build Table</code> Express VI
+	      and the <code>Table</code> terminal.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Using the <code>Wiring</code> tool, wire the
+	      <code>Mean</code> terminal of the <code>Sample
+		Compression</code> Express VI to the <code>Signals</code>
+	      input of the <code>Build Table</code> Express VI.
+	      <!--different para-->
+	      The block diagram should appear similar to <link target-id="f4"/>.
+	      <figure id="f4">
+		<media id="idm1819696" alt=""><image src="../../media/reducesamplesbdwithtable.png" mime-type="image/png"/></media>
+	      </figure>
+	    </item>
+	    <item>
+	      Display the front panel and run the VI.
+	    </item>
+	    <item>
+	      <!--this needs to be corrected, should be seperate paragraphs-->
+	      Click the <code>Enable</code> switch.
+	      <!--different para-->
+	      The table displays the mean values of every
+	      <m:math>
+		<m:cn>25</m:cn> </m:math> samples of the sine wave. Notice
+	      if the <code>Enable</code> switch is off, the table does not
+	      record the mean values.  </item>
+	    <item>
+	      Stop the VI.
+	    </item>
+	    <item> 
+	      Experiment with properties of the table by using the <code>Table Properties</code>
+	      dialog box. For example, try changing the number of
+	      columns to one.
+	    </item>
+	    <item>
+	      Save and close this VI.
+	    </item>
+	  </list>
+	</section>
+      </problem>
+    </exercise>
+  </content>
+  
+</document>

@@ -1,0 +1,374 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>cnxns</title>
+  <metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m11604</md:content-id>
+  <md:title>cnxns</md:title>
+  <md:abstract>Need summary</md:abstract>
+  <md:uuid>727ec052-dc84-4a37-82e6-d56628820d36</md:uuid>
+</metadata>
+  <content>
+    <section id="s6-lists">
+      <title>Gratuitous list-o-mania</title>
+      <list id="s6-l1a" list-type="labeled-item">
+        <title>Named-item list</title>
+        <item><label>One name</label> the first item</item>
+        <item id="s6-l1a-i2"><label>Two name</label> the second item</item>
+        <item><label>Three name</label> the third item</item>
+      </list>
+      <section id="s6-named-item">
+        <title>Named-item list</title>
+        <list id="s6-l1b" list-type="labeled-item">
+          <item><label>One name</label> the first item</item>
+          <item id="s6-l1b-i2"><label>Two name</label> the second item</item>
+          <item><label>Three name</label> the third item</item>
+        </list>
+      </section>
+      <list id="s6-l2a" list-type="bulleted">
+        <title>Bulleted list</title>
+        <item>the first item</item>
+        <item id="s6-l2a-i2">the second item</item>
+        <item>the third item</item>
+      </list>
+      <section id="s6-bulleted">
+      <title>Bulleted list, no name</title>
+        <list id="s6-l2b" list-type="bulleted">
+          <item>the first item</item>
+          <item id="s6-l2b-i2">the second item</item>
+          <item>the third item</item>
+        </list>
+      </section>
+      <list id="s6-l3a" list-type="enumerated">
+        <title>Enumerated list</title>
+        <item>the first item</item>
+        <item id="s6-l3a-i2">the second item</item>
+        <item>the third item</item>
+      </list>
+      <section id="s6-enumerated">
+      <title>Enumerated list, no name</title>
+        <list id="s6-l3b" list-type="enumerated">
+          <item>the first item</item>
+          <item id="s6-l3b-i2">the second item</item>
+          <item>the third item</item>
+        </list>
+      </section>
+    </section>
+<figure id="beta_sheets" orient="horizontal"><title>Secondary Structure: β-sheet</title>
+<subfigure id="beta_sheet_cartoon">
+   <title> Cartoon representation </title>
+   <media id="id1164777804395" alt=""><image src="/content/m11614/latest/beta_sheet_cartoon.JPG" mime-type="image/jpeg" height="200" print-width="1.5in"/></media>
+   <caption> Different parts of the polypeptide strand align with each other to form a β-sheet. This β-sheet is <term>anti-parallel</term>, because adjacent segments of the protein run in opposite directions.</caption>
+   </subfigure>
+   <subfigure id="beta_sheet_ribbon">
+   <title> Ribbon representation </title>
+   <media id="id1164776838226" alt=""><image src="/content/m11614/latest/beta_sheet_ribbon.JPG" mime-type="image/jpeg" height="200" print-width="1.5in"/></media>
+   <caption> β-sheets are sometimes referred to as β pleated sheets, because of the regular zig-zag of the strands evident in this representation. </caption>
+   </subfigure>
+   <subfigure id="beta_sheet_bond">
+   <title> Bond representation </title>
+   <media id="id1164780094226" alt=""><image src="/content/m11614/latest/beta_sheet_bond.JPG" mime-type="image/jpeg" height="200" print-width="1.5in"/></media>
+   <caption> Each segment in this representation represents a bond. Unlike the other two representations, side chains are illustrated.  Note the alignment of oxygen atoms (red) toward nitrogen atoms (blue) on adjacent strands.  This alignment is due to hydrogen bonding, the primary interaction involved in stabilizing secondary structure. </caption>
+   </subfigure>
+    <caption> Beta-sheets represented in three different rendering modes:  cartoon, ribbon, and bond representations.</caption></figure>
+
+
+    <example id="ex1">
+      <para id="ex1-p1">Umm</para>
+    </example>
+    <example id="ex2"><title>This is not the Example you were looking for</title>
+      <para id="ex2-p1">Move along!</para>
+    </example>
+    <para id="p1">
+      <list id="p1l0">
+        <title>Collections</title>
+        <item><link document="col10208">external collection</link></item>
+        <item><link document="col10208"/></item>
+      </list>
+      <list id="p1l1">
+        <title>Documents</title>
+        <item><link document="m12373">external module</link></item>
+        <item><link document="m0042">internal module</link></item>
+      </list>
+      <list id="p1l2">
+        <title>Figures</title>
+        <item><link document="m12413" target-id="fig0c">external, with title</link></item>
+        <item><link document="m12373" target-id="fig1a">external, without title</link></item>
+        <item>external, with title<link document="m12413" target-id="fig0c"/></item>
+        <item>external, without title<link document="m12373" target-id="fig1a"/></item>
+        <item><link document="m0042" target-id="periodic">internal, with title</link></item>
+        <item><link document="m0042" target-id="pps">internal, without title</link></item>
+        <item>Text before: <link document="m0042" target-id="periodic"/></item>
+        <item>Text before (no title): <link document="m0042" target-id="pps"/></item>
+      </list>
+      <list id="p1l3">
+        <title>Sections</title>
+        <item><link document="m9000" target-id="namespace_declaration">external, with title</link></item>
+        <item><link document="m15151" target-id="section-3a">external, without title</link></item>
+        <item><link document="m10510" target-id="sec5a">internal, with title</link></item>
+        <!-- <item><cnxn document="m0042" target="pps">internal, without title</cnxn></item> -->
+        <item>Text before: <link document="m10510" target-id="sec5a"/></item>
+        <!-- <item>Text before (no title): <cnxn document="m0042" target="pps"/></item> -->
+      </list>
+      <list id="p1l4">
+        <title>Equations</title>
+        <item><link document="m10235" target-id="eq04">external, with title</link></item>
+        <item><link document="m12058" target-id="eqn2">external, without title</link></item>
+        <item><link target-id="eqn3">internal, with title</link></item>
+        <item><link document="m0042" target-id="eqn3">internal, without title</link></item>
+        <item>Text before: <link target-id="eqn3"/></item>
+        <item>Text before (no title): <link document="m0042" target-id="eqn3"/></item>
+      </list>
+      <list id="p1l5">
+        <title>Paragraphs</title>
+        <item><link document="m12665" target-id="collezioni_punti">external, with title</link></item>
+        <item><link document="m9000" target-id="namespaces">external, without title</link></item>
+        <item><link target-id="s4paras-p1">internal, with title</link></item>
+        <item><link document="m0042" target-id="rule1para2">internal, without title</link></item>
+        <item>Text before: <link target-id="s4paras-p1"/>.</item>
+        <item>Text before (no title): <link document="m0042" target-id="rule1para2"/>.</item>
+      </list>
+      <list id="p1l6">
+        <title>Definitions</title>
+        <item><link document="m15194" target-id="definition-62">external</link></item>
+        <item><link document="m10510" target-id="wiki">internal</link></item>
+        <item>Text before: <link document="m10510" target-id="wiki"/>.</item>
+      </list>
+      <list id="p1l7">
+        <title>Tables</title>
+        <item><link document="m10715" version="2.45" target-id="table1">external, with title</link></item>
+        <item><link document="m10717" version="2.31" target-id="proof2">external, without title</link></item>
+        <item><link document="m15431" target-id="table03">internal, with title</link></item>
+        <item><link document="m12077" target-id="proof1">internal, without title</link></item>
+        <item>Text before: <link document="m11797" target-id="table01"/>.</item>
+        <item>Text before (no title): <link document="m12077" target-id="proof1"/>.</item>
+      </list>
+      <list id="p1l8">
+        <title>Examples</title>
+        <item><link document="m12565" version="1.9" target-id="ex23423">external, with title</link></item>
+        <item><link document="m10717" version="2.31" target-id="example2">external, without title</link></item>
+        <item><link target-id="ex2">internal, with title</link></item>
+        <item><link document="m12077" target-id="example3">internal, without title</link></item>
+        <item>Text before: <link target-id="ex2"/>.</item>
+        <item>Text before (no title): <link document="m12077" target-id="example3"/>.</item>
+      </list>
+      <list id="p1l9">
+        <title>Lists</title>
+        <item><link document="m14468" version="" target-id="element-686">external, with title</link></item>
+        <item><link document="m14468" version="" target-id="element-34">external, without title</link></item>
+        <item><link target-id="p1l0">internal, with title</link></item>
+        <item><link document="m0039" target-id="triglist">internal, without title</link></item>
+        <item>Text before: <link target-id="p1l0"/>.</item>
+        <item>Text before (no title): <link document="m0039" target-id="triglist"/>.</item>
+      </list>
+      <list id="p1l10">
+        <title>Subfigures</title>
+        <item><link document="m11614" version="" target-id="beta_sheet_ribbon">external, with title</link></item>
+        <item><link document="m12072" version="" target-id="board-snippet1">external, without title</link></item>
+        <item><link target-id="beta_sheet_ribbon">internal, with title</link></item>
+        <item><link document="m10250" target-id="oneoneohtwo">internal, without title</link></item>
+        <item>Text before: <link target-id="beta_sheet_ribbon"/>.</item>
+        <item>Text before (no title): <link document="m10250" target-id="oneoneohtwo"/>.</item>
+      </list>
+      <list id="p1l11">
+        <title>Exercises</title>
+        <item><link document="m11795" version="" target-id="one">external, with title</link></item>
+        <item><link document="m11633" version="" target-id="ex6a">external, without title</link></item>
+        <item><link target-id="one">internal, with title</link></item>
+        <item><link document="m10250" target-id="exer1">internal, without title</link></item>
+        <item>Text before: <link target-id="one"/>.</item>
+        <item>Text before (no title): <link document="m10250" target-id="exer1"/>.</item>
+      </list>
+      <list id="p1l12">
+        <title>List items (bulleted lists)</title>
+        <!-- <item><cnxn document="" target="" version="">external, with title</cnxn></item> -->
+        <item><link document="m14003" version="" target-id="id2811131">external, without title</link></item>
+        <item><link target-id="s6-l2a-i2">internal, with title</link></item>
+        <item><link target-id="s6-l2b-i2">internal, without title</link></item>
+        <item>Text before: <link target-id="s6-l2a-i2"/>.</item>
+        <item>Text before (no title): <link target-id="s6-l2b-i2"/>.</item>
+      </list>
+      <list id="p1l13">
+        <title>List items (enumerated lists)</title>
+        <item><link document="m10367" version="" target-id="prob3">external, with title</link></item>
+        <item><link document="m12273" version="" target-id="step4">external, without title</link></item>
+        <item><link target-id="s6-l3a-i2">internal, with title</link></item>
+        <item><link target-id="s6-l3b-i2">internal, without title</link></item>
+        <item>Text before: <link target-id="s6-l3a-i2"/>.</item>
+        <item>Text before (no title): <link target-id="s6-l3b-i2"/>.</item>
+      </list>
+      <list id="p1l14">
+        <title>List items (named-item lists)</title>
+        <!-- <item><cnxn document="" target="" version="">external, with title</cnxn></item> -->
+        <item><link document="m13949" version="" target-id="id2912580">external, without title</link></item>
+        <item><link target-id="s6-l1a-i2">internal, with title</link></item>
+        <item><link target-id="s6-l1b-i2">internal, without title</link></item>
+        <item>Text before: <link target-id="s6-l1a-i2"/>.</item>
+        <item>Text before (no title): <link target-id="s6-l1b-i2"/>.</item>
+      </list>
+      <list id="p1l15">
+        <title>Media</title>
+        <item><link document="m12204" version="" target-id="m1">external</link></item>
+        <item><link document="m12205" target-id="p8">internal, with common ancestor para (see this para)</link></item>
+        <item><link document="m12200" target-id="list5">internal, with common ancestor item (see this list, item 4)</link></item>
+        <item><link document="m12258" target-id="s1f1">internal, without common ancestor</link></item>
+        <!-- <item>Text before: <cnxn target=""/>.</item>
+        <item>Text before (no common ancestor): <cnxn document="" target=""/>.</item> -->
+      </list>
+      <list id="p1l16">
+        <title>Problem</title>
+        <item><link document="m13715" version="" target-id="P2">external, with title</link></item>
+        <item><link document="m13433" version="" target-id="P3">external, without title</link></item>
+        <item><link document="m11799" target-id="ex1-prob">internal, with title</link></item>
+        <item><link document="m11799" target-id="ex2-prob">internal, without title</link></item>
+        <item>Text before: <link document="m11799" target-id="ex1-prob"/>.</item>
+        <item>Text before (no title): <link document="m11799" target-id="ex2-prob"/>.</item>
+      </list>
+      <list id="p1l17">
+        <title>Rule</title>
+        <item><link document="m11172" version="" target-id="codefunc">external, with title</link></item>
+        <item><link document="m11172" version="" target-id="theorem3">external, with special type</link></item>
+        <item><link document="m11799" target-id="rule1">internal, with title</link></item>
+        <item><link document="m11799" target-id="rule2">internal, with special type</link></item>
+        <item>Text before: <link document="m11799" target-id="rule1"/>.</item>
+        <item>Text before (no title): <link document="m11799" target-id="rule2"/>.</item>
+      </list>
+      <list id="p1l18">
+        <title>Code</title>
+        <item><link document="m13809" version="" target-id="verbatim">external</link></item>
+        <item><link document="m13809" version="" target-id="block9">external</link></item>
+        <item><link document="m11799" target-id="s4-code2">internal</link></item>
+        <item><link document="m11799" target-id="s4-code1">internal</link></item>
+        <item>Text before: <link document="m11799" target-id="s4-code2"/>.</item>
+        <item>Text before (no title): <link document="m11799" target-id="s4-code1"/>.</item>
+      </list>
+      <list id="p1l19">
+        <title>Bib entries</title>
+        <item><link document="m11622" version="" target-id="AltschulLipman97">external</link></item>
+        <item><link document="m11622" version="" target-id="BacharWolfsonNussinov93">external</link></item>
+        <item><link document="m11799" target-id="roberts">internal</link></item>
+        <item><link document="m11799" target-id="meffe">internal</link></item>
+        <item>Text before: <link document="m11799" target-id="roberts"/>.</item>
+        <item>Text before (no title): <link document="m11799" target-id="meffe"/>.</item>
+      </list>
+    </para>   
+
+
+    <section id="s1">
+      <title>Equations?</title>
+      <equation id="eqn3">
+        <title>Complex Fourier Series (Square Wave)</title>
+	<m:math display="block">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">sq</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar>
+		<m:ci>k</m:ci>
+	      </m:bvar>
+	      <m:condition>
+		<m:apply>
+		  <m:in/>
+		  <m:ci>k</m:ci>
+		  <m:set>
+		    <m:ci>…</m:ci>
+		    <m:cn>-3</m:cn>
+		    <m:cn>-1</m:cn>
+		    <m:cn>1</m:cn>
+		    <m:cn>3</m:cn>
+		    <m:ci>…</m:ci>
+		  </m:set>
+		</m:apply>
+	      </m:condition>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>2</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:pi/>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:imaginaryi/>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>k</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:ci>T</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+    </section>
+    <section id="s4paras">
+      <title>Gratuitous para with a name inside the collection</title>
+      <para id="s4paras-p1"><title>A para with a name</title>
+        
+        There are many paras to choose from in the world.  We are glad you chose this one.
+      </para>
+    </section>
+    <section id="s5exer">
+      <title>Gratuitous exercise with a name inside the collection</title>
+      <exercise id="one">
+        <title>Math Problem.</title>
+        <problem id="id1164780383438">
+          <para id="prob1">I write this module today, and I live to the year 2066 (hallelujah!).  When can you make use of it?</para>
+        </problem>
+        <solution id="id1164770794417">
+        <para id="prob2">It's a trick question, this text is available under a license that allows you to use it now.  Nonethless, the copyright on this text will last until Jan 20. 2136.  That's 132 years from now.  
+        </para>
+        </solution>
+      </exercise>
+    </section>
+    <section id="s6table">
+      <table id="s6-t1" summary="">
+        <title>Table with footnotes</title>
+        <tgroup cols="3">
+          <tbody>
+            <row>
+              <entry> </entry>
+              <entry> </entry>
+              <entry>Presently, you can't put a <code>note[@type="footnote"]</code> in a table cell.
+              </entry>
+            </row>
+            <row>
+              <entry> </entry>
+              <entry>This cell contains a <link url="http://linkage.net/"><code>link</code> footnote.</link>
+              </entry>
+              <entry> </entry>
+            </row>
+            <row>
+              <entry>This cell contains a <code>cnxn</code> that shouldn't become a footnote.  See <link target-id="beta_sheets"/>.
+              </entry>
+              <entry>This cell contains a <code>cnxn</code> that should become a footnote.  See <link document="m15433" target-id="ex2-prob"/>.
+              </entry>
+              <entry> </entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+  </content>
+  
+</document>

@@ -1,0 +1,307 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Icons and Connector Panes</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a1a27a73-7a4e-4ef5-a017-97f74a5df786</md:uuid>
+</metadata>
+  
+  <content>
+    <para id="intro">
+      After you build a VI front panel and block diagram, build the
+      icon and the connector pane so you can use the VI as a subVI.
+    </para>
+    
+    <section id="idm1225776">
+      <title>Creating an Icon</title>
+      <para id="p1">
+	<media id="idm8108016" alt=""><image src="../../media/vi_icon.png" id="m1" mime-type="image/png"/></media> Every VI
+	displays an icon, shown in <link target-id="m1"/>, in the upper
+	right corner of the front panel and block diagram windows. An
+	icon is a graphical representation of a VI. It can contain
+	text, images, or a combination of both. If you use a VI as a
+	subVI, the icon identifies the subVI on the block diagram of
+	the VI.
+      </para>
+
+      <para id="p2">
+	The default icon contains a number that indicates how many new
+	VIs you have opened since launching LabVIEW. Create custom
+	icons to replace the default icon by right-clicking the icon
+	in the upper right corner of the front panel or block diagram
+	and selecting <code>Edit Icon</code> from the shortcut menu or
+	double-clicking the icon in the upper right corner of the
+	front panel. You also can edit icons by selecting <code>
+	  File&gt;&gt;VI Properties </code> selecting <code> General </code>
+	from the <code> Category </code> pull-down menu, and clicking
+	the <code> Edit Icon </code> button.
+      </para>
+
+      <para id="p3">
+	Use the tools on the left side of the <code> Icon Editor
+	</code> dialog box to create the icon design in the editing
+	area. The normal size image of the icon appears in the
+	appropriate box to the right of the editing area, as shown in
+	the dialog box in <link target-id="f1"/>.
+	<figure id="f1">
+	  <media id="idp358896" alt=""><image src="../../media/iconeditor.png" mime-type="image/png"/></media>
+	</figure>
+      </para>
+
+      <para id="p4">
+	Depending on the type of monitor you use, you can design a
+	separate icon for monochrome, 16-color, and 256-color
+	mode. LabVIEW uses the monochrome icon for printing unless you
+	have a color printer.
+      </para>
+
+      <para id="p5">
+	Use the <code> Edit </code> menu to cut, copy, and paste
+	images from and to the icon. When you select a portion of the
+	icon and paste an image, LabVIEW resizes the image to fit into
+	the selection area. You also can drag a graphic from anywhere
+	in your file system and drop it in the upper right corner of
+	the front panel or block diagram. LabVIEW converts the graphic
+	to a 
+	<m:math>
+	  <m:apply>
+	    <m:cartesianproduct/>
+	    <m:cn>32</m:cn>
+	    <m:cn>32</m:cn>
+	  </m:apply>
+	</m:math> pixel icon.
+      </para>
+
+      <para id="p6">
+	Use the <code> Copy from </code> option on the right side of
+	the <code> Icon Editor </code> dialog box to copy from a color
+	icon to a black-and-white icon and vice versa. After you
+	select a <code> Copy from </code> option, click the <code> OK
+	</code> button to complete the change.
+
+	<note id="idm967824">
+	  If you do not draw a complete border around a VI icon, the
+	  icon background appears transparent. When you select the
+	  icon on the block diagram, a selection marquee appears
+	  around each individual graphic element in the icon.
+	</note>
+      </para>
+
+      <para id="p7">
+	Use the tools on the left side of the <code> Icon Editor
+	</code> dialog box to create the icon design in the editing
+	area. The normal size image of the icon appears in the
+	appropriate box to the right of the editing area. The
+	following tasks can be performed with these tools:
+	<list id="l1">
+
+	  <item>
+	    <media id="idm7697680" alt=""><image src="../../media/pencil.png" mime-type="image/png"/></media> Use the
+	    <code>Pencil</code> tool to draw and erase pixel by pixel.
+	  </item>
+
+	  <item>
+	    <media id="idp2515328" alt=""><image src="../../media/line.png" mime-type="image/png"/></media> Use the
+	    <code>Line</code> tool to draw straight lines. To draw
+	    horizontal, vertical, and diagonal lines, press the
+	    <code>&lt;Shift&gt;</code> key while you use this tool to
+	    drag the cursor.
+	  </item>
+
+	  <item>
+	    <media id="idp1680304" alt=""><image src="../../media/colorcpy.png" mime-type="image/png"/></media> Use the
+	    <code>Color Copy</code> tool to copy the foreground color
+	    from an element in the icon.
+	  </item>
+
+	  <item>
+	    <media id="idp1453872" alt=""><image src="../../media/fill.png" mime-type="image/png"/></media> Use the
+	    <code>Fill</code> tool to fill an outlined area with the
+	    foreground color.
+	  </item>
+
+	  <item>
+	    <media id="idm6832208" alt=""><image src="../../media/rect.png" mime-type="image/png"/></media> Use the
+	    <code>Rectangle</code> tool to draw a rectangular border
+	    in the foreground color. Double-click this tool to frame
+	    the icon in the foreground color.
+	  </item>
+
+	  <item>
+	    <media id="idm1399360" alt=""><image src="../../media/fillrect.png" mime-type="image/png"/></media> Use the
+	    <code>Filled Rectangle</code> tool to draw a rectangle
+	    with a foreground color frame and filled with the
+	    background color. Double-click this tool to frame the icon
+	    in the foreground color and fill it with the background
+	    color.
+	  </item>
+
+	  <item>
+	    <media id="idm1151072" alt=""><image src="../../media/select.png" mime-type="image/png"/></media> Use the
+	    <code>Select</code> tool to select an area of the icon to
+	    cut, copy, move, or make other changes. Double-click this
+	    tool and press the <code>&lt;Delete&gt;</code> key to delete
+	    the entire icon.
+	  </item>
+
+	  <item>
+	    <media id="idm1086640" alt=""><image src="../../media/text.png" mime-type="image/png"/></media> Use the
+	    <code>Text</code> tool to enter text into the
+	    icon. Double-click this tool to select a different
+	    font. <code> (<code>Windows</code>) </code> The <code>
+	      Small Fonts </code> option works well in icons.
+	  </item>
+
+	  <item>
+	    <media id="idm7293056" alt=""><image src="../../media/frbkgrnd.png" mime-type="image/png"/></media> Use the
+	    <code>Foreground/Background</code> tool to display the
+	    current foreground and background colors. Click each
+	    rectangle to display a color palette from which you can
+	    select new colors.
+	  </item>
+
+	  <item>
+	    Use the options on the right side of the editing area to
+	    perform the following tasks:
+
+	    <list id="sublist" list-type="labeled-item">
+	      <item><label> Show Terminals </label>
+		 
+		Displays the terminal pattern of the connector pane.
+	      </item>
+	      <item><label> OK </label> 
+		 
+		Saves the drawing as the icon and returns to the front
+		panel.  
+	      </item> 
+	      <item><label> Cancel </label> 
+		 
+		Returns to the front panel without saving any
+		changes.
+	      </item>
+	    </list>
+
+	  </item>
+
+	  <item>
+	    The menu bar in the <code> Icon Editor </code> dialog box
+	    contains more editing options such as <code> Undo, Redo,
+	      Cut, Copy, Paste </code>, and <code> Clear </code>.
+	  </item>
+	</list>
+
+      </para>
+    </section>
+
+    <section id="idp1588000">
+      <title>Setting Up the Connector Pane</title>
+
+      <para id="p8">
+	<media id="idm6986784" alt=""><image src="../../media/conpane.png" id="m2" mime-type="image/png"/></media> To use a
+	VI as a subVI, you need to build a <term>connector
+	  pane</term>, shown in <link target-id="m2"/>. The connector pane
+	is a set of terminals that corresponds to the controls and
+	indicators of that VI, similar to the parameter list of a
+	function call in text-based programming languages. The
+	connector pane defines the inputs and outputs you can wire to
+	the VI so you can use it as a subVI.
+      </para>
+
+      <para id="p9">
+	Define connections by assigning a front panel control or
+	indicator to each of the connector pane terminals. To define a
+	connector pane, right-click the icon in the upper right corner
+	of the front panel window and select <code> Show Connector
+	</code> from the shortcut menu. The connector pane replaces
+	the icon. Each rectangle on the connector pane represents a
+	terminal. Use the rectangles to assign inputs and outputs. The
+	number of terminals LabVIEW displays on the connector pane
+	depends on the number of controls and indicators on the front
+	panel. The following front panel has four controls and one
+	indicator, so LabVIEW displays four input terminals and one
+	output terminal on the connector pane.
+
+	<figure id="idp1244640">
+	  <media id="idm6985184" alt=""><image src="../../media/slopefp.png" mime-type="image/png"/></media>
+	</figure>
+
+      </para>
+    </section>
+
+    <section id="idm423072">
+      <title>Selecting and Modifying Terminal Patterns</title>
+      <para id="p21">
+	Select a different terminal pattern for a VI by right-clicking
+	the connector pane and selecting <code> Patterns </code> from
+	the shortcut menu. Select a connector pane pattern with extra
+	terminals. You can leave the extra terminals unconnected until
+	you need them. This flexibility enables you to make changes
+	with minimal effect on the hierarchy of the VIs. You also can
+	have more front panel controls or indicators than terminals.
+
+      </para>
+
+      <para id="p22">
+	A solid border highlights the pattern currently associated
+	with the icon. The maximum number of terminals available for a
+	subVI is 28.
+      </para>
+
+
+      <para id="p23">
+	<media id="idm7802848" alt=""><image src="../../media/standpatt.png" id="m3" mime-type="image/png"/></media> The most
+	commonly used pattern is shown in <link target-id="m3"/>. This
+	pattern is used as a standard to assist in simplifying
+	wiring. The top inputs and outputs are commonly used for
+	passing references and the bottom inputs and outputs are used
+	for error handling. Refer to the section on <link document="m12231">Clusters</link> for more information about error
+	handling.
+
+	<note id="idm946592">Try not to assign more than 16 terminals to a VI. Too
+	  many terminals can reduce the readability and usability of the
+	  VI.
+	</note>
+      </para>
+
+      <para id="p24">
+	To change the spatial arrangement of the connector pane
+	patterns, right-click the connector pane and select <code>
+	  Flip Horizontal, Flip Vertical, or Rotate 90 Degrees </code>
+	from the shortcut menu.
+
+      </para>
+    </section>
+
+    <section id="idm7774160">
+      <title>Assigning Terminals to Controls and Indicators</title>
+
+      <para id="p31">
+	After you select a pattern to use for the connector pane, you
+	must define connections by assigning a front panel control or
+	indicator to each of the connector pane terminals. When you
+	link controls and indicators to the connector pane, place
+	inputs on the left and outputs on the right to prevent
+	complicated, unclear wiring patterns in your VIs.
+      </para>
+
+      <para id="p34">
+	To assign a terminal to a front panel control or indicator,
+	click a terminal of the connector pane, then click the front
+	panel control or indicator you want to assign to that
+	terminal. Click an open space on the front panel. The terminal
+	changes to the data type color of the control to indicate that
+	you connected the terminal.
+
+      </para>
+      <para id="p33">
+	You also can select the control or indicator first and then
+	select the terminal.
+
+      </para>
+      <note id="idm8285424">Although you use the <code>Wiring</code> tool to assign
+	terminals on the connector pane to front panel controls and
+	indicators, no wires are drawn between the connector pane and
+	these controls and indicators.
+      </note>
+
+    </section>
+  </content>
+  
+</document>

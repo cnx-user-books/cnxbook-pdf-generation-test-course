@@ -1,0 +1,866 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Practical Entropy Coding Techniques</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a2967f02-7df2-430a-9286-ce610db0fdab</md:uuid>
+</metadata>
+  
+
+  <content>
+    <para id="para1">
+      In the <link document="m11090" strength="2">module of Use of
+      Laplacian PDFs in Image Compression</link> we have assumed that
+      ideal entropy coding has been used in order to calculate the bit
+      rates for the coded data. In practise we must use real codes and
+      we shall now see how this affects the compression performance.
+    </para>
+
+    <para id="para2">
+      There are three main techniques for achieving entropy coding:
+
+      <list id="list1">
+	<item>
+	  <term>Huffman Coding</term> - one of the simplest variable
+	  length coding schemes.
+	</item>
+	
+	<item>
+	  <term>Run-length Coding (RLC)</term> - very useful for
+	  binary data containing long runs of ones of zeros.
+	</item>
+
+	<item>
+	  <term>Arithmetic Coding</term> - a relatively new variable
+	  length coding scheme that can combine the best features of
+	  Huffman and run-length coding, and also adapt to data with
+	  non-stationary statistics.
+	</item>
+      </list>
+
+      We shall concentrate on the Huffman and RLC methods for
+      simplicity. Interested readers may find out more about
+      Arithmetic Coding in chapters 12 and 13 of the JPEG Book.
+    </para>
+
+    <para id="para3">
+      First we consider the change in compression performance if
+      simple Huffman Coding is used to code the subimages of the
+      4-level Haar transform.
+    </para>
+
+    <para id="para4">
+      The calculation of entropy in this <link document="m11088" target-id="eq5" strength="2">equation</link> from our discussion of
+      entropy assumed that each message with probability
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub>
+	</m:ci>
+      </m:math> could be represented by a word of length 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub><m:mi></m:mi><m:mi>i</m:mi></m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:log/>
+	      <m:logbase><m:cn>2</m:cn></m:logbase>
+	      <m:ci>
+		<m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> bits. Huffman codes require the 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi></m:mi><m:mi>i</m:mi></m:msub>
+	</m:ci>
+      </m:math> to be integers and assume that the 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub>
+	</m:ci>
+      </m:math> are adjusted to become:
+
+      <equation id="eq14">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:mover accent="true">
+		<m:msub>
+		  <m:mi>p</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub>
+		<m:mo>^</m:mo>
+	      </m:mover>
+	    </m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:cn>2</m:cn>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>
+		  <m:msub><m:mi></m:mi><m:mi>i</m:mi></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      where the 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi></m:mi><m:mi>i</m:mi></m:msub>
+	</m:ci>
+      </m:math> are integers, chosen subject to the constraint that 
+      <m:math>
+	<m:apply>
+	  <m:leq/>
+	  <m:apply>
+	    <m:sum/>
+	    <m:domainofapplication><m:ci>i</m:ci></m:domainofapplication>
+	    <m:ci>
+	      <m:mover accent="true">
+		<m:msub>
+		  <m:mi>p</m:mi>
+		  <m:mi>i</m:mi>
+		</m:msub>
+		<m:mo>^</m:mo>
+	      </m:mover>
+	    </m:ci>
+	  </m:apply>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math> (to guarantee that sufficient uniquely decodable code
+      words are available) and such that the mean Huffman word length
+      (Huffman entropy), 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:mover accent="true">
+	      <m:mi>H</m:mi>
+	      <m:mo>^</m:mo>
+	    </m:mover>
+	  </m:ci>
+	  <m:apply>
+	    <m:sum/>
+	    <m:domainofapplication><m:ci>i</m:ci></m:domainofapplication>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub><m:mi></m:mi><m:mi>i</m:mi></m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>, is minimised.
+    </para>
+
+    <para id="para5">
+      We can use the probability histograms which generated the
+      entropy plots in figures of <link document="m11088" target-id="figure5" strength="2">level 1 energies</link>, <link document="m11089" target-id="figure8" strength="2">level 2
+      energies</link>, <link document="m11089" target-id="figure9" strength="2">level 3 energies</link> and <link document="m11089" target-id="figure10" strength="2">level 4 energies</link> to
+      calculate the Huffman entropies
+      <m:math>
+	<m:ci>
+	  <m:mover accent="true">
+	    <m:mi>H</m:mi>
+	    <m:mo>^</m:mo>
+	  </m:mover>
+	</m:ci>
+      </m:math> for each subimage and compare these with the true
+      entropies to see the loss in performance caused by using real
+      Huffman codes.
+    </para>
+
+    <para id="para6">
+      An algorithm for finding the optimum codesizes 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi></m:mi><m:mi>i</m:mi></m:msub>
+	</m:ci>
+      </m:math> is recommended in the JPEG specification [<cite><cite-title>the JPEG
+      Book</cite-title></cite>, Appendix A, Annex K.2, fig K.1]; and a Mathlab M-file to
+      implement it is given in <link target-id="codeblock1" strength="2">M-file code</link>. 
+    </para>
+
+    <figure id="figure16">
+      <media id="idp8463744" alt=""><image src="../../media/figure16.png" mime-type="image/png"/></media>
+	<caption>
+	  Comparison of entropies (columns 1, 3, 5) and Huffman coded
+	  bit rates (columns 2, 4, 6) for the original (columns 1 and
+	  2) and transformed (columns 3 to 6) Lenna images. In columns
+	  5 and 6, the zero amplitude state is run-length encoded to
+	  produce many states with probabilities &lt; 0.5.
+	</caption>
+    </figure>
+
+    <!-- This CALS table template is generated by `table.el' version 1.5.32 -->
+    <table frame="all" id="table1" summary="">
+      <title>Numerical results used in the figure - Entropies and Bit
+      rates of Subimages for Qstep=15</title>
+      <tgroup cols="8" align="left" colsep="1" rowsep="1">
+	<thead valign="top">
+	  <row>
+	    <entry align="center">
+	      Column:
+	    </entry>
+	    <entry align="center">
+	      1
+	    </entry>
+	    <entry align="center">
+	      2
+	    </entry>
+	    <entry align="center">
+	      3
+	    </entry>
+	    <entry align="center">
+	      4
+	    </entry>
+	    <entry align="center">
+	      5
+	    </entry>
+	    <entry align="center">
+	      6
+	    </entry>
+	    <entry align="center">
+	      -
+	    </entry>
+	  </row>
+	</thead>
+	<tbody valign="top">
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.0264
+	    </entry>
+	    <entry align="center">
+	      0.0265
+	    </entry>
+	    <entry align="center">
+	      0.0264
+	    </entry>
+	    <entry align="center">
+	      0.0266
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.0220
+	    </entry>
+	    <entry align="center">
+	      0.0222
+	    </entry>
+	    <entry align="center">
+	      0.0221
+	    </entry>
+	    <entry align="center">
+	      0.0221
+	    </entry>
+	    <entry align="center">
+	      Level 4
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.0186
+	    </entry>
+	    <entry align="center">
+	      0.0187
+	    </entry>
+	    <entry align="center">
+	      0.0185
+	    </entry>
+	    <entry align="center">
+	      0.0186
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.0171
+	    </entry>
+	    <entry align="center">
+	      0.0172
+	    </entry>
+	    <entry align="center">
+	      0.0171
+	    </entry>
+	    <entry align="center">
+	      0.0173
+	    </entry>
+	    <entry align="center">
+	      -
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.0706
+	    </entry>
+	    <entry align="center">
+	      0.0713
+	    </entry>
+	    <entry align="center">
+	      0.0701
+	    </entry>
+	    <entry align="center">
+	      0.0705
+	    </entry>
+	    <entry align="center">
+
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.0556
+	    </entry>
+	    <entry align="center">
+	      0.0561
+	    </entry>
+	    <entry align="center">
+	      0.0557
+	    </entry>
+	    <entry align="center">
+	      0.0560
+	    </entry>
+	    <entry align="center">
+	      Level 3
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      3.7106
+	    </entry>
+	    <entry align="center">
+	      3.7676
+	    </entry>
+	    <entry align="center">
+	      0.0476
+	    </entry>
+	    <entry align="center">
+	      0.0482
+	    </entry>
+	    <entry align="center">
+	      0.0466
+	    </entry>
+	    <entry align="center">
+	      0.0471
+	    </entry>
+	    <entry align="center">
+	      -
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.1872
+	    </entry>
+	    <entry align="center">
+	      0.1897
+	    </entry>
+	    <entry align="center">
+	      0.1785
+	    </entry>
+	    <entry align="center">
+	      0.1796
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.1389
+	    </entry>
+	    <entry align="center">
+	      0.1413
+	    </entry>
+	    <entry align="center">
+	      0.1340
+	    </entry>
+	    <entry align="center">
+	      0.1353
+	    </entry>
+	    <entry align="center">
+	      Level 2
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.1096
+	    </entry>
+	    <entry align="center">
+	      0.1170
+	    </entry>
+	    <entry align="center">
+	      0.1038
+	    </entry>
+	    <entry align="center">
+	      0.1048
+	    </entry>
+	    <entry align="center">
+	      -
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.4269
+	    </entry>
+	    <entry align="center">
+	      0.4566
+	    </entry>
+	    <entry align="center">
+	      0.3739
+	    </entry>
+	    <entry align="center">
+	      0.3762
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.2886
+	    </entry>
+	    <entry align="center">
+	      0.3634
+	    </entry>
+	    <entry align="center">
+	      0.2691
+	    </entry>
+	    <entry align="center">
+	      0.2702
+	    </entry>
+	    <entry align="center">
+	      Level 1
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	    <entry align="center">
+	      0.2012
+	    </entry>
+	    <entry align="center">
+	      0.3143
+	    </entry>
+	    <entry align="center">
+	      0.1819
+	    </entry>
+	    <entry align="center">
+	      0.1828
+	    </entry>
+	    <entry align="center">
+	      -
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      Totals:
+	    </entry>
+	    <entry align="center">
+	      3.7106
+	    </entry>
+	    <entry align="center">
+	      3.7676
+	    </entry>
+	    <entry align="center">
+	      1.6103
+	    </entry>
+	    <entry align="center">
+	      1.8425
+	    </entry>
+	    <entry align="center">
+	      1.4977
+	    </entry>
+	    <entry align="center">
+	      1.5071
+	    </entry>
+	    <entry align="center">
+	    </entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </table>
+
+    <para id="para7">
+      <link target-id="figure16" strength="2"/> shows the results of
+      applying this algorithm to the probability histograms and <link target-id="table1" strength="2"/> lists the same results
+      numerically for ease of analysis. Columns 1 and 2 compare the
+      ideal entropy with the mean word length or bit rate from using a
+      Huffman code (the Huffman entropy) for the case of the
+      untransformed image where the original pels are quantized with 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub><m:mi>Q</m:mi><m:mi>step</m:mi></m:msub>
+	  </m:ci>
+	  <m:cn>15</m:cn>
+	</m:apply>
+      </m:math>. We see that the increase in bit rate from using the
+      real code is:
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>3.7676</m:cn>
+	      <m:cn>3.7106</m:cn>
+	    </m:apply>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>1.5</m:cn>
+	    <m:ci>%</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      <emphasis>But</emphasis> when we do the same for the 4-level
+      transformed subimages, we get columns 3 and 4. Here we see that
+      real Huffman codes require an increase in bit rate of:
+      
+       <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1.8425</m:cn>
+	      <m:cn>1.6103</m:cn>
+	    </m:apply>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>14.4</m:cn>
+	    <m:ci>%</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      Comparing the results for each subimage in columns 3 and 4, we
+      see that most of the increase in bit rate arises in the three
+      level-1 subimages at the bottom of the columns. This is because
+      each of the probability histograms for these subimages (see
+      <link document="m11088" target-id="figure5" strength="2">figure</link>) contain one probability that is
+      greater than 0.5. Huffman codes cannot allocate a word length of
+      less than 1 bit to a given event, and so they start to lose
+      efficiency rapidly when
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:apply>
+	    <m:log/>
+	    <m:logbase><m:cn>2</m:cn></m:logbase>
+	    <m:ci>
+	      <m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math> becomes less than 1, ie when 
+      <m:math>
+	<m:apply>
+	  <m:gt/>
+	  <m:ci>
+	    <m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub>
+	  </m:ci>
+	  <m:cn>0.5</m:cn>
+	</m:apply>
+      </m:math>. 
+    </para>
+
+    <para id="para8">
+      Run-length codes (RLCs) are a simple and effective way of
+      improving the efficiency of Huffman coding when one event is
+      much more probable than all of the others combined. They operate
+      as follows:
+
+      <list id="list2">
+	<item>
+	  The pels of the subimage are scanned sequentially (usually
+	  in columns or rows) to form a long 1-dimensional vector.
+	</item>
+	<item>
+	  Each run of consecutive zero samples (the most probable
+	  events) in the vector is coded as a single event.
+	</item>
+	<item>
+	  Each non-zero sample is coded as a single event in the
+	  normal way.
+	</item>
+	<item>
+	  The two types of event (runs-of-zeros and non-zero samples)
+	  are allocated separate sets of codewords in the same Huffman
+	  code, which may be designed from a histogram showing the
+	  frequencies of all events.
+	</item>
+	<item>
+	  To limit the number of run events, the maximum run length
+	  may be limited to a certain value (we have used 128) and
+	  runs longer than this may be represented by two or more run
+	  codes in sequence, with negligible loss of efficiency.
+	</item>
+      </list>
+
+      Hence RLC may be added before Huffman coding as an extra
+      processing step, which converts the most probable event into
+      many separate events, each of which has 
+      <m:math>
+	<m:apply>
+	  <m:lt/>
+	  <m:ci>
+	    <m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub>
+	  </m:ci>
+	  <m:cn>0.5</m:cn>
+	</m:apply>
+      </m:math> and may therefore be coded efficiently. <link target-id="figure18" strength="2"/> shows the new probability
+      histograms and entropies for level 1 of the Haar transform when
+      RLC is applied to the zero event of the three bandpass
+      subimages. Comparing this with a <link document="m11088" target-id="figure5" strength="2">previous figure</link>, note the
+      absence of the high probability zero events and the new states
+      to the right of the original histograms corresponding to the run
+      lengths.
+    </para>
+
+    <figure id="figure18">
+      <media id="idp10748288" alt=""><image src="../../media/figure18.png" mime-type="image/png"/></media>
+      <caption>
+	Probability histograms (dashed) and entropies (solid) of the
+	four subimage of the Level 1 Haar transform of Lenna (see
+	<link document="m11087" target-id="figure1b" strength="2">figure</link>) after RLC.
+      </caption>
+    </figure>
+
+    <para id="para9">
+      The total entropy <emphasis>per event</emphasis> for an RLC
+      subimage is calculated as before from the entropy
+      histogram. However to get the entropy <emphasis>per
+      pel</emphasis> we scale the entropy by the ratio of the number of
+      events (runs and non-zero samples) in the subimage to the number
+      of pels in the subimage (note that with RLC this ratio will no
+      longer equal one - it will hopefully be much less).
+    </para>
+
+    <para id="para10">
+      <link target-id="figure18" strength="2"/> gives the entropies per
+      pel after RLC for each subimage, which are now
+      <emphasis>less</emphasis> than the entropies in this <link document="m11088" target-id="figure5" strength="2">figure</link>. This is because RLC takes advantage
+      of spatial clustering of the zero samples in a subimage, rather
+      than just depending on the histogram of amplitudes.
+    </para>
+
+    <para id="para11">
+      Clearly if all the zeros were clustered into a single run, this
+      could be coded much more efficiently than if they are
+      distributed into many runs. The entropy of the zero event tells
+      us the mean number of bits to code each zero pel <emphasis>if
+      the zero pels are distributed randomly</emphasis>, ie if the
+      probability of a given pel being zero does not depend on the
+      amplitudes of any nearby pels.
+    </para>
+
+    <para id="para12">
+      In typical bandpass subimages, non-zero samples tend to be
+      clustered around key features such as object boundaries and
+      areas of high texture. Hence RLC usually reduces the entropy of
+      the data to be coded. There are many other ways to take
+      advantage of clustering (correlation) of the data - RLC is just
+      one of the simplest.
+    </para>
+
+    <para id="para13">
+      In <link target-id="figure16" strength="2"/>, comparing column 5
+      with column 3, we see the modest (7%) reduction in entropy per
+      pel achieved by RLC, due clustering in the Lenna image. The main
+      advantage of RLC is apparent in column 6, which shows the mean
+      bit rate per pel when we use a real Huffman code on the RLC
+      histograms of <link target-id="figure18" strength="2"/>. The
+      increase in bit rate over the RLC entropy is only 
+      
+       <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1.5071</m:cn>
+	      <m:cn>1.4977</m:cn>
+	    </m:apply>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>0.63</m:cn>
+	    <m:ci>%</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      compared with 14.4% when RLC is not used (columns 3 and 4).
+    </para>
+
+    <para id="para14">
+      Finally, comparing column 6 with column 3, we see that, relative
+      to the simple entropy measure, combined RLC and Huffman coding
+      can <emphasis>reduce</emphasis> the bit rate by 
+       <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:minus/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1.5071</m:cn>
+	      <m:cn>1.6103</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:cn>6.4%</m:cn>
+	</m:apply>
+      </m:math>
+
+      The closeness of this ratio to unity justifies our use of simple
+      entropy as a tool for assessing the information compression
+      properties of the Haar transform - and of other energy
+      compression techniques as we meet them.
+    </para>
+
+    <para id="para15">
+      The following is the listing of the M-file to calculate the
+      Huffman entropy from a given histogram.
+    </para>
+    
+    <code display="block" id="codeblock1">
+      
+      
+      % Find Huffman code sizes: JPEG fig K.1, procedure Code_size.
+      % huffhist contains the histogram of event counts (frequencies).
+      freq = huffhist(:);
+      codesize = zeros(size(freq));
+      others = -ones(size(freq)); %Pointers to next symbols in code tree.
+
+      % Find non-zero entries in freq, and loop until only 1 entry left.
+      nz = find(freq &gt; 0);
+      while length(nz) &gt; 1, 
+      % Find v1 for least value of freq(v1) &gt; 0.
+        [y,i] = min(freq(nz));
+        v1 = nz(i);
+      % Find v2 for next least value of freq(v2) &gt; 0.
+        nz = nz([1:(i-1) (i+1):length(nz)]); % Remove v1 from nz.
+        [y,i] = min(freq(nz));
+        v2 = nz(i);
+      % Combine frequency values.
+        freq(v1) = freq(v1) + freq(v2);
+        freq(v2) = 0;
+        codesize(v1) = codesize(v1) + 1;
+      % Increment code sizes for all codewords in this tree branch. 
+        while others(v1) &gt; -1, 
+          v1 = others(v1);
+          codesize(v1) = codesize(v1) + 1;
+        end
+        others(v1) = v2;
+        codesize(v2) = codesize(v2) + 1;
+        while others(v2) &gt; -1, 
+          v2 = others(v2);
+          codesize(v2) = codesize(v2) + 1;
+        end
+        nz = find(freq &gt; 0);
+      end
+
+      % Generate Huffman entropies by multiplying probabilities by code sizes. 
+      huffent = (huffhist(:)/sum(huffhist(:))) .* codesize;
+
+      
+    </code>
+    
+  </content>
+</document>

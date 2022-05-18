@@ -1,0 +1,854 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Author Blank Entry Table</title>
+  
+  <metadata>
+  <md:content-id>m10119</md:content-id><md:title>Author Blank Entry Table</md:title>
+  <md:abstract>Lists the z-transform and region of convergence (ROC) for several common discrete-time signals.</md:abstract>
+  <md:uuid>97152256-03e8-4607-89ca-65f1442661ed</md:uuid>
+</metadata>
+<featured-links>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit below.
+       Changes to the links section in the source will not be saved. -->
+    <link-group type="prerequisite">
+      <link url="http://cnx.rice.edu/content/m10549/latest/" strength="3">Introduction to the Z-Transform</link>
+      <link url="http://cnx.rice.edu/content/m10622/latest/" strength="2">Region of Convergence</link>
+    </link-group>
+  <!-- WARNING! The 'featured-links' section is read only. Do not edit above.
+       Changes to the links section in the source will not be saved. -->
+</featured-links>
+<content>
+
+    <para id="p1">
+      The table below provides a number of unilateral and bilateral
+      <term><link document="m10549">z-transforms</link></term>.  The table also
+      specifies the <link document="m10622" strength="3">region of
+      convergence</link>.
+  
+      <note id="id1166048457639" type="note">
+	The notation for <m:math><m:ci>z</m:ci>
+	</m:math> found in the table below may differ from that found
+	in other tables.  For example, the basic z-transform of
+	<m:math display="inline">
+	  <m:apply>
+	    <m:ci type="fn" class="discrete">u</m:ci> 
+	    <m:ci>n</m:ci>
+	  </m:apply>
+	</m:math> can be written as either of the following two
+	expressions, which are equivalent:
+      </note>
+
+      <equation id="eq_note">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>z</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>z</m:ci>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>z</m:ci>
+		  <m:cn>-1</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+   </para>
+
+    <!-- *************** TABLE **************** -->
+  
+    <table id="table" summary="">
+      <tgroup cols="3">
+	<thead>
+	  <row>
+	    <entry colname="sig">Signal</entry>
+	    <entry colname="ztrans">Z-Transform</entry>
+	    <entry colname="roc">ROC</entry>
+	  </row>
+	</thead>
+	<tbody>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:ci type="fn" class="discrete">δ</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>n</m:ci>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="roc">
+	      <m:math>
+		<m:apply>
+		  <m:mtext>All</m:mtext>
+		  <m:ci>z</m:ci>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:ci type="fn" class="discrete">u</m:ci>
+		  <m:ci>n</m:ci>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:lt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>n</m:ci>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>n</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>z</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>z</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>n</m:ci>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>z</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>z</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:cn>4</m:cn>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		    <m:cn>4</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>α</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:minus/>
+			<m:ci>n</m:ci>
+		      </m:apply>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>z</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>α</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:lt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:abs/>
+		    <m:cn>α</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>α</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>z</m:ci>
+		    <m:ci>α</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>α</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>n</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>α</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>α</m:ci>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci>α</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>α</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>n</m:ci>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>α</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>α</m:ci>
+		    <m:ci>z</m:ci>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>z</m:ci>
+		      <m:ci>α</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci>α</m:ci>
+		    </m:apply>
+		    <m:cn>3</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>α</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:product/>
+		      <m:bvar>
+			<m:ci>k</m:ci>
+		      </m:bvar>
+		      <m:lowlimit>
+			<m:cn>1</m:cn>
+		      </m:lowlimit>
+		      <m:uplimit>
+			<m:ci>m</m:ci>
+		      </m:uplimit>
+		      <m:apply>
+			<m:plus/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>n</m:ci>
+			  <m:ci>k</m:ci>
+			</m:apply>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>α</m:ci>
+			<m:ci>m</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:factorial/>
+			<m:ci>m</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>α</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>z</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:ci>α</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>m</m:ci>
+		      <m:cn>1</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+            <entry> </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>γ</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:cos/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>α</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>z</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>z</m:ci>
+		      <m:apply>
+			<m:times/>
+			<m:ci>γ</m:ci>
+			<m:apply>
+			  <m:cos/>
+			  <m:ci>α</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>z</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:ci>γ</m:ci>
+			  <m:apply>
+			    <m:cos/>
+			    <m:ci>α</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>γ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>γ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+
+	  <row>
+	    <entry colname="time">
+	      <m:math>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>γ</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>α</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="fn" class="discrete">u</m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry colname="ztrans">
+	      <m:math>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>z</m:ci>
+		    <m:ci>γ</m:ci>
+		    <m:apply>
+		      <m:sin/>
+		      <m:ci>α</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:power/>
+			<m:ci>z</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:ci>γ</m:ci>
+			  <m:apply>
+			    <m:cos/>
+			    <m:ci>α</m:ci>
+			  </m:apply>
+			</m:apply>
+			<m:ci>z</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>γ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	    <entry>
+	      <m:math>
+		<m:apply>
+		  <m:gt/>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>z</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:abs/>
+		    <m:ci>γ</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </table>
+
+  </content>
+</document>

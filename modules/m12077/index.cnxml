@@ -1,0 +1,1189 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml"> 
+
+<title>Propositional Logic: subproofs</title>
+<metadata>
+  <md:content-id>m12077</md:content-id><md:title>Propositional Logic: subproofs</md:title>
+  <md:abstract>Using subproofs, to show RAA or to aid in presentation.</md:abstract>
+  <md:uuid>5db4aa78-fcaf-4562-a830-3d9abbd1559b</md:uuid>
+</metadata>
+
+<content>
+
+<section id="imp-id13301330">
+<title>Subproofs</title>
+
+<para id="imp-id13299926">
+  The <foreign>reductio ad absurdum</foreign>
+  (<quote display="inline">RAA</quote>),
+  Latin for
+  <quote display="inline">reduction to absurdity</quote>,
+  seems very strange:
+  If we can prove that <m:math><m:false/></m:math> is true, then we can prove the negation of
+  our premise.  
+  Huh!?!  What on Earth does it mean to prove that false is true?
+</para>
+
+
+
+<para id="imp-id13496634">
+  This is known as <term>proof-by-contradiction</term>.
+  We start by making a single unproven assumption.  We then try to
+  prove that <m:math><m:false/></m:math> is true.  Clearly, that it nonsense, so we must
+  have done something wrong.  Assuming we didn't make any mistakes
+  in the individual inference steps, then the only thing that could be
+  wrong is the assumption.  It must not hold.  Therefore, we have
+  just proven its negation.
+</para>
+
+<para id="imp-id12523045">
+  This form of reasoning is often expressed via <term>contrapositive</term>.
+  Consider the slogan 
+  <quote id="imp-id12623066">
+    If you paid list price, you didn't buy it at SuperMegaMart.
+  </quote>
+  (This is a contrapositive, because the real statement
+   the advertisers want to make is 
+   that if you buy it at SuperMegaMart, then you won't pay list price.),
+  which we'll abbreviate
+  <m:math><m:apply><m:implies/>
+    <m:ci>payFull</m:ci>
+    <m:apply><m:not/><m:ci>boughtAtSMM</m:ci></m:apply>
+  </m:apply></m:math>.
+  You know this slogan is true,
+  and you just made a SuperMegaMart purchase (<m:math><m:ci>boughtAtSMM</m:ci></m:math>), and 
+  are suddenly wanting a <emphasis>proof</emphasis> that you got a good deal.
+  Well, suppose we didn't.  That is, 
+  <emphasis>suppose</emphasis> <m:math><m:ci>payFull</m:ci></m:math>.
+  Then by the truth of the marketing slogan,
+  we infer <m:math><m:apply><m:not/><m:ci>boughtAtSMM</m:ci></m:apply></m:math>.
+  But this contradicts <m:math><m:ci>boughtAtSMM</m:ci></m:math>
+  (that is, from <m:math><m:apply><m:not/><m:ci>boughtAtSMM</m:ci></m:apply></m:math> and
+   <m:math><m:ci>boughtAtSMM</m:ci></m:math> together we can prove that <m:math><m:false/></m:math> is true).
+  The problem must have been our pessimistic assumption <m:math><m:ci>payFull</m:ci></m:math>;
+  clearly that couldn't have been true,
+  and we're happy to know that <m:math><m:apply><m:not/><m:ci>payFull</m:ci></m:apply></m:math>.
+</para>
+
+<example id="imp-id13351701">
+  <para id="imp-id13337616">
+    Spot the proof-by-contradiction used in The Simpsons:
+  </para>
+
+  <para id="imp-id13002289">
+    Bart, filing through the school records: 
+    <quote display="inline">
+      Hey, look at this:  Skinner makes $25,000 per year!
+    </quote>
+  </para>
+
+  <para id="imp-id12570418">
+    Other kids: <quote display="inline">Ooooh!</quote>
+  </para>
+
+  <para id="imp-id12751838">
+    Milhouse:
+    <quote display="inline">
+      And he's 40 years old; that makes him a millionaire!
+    </quote>
+  </para>
+
+  <para id="imp-id13496840">
+    Skinner, indignantly:
+    <quote display="inline"> I wasn't a principal when I was 1!</quote>
+  </para>
+
+  <para id="imp-id13503220">
+    Milhouse:
+    <quote display="inline">
+      <emphasis>And,</emphasis> he paints houses
+      during the summer … he's a billionaire!
+    </quote>
+  </para>
+
+  <para id="imp-id13356141">
+    Skinner:
+    <quote display="inline">
+      If I were a billionaire, would I still be
+      living with my mother?
+    </quote>
+    [Kids' laughter]
+  </para>
+
+  <para id="imp-id13306104">
+    Skinner, to himself:
+    <quote display="inline">
+      The kids just aren't responding to logic anymore!
+    </quote>
+  </para>
+</example>
+
+<para id="imp-id13487055">
+  In the particular set of inference rules we have chosen to use,
+  RAA is surprisingly important.  
+  It is the only way
+  to prove formulas that begin with a single
+  <quote display="inline">¬</quote>.
+  <footnote id="reasoning-about-proofs">
+    This is an example of reasoning <emphasis>about</emphasis> our
+    logic system.
+    It shows us that while we might have some redundant inference rules,
+    RAA isn't one of them.
+    The only other rule which produces formulas starting with an initial
+    <quote display="inline">¬</quote> is ¬Intro.  
+    Is this also essential, or could we 
+    still prove all the same things even without ¬Intro?
+  </footnote>
+</para>
+
+<example id="raa-example"> 
+  <para id="imp-id13001496">
+    We'll prove
+    <m:math><m:mrow><m:mo>⊢</m:mo> <m:apply><m:not/>
+        <m:apply><m:and/>
+          <m:ci>α</m:ci>
+          <m:apply><m:not/><m:ci>α</m:ci></m:apply>
+        </m:apply>
+      </m:apply></m:mrow></m:math>.
+  </para>
+
+  <table id="proof1" summary="A proof">
+
+<tgroup cols="4" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:mrow><m:apply><m:and/>
+          <m:ci>α</m:ci>
+          <m:apply><m:not/><m:ci>α</m:ci></m:apply>
+        </m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">1.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:and/>
+              <m:ci>α</m:ci>
+              <m:apply><m:not/><m:ci>α</m:ci></m:apply>
+            </m:apply></m:math></entry><entry colname="c4">
+              Premise for subproof
+            </entry>
+</row>
+<row>
+<entry align="left">1.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>α</m:ci></m:math></entry><entry colname="c4">
+              ∧Elim (left), line 1.a,
+              where
+              <m:math><m:apply><m:eq/>
+                <m:ci>φ</m:ci>
+                <m:ci>α</m:ci>
+              </m:apply></m:math>,
+              and
+              <m:math><m:apply><m:eq/>
+                <m:ci>ψ</m:ci>
+                <m:apply><m:not/><m:ci>α</m:ci></m:apply>
+              </m:apply></m:math>
+            </entry>
+</row>
+<row>
+<entry align="left">1.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:not/><m:ci>α</m:ci></m:apply></m:math></entry><entry colname="c4">
+              ∧Elim (right), line 1.a,
+              where
+              <m:math><m:apply><m:eq/>
+                <m:ci>φ</m:ci>
+                <m:ci>α</m:ci>
+              </m:apply></m:math>,
+              and
+              <m:math><m:apply><m:eq/>
+                <m:ci>ψ</m:ci>
+                <m:apply><m:not/><m:ci>α</m:ci></m:apply>
+              </m:apply></m:math>
+            </entry>
+</row>
+<row>
+<entry align="left">1.d</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:false/></m:math></entry><entry colname="c4">
+              <m:math><m:false/></m:math>Intro, lines 1.b,1.c,
+              where
+              <m:math><m:apply><m:eq/>
+                <m:ci>φ</m:ci>
+                <m:ci>α</m:ci>
+              </m:apply></m:math>
+            </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/>
+        <m:apply><m:and/><m:ci>α</m:ci> <m:apply><m:not/><m:ci>α</m:ci></m:apply></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4">
+        RAA, line 1,
+        where
+        <m:math><m:apply><m:eq/>
+          <m:ci>φ</m:ci>
+          <m:apply><m:and/>
+            <m:ci>α</m:ci>
+            <m:apply><m:not/><m:ci>α</m:ci></m:apply>
+          </m:apply>
+        </m:apply></m:math>
+      </entry>
+</row></tbody>
+</tgroup>
+</table>
+</example>
+
+<exercise id="modus-tollens">
+  <problem id="imp-id13534156">
+    <para id="imp-id13534158">
+      Here's another relatively simple example which uses RAA.
+      Show that the <term>modus tollens</term> rule holds:
+      <m:math><m:mrow><m:apply><m:implies/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply><m:mtext>, </m:mtext><m:apply><m:not/><m:ci>β</m:ci></m:apply> <m:mo>⊢</m:mo> <m:apply><m:not/><m:ci>α</m:ci></m:apply></m:mrow></m:math>
+    </para>
+  </problem>
+
+  <solution id="imp-id12592975">
+    <table id="proof2" summary="A proof">
+
+<tgroup cols="4" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:implies/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> Premise
+        </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/><m:ci>β</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> Premise
+        </entry>
+</row>
+<row>
+<entry align="left">3</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:mrow><m:ci>α</m:ci> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">3.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>α</m:ci></m:math></entry><entry colname="c4"> Premise for subproof
+              </entry>
+</row>
+<row>
+<entry align="left">3.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>β</m:ci></m:math></entry><entry colname="c4"> ⇒Elim, lines 1,3.a
+              </entry>
+</row>
+<row>
+<entry align="left">3.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:false/></m:math></entry><entry colname="c4"> <m:math><m:false/></m:math>Intro, lines 2,3.b
+              </entry>
+</row>
+<row>
+<entry align="left">4</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/><m:ci>α</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> RAA, line 3
+        </entry>
+</row></tbody>
+</tgroup>
+</table>
+  </solution>
+</exercise>
+
+<para id="imp-id13481801">
+  Another use of subproofs is to organize proofs' presentations.
+  Many proofs naturally break down into larger subparts, each with
+  its own intermediate conclusion.  These steps between these
+  subparts are big enough to correspond to our intuition, but too big
+  to correspond to individual inference rules.
+  This gives additional useful structure to a proof, aiding
+  our understanding.
+</para>
+
+<example id="imp-id10010173"> 
+  <para id="imp-id10010175">
+    Previously, we showed that
+    <link document="m10718" target-id="commutativity">∧ (AND) commutes</link>.
+    However, that conclusion is only directly applicable
+    when the ∧ is at the <quote display="inline">top-level</quote>,
+    <foreign>i.e.</foreign>, not nested inside some other connective.
+    Here, we'll show that ∧ commutes inside ¬, or more formally,
+    <m:math><m:mrow><m:apply><m:not/>
+        <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+      </m:apply> <m:mo>⊢</m:mo> <m:apply><m:not/>
+        <m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply>
+      </m:apply></m:mrow></m:math>.
+    <note id="imp-id13480413" type="warning">
+      When doing inference-style proofs, we will <emphasis>not</emphasis> use
+      the Boolean algebra laws nor replace subformulas with equivalent
+      formulas.
+      Conversely, when doing algebraic proofs, don't use inference rules!
+      While theoretically it's acceptable to mix the two methods,
+      for homeworks we want to make sure you can do the problems 
+      using either method alone, so keep the two approaches separate!
+    </note>
+  </para>
+
+  <para id="imp-id13399146">
+    We'll do two proofs of this to illustrate that there's always more
+    than one way to prove something!
+  </para>
+
+  <para id="imp-id10698751">
+    In our first proof, we'll use RAA.  Why?  Looking at our desired
+    conclusion, what could be the last inference rule used in the proof to
+    reach the conclusion?  By the shape of the formula,
+    the last step can't use any of the
+    <quote display="inline">introduction</quote>
+    inference rules
+    (∧Intro, ∨Intro, ⇒Intro, <m:math><m:false/></m:math>Intro,
+    or ¬Intro).  We could potentially use any of the
+    <quote display="inline">elimination</quote>
+    inference rules.  But, for ∧Elim, ∨Elim,
+    ⇒Elim, ¬Elim, or CaseElim, we would first have to prove some
+    more complicated formula to obtain our desired conclusion.  That
+    seems somewhat unlikely or unnecessary.  For <m:math><m:false/></m:math>Elim, we'd have
+    to first prove <m:math><m:false/></m:math>, <foreign>i.e.</foreign>, obtain a contradiction,
+    but our only premise isn't self-contradictory.
+    The only remaining option is RAA.
+  </para>
+
+  <table id="proof3" summary="A proof">
+
+<tgroup cols="4" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/>
+        <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4"> Premise
+      </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:mrow><m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">2.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:and/>
+              <m:ci>β</m:ci>
+              <m:ci>α</m:ci>
+            </m:apply></m:math></entry><entry colname="c4"> Premise for subproof
+            </entry>
+</row>
+<row>
+<entry align="left">2.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply></m:math></entry><entry colname="c4">
+              <link document="m10718" target-id="commutativity">Theorem: ∧ commutes</link>, line 2a
+            </entry>
+</row>
+<row>
+<entry align="left">2.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:false/></m:math></entry><entry colname="c4"> <m:math><m:false/></m:math>Intro, lines 1,2.b
+            </entry>
+</row>
+<row>
+<entry align="left">3</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/>
+        <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4"> RAA, line 2
+      </entry>
+</row></tbody>
+</tgroup>
+</table>
+
+  <para id="imp-id12064281">
+    The proof above uses a subproof because it is necessary for the
+    use of RAA.  In contrast, the proof below uses two subproofs
+    simply for organization.
+  </para>
+
+  <para id="imp-id12511284">
+    For our second proof, let's not use RAA directly.
+    Our plan is as follows: 
+    <list id="imp-id13002489" type="enumerated">
+      <item>
+        Assume the premise <m:math><m:apply><m:not/><m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply></m:apply></m:math>.
+      </item>
+      <item>
+        Again, use commutativity to show that
+        <m:math><m:apply><m:implies/>
+          <m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply>
+          <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+        </m:apply></m:math>
+      </item>
+      <item>
+        Use <link target-id="modus-tollens">modus tollens</link> to obtain the conclusion.
+      </item>
+    </list>
+    We can organize the proof into corresponding subparts:
+  </para>
+
+  <table id="proof4" summary="A proof">
+
+<tgroup cols="4" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/><m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply></m:apply></m:math></entry><entry/><entry colname="c4"> Premise
+      </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:apply><m:implies/>
+        <m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply>
+        <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">2.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:mrow><m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply> <m:mo>⊢</m:mo> <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply></m:mrow></m:math></entry><entry colname="c4">
+              Theorem statement:
+              <link document="m10718" target-id="commutativity">∧ commutes</link>
+            </entry>
+</row>
+<row>
+<entry align="left">2.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:implies/>
+              <m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply>
+              <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+            </m:apply></m:math></entry><entry colname="c4"> ⇒Intro, line 2.a
+            </entry>
+</row>
+<row>
+<entry align="left">3</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:apply><m:not/><m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply></m:apply></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">3.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:mrow><m:apply><m:implies/>
+                <m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply>
+                <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+              </m:apply><m:mtext>, </m:mtext><m:apply><m:not/><m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply></m:apply> <m:mo>⊢</m:mo> <m:apply><m:not/>
+                <m:apply><m:and/>
+                  <m:ci>β</m:ci>
+                  <m:ci>α</m:ci>
+                </m:apply>
+              </m:apply></m:mrow></m:math></entry><entry colname="c4">
+              Theorem statement:
+              <link target-id="modus-tollens">modus tollens</link>
+            </entry>
+</row>
+<row>
+<entry align="left">3.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:implies/>
+              <m:apply><m:and/>
+                <m:apply><m:implies/>
+                  <m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply>
+                  <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+                </m:apply>
+                <m:apply><m:not/>
+                  <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+                </m:apply>
+              </m:apply>
+              <m:apply><m:not/>
+                <m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply>
+              </m:apply>
+            </m:apply></m:math></entry><entry colname="c4"> ⇒Intro, line 3.a
+            </entry>
+</row>
+<row>
+<entry align="left">3.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:and/>
+              <m:apply><m:implies/>
+                <m:apply><m:and/><m:ci>β</m:ci> <m:ci>α</m:ci></m:apply>
+                <m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply>
+              </m:apply>
+              <m:apply><m:not/><m:apply><m:and/><m:ci>α</m:ci> <m:ci>β</m:ci></m:apply></m:apply>
+            </m:apply></m:math></entry><entry colname="c4"> ∧Intro, lines 2,1
+            </entry>
+</row>
+<row>
+<entry align="left">3.d</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:not/>
+              <m:apply><m:and/>
+                <m:ci>β</m:ci>
+                <m:ci>α</m:ci>
+              </m:apply>
+            </m:apply></m:math></entry><entry colname="c4"> ⇒Elim, lines 3.b,3.c
+            </entry>
+</row></tbody>
+</tgroup>
+</table>
+</example>
+
+</section> 
+
+
+<section id="more-examples">
+<title>More examples</title>
+
+<para id="imp-id12181896">
+  Now let's use these rules in a couple larger proofs, to show
+  some more interesting results.
+</para>
+
+<example id="running-example2">
+  <para id="imp-id9989669">
+    Let's redo the
+    <link document="m10718" target-id="running-example1">first example</link>'s proof formally and show
+    <m:math><m:mrow><m:apply><m:and/><m:ci>H-has-2</m:ci> <m:ci>J-safe</m:ci></m:apply> <m:mo>⊢</m:mo> <m:ci>G-unsafe</m:ci></m:mrow></m:math>.
+    The inference rules we used informally above don't correspond exactly to
+    those in our definition, so the formal proof is more complicated.
+  </para>
+
+  <table id="proof5" summary="A proof">
+
+<tgroup cols="4" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:implies/>
+        <m:ci>H-has-2</m:ci>
+        <m:apply><m:or/>
+          <m:apply><m:or/>
+            <m:apply><m:and/><m:ci>P-unsafe</m:ci> <m:ci>G-unsafe</m:ci></m:apply>
+            <m:apply><m:and/><m:ci>J-unsafe</m:ci> <m:ci>P-unsafe</m:ci></m:apply>
+          </m:apply>
+          <m:apply><m:and/><m:ci>G-unsafe</m:ci> <m:ci>J-unsafe</m:ci></m:apply>
+        </m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4">
+        WaterWorld axiom,
+        choosing a grouping of the ternary ∨, as justified by
+        <link document="m10718" target-id="commutativity">∨ commutativity</link>
+      </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:and/><m:ci>H-has-2</m:ci> <m:ci>J-safe</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> Premise
+      </entry>
+</row>
+<row>
+<entry align="left">3</entry><entry namest="c2" nameend="c3"><m:math><m:ci>H-has-2</m:ci></m:math></entry><entry/><entry colname="c4"> ∧Elim (left), line 2
+      </entry>
+</row>
+<row>
+<entry align="left">4</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:or/>
+        <m:apply><m:or/>
+          <m:apply><m:and/><m:ci>P-unsafe</m:ci> <m:ci>G-unsafe</m:ci></m:apply>
+          <m:apply><m:and/><m:ci>J-unsafe</m:ci> <m:ci>P-unsafe</m:ci></m:apply>
+        </m:apply>
+        <m:apply><m:and/><m:ci>G-unsafe</m:ci> <m:ci>J-unsafe</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4"> ⇒Elim, lines 1,3
+      </entry>
+</row>
+<row>
+<entry align="left">5</entry><entry namest="c2" nameend="c3"><m:math><m:ci>J-safe</m:ci></m:math></entry><entry/><entry colname="c4"> ∧Elim (right), line 2
+      </entry>
+</row>
+<row>
+<entry align="left">6</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:implies/>
+        <m:ci>J-safe</m:ci>
+        <m:apply><m:not/><m:ci>J-unsafe</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4"> WaterWorld axiom
+      </entry>
+</row>
+<row>
+<entry align="left">7</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/><m:ci>J-unsafe</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> ⇒Elim, lines 5,6
+      </entry>
+</row>
+<row>
+<entry align="left">8</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:mrow><m:apply><m:and/><m:ci>G-unsafe</m:ci> <m:ci>J-unsafe</m:ci></m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">8.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:and/><m:ci>G-unsafe</m:ci> <m:ci>J-unsafe</m:ci></m:apply></m:math></entry><entry colname="c4"> Premise for subproof
+            </entry>
+</row>
+<row>
+<entry align="left">8.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>J-unsafe</m:ci></m:math></entry><entry colname="c4"> ∧Elim (right), line 8.a
+            </entry>
+</row>
+<row>
+<entry align="left">8.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:false/></m:math></entry><entry colname="c4"> <m:math><m:false/></m:math>Intro, lines 7,8.b
+            </entry>
+</row>
+<row>
+<entry align="left">9</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/> <m:apply><m:and/><m:ci>G-unsafe</m:ci> <m:ci>J-unsafe</m:ci></m:apply> </m:apply></m:math></entry><entry/><entry colname="c4"> RAA, line 8
+      </entry>
+</row>
+<row>
+<entry align="left">10</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:or/>
+        <m:apply><m:and/><m:ci>P-unsafe</m:ci> <m:ci>G-unsafe</m:ci></m:apply>
+        <m:apply><m:and/><m:ci>J-unsafe</m:ci> <m:ci>P-unsafe</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4"> CaseElim (right), lines 4,9
+      </entry>
+</row>
+<row>
+<entry align="left">11</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:mrow><m:apply><m:and/><m:ci>J-unsafe</m:ci> <m:ci>P-unsafe</m:ci></m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">11.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:and/><m:ci>J-unsafe</m:ci> <m:ci>P-unsafe</m:ci></m:apply></m:math></entry><entry colname="c4"> Premise for subproof
+            </entry>
+</row>
+<row>
+<entry align="left">11.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>J-unsafe</m:ci></m:math></entry><entry colname="c4"> ∧Elim (left), line 11.a
+            </entry>
+</row>
+<row>
+<entry align="left">11.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:false/></m:math></entry><entry colname="c4"> <m:math><m:false/></m:math>Intro, lines 7,11.b
+            </entry>
+</row>
+<row>
+<entry align="left">12</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/>
+        <m:apply><m:and/><m:ci>J-unsafe</m:ci> <m:ci>P-unsafe</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4"> RAA, line 11
+      </entry>
+</row>
+<row>
+<entry align="left">13</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:and/><m:ci>P-unsafe</m:ci> <m:ci>G-unsafe</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> CaseElim (right), lines 10,12
+      </entry>
+</row>
+<row>
+<entry align="left">14</entry><entry namest="c2" nameend="c3"><m:math><m:ci>G-unsafe</m:ci></m:math></entry><entry/><entry colname="c4"> ∧Elim (right), line 13
+      </entry>
+</row></tbody>
+</tgroup>
+</table>
+</example>
+
+<para id="imp-id13001900">
+  Wow!  This formalization is a lot longer than the original informal proof.
+  That's a result of the particular set of inference rules we are using,
+  that we can only make inferences in small steps.
+  Also, here we were pickier about the distinction between
+  <quote display="inline">not safe</quote> and
+  <quote display="inline">unsafe</quote>.
+</para>
+
+<example id="imp-id12754159">
+  <para id="imp-id12754161">
+    The
+    <link document="m12077" target-id="running-example2">previous example</link> is a perfect candidate for adding
+    structure to the proof by using additional subproofs.
+    The following is more similar to the
+    <link document="m10718" target-id="running-example1">original informal proof</link>.
+  </para>
+
+  <para id="imp-id13323948">
+    Note also that subproofs can have their own subproofs.
+  </para>
+
+  <table id="proof6" summary="A proof">
+
+<tgroup cols="5" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+<colspec colwidth="*" colname="c5"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c4"><m:math><m:apply><m:implies/>
+        <m:ci>H-has-2</m:ci>
+        <m:apply><m:or/>
+          <m:apply><m:or/>
+            <m:apply><m:and/>
+              <m:ci>P-unsafe</m:ci>
+              <m:ci>G-unsafe</m:ci>
+            </m:apply>
+            <m:apply><m:and/>
+              <m:ci>J-unsafe</m:ci>
+              <m:ci>P-unsafe</m:ci>
+            </m:apply>
+          </m:apply>
+          <m:apply><m:and/>
+            <m:ci>G-unsafe</m:ci>
+            <m:ci>J-unsafe</m:ci>
+          </m:apply>
+        </m:apply>
+      </m:apply></m:math></entry><entry/><entry/><entry colname="c5">
+        WaterWorld axiom,
+        choosing a grouping of the ternary ∨, as justified by
+        <link document="m10718" target-id="commutativity">∨ commutativity</link>
+      </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c4">subproof:<m:math><m:mrow><m:mo>⊢</m:mo> <m:ci>H-has-2</m:ci></m:mrow></m:math></entry><entry/><entry/><entry colname="c5"/>
+</row>
+<row>
+<entry align="left">2.a</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:apply><m:and/><m:ci>H-has-2</m:ci> <m:ci>J-safe</m:ci></m:apply></m:math></entry><entry/><entry colname="c5"> Premise
+            </entry>
+</row>
+<row>
+<entry align="left">2.b</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:ci>H-has-2</m:ci></m:math></entry><entry/><entry colname="c5"> ∧Elim (left), line 2.a
+            </entry>
+</row>
+<row>
+<entry align="left">3</entry><entry namest="c2" nameend="c4"><m:math><m:apply><m:or/>
+        <m:apply><m:or/>
+          <m:apply><m:and/><m:ci>P-unsafe</m:ci> <m:ci>G-unsafe</m:ci></m:apply>
+          <m:apply><m:and/><m:ci>J-unsafe</m:ci> <m:ci>P-unsafe</m:ci></m:apply>
+        </m:apply>
+        <m:apply><m:and/><m:ci>G-unsafe</m:ci> <m:ci>J-unsafe</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry/><entry colname="c5"> ⇒Elim, lines 1,3
+      </entry>
+</row>
+<row>
+<entry align="left">4</entry><entry namest="c2" nameend="c4">subproof:<m:math><m:mrow><m:mo>⊢</m:mo> <m:apply><m:not/><m:ci>J-unsafe</m:ci></m:apply></m:mrow></m:math></entry><entry/><entry/><entry colname="c5"/>
+</row>
+<row>
+<entry align="left">4.a</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:apply><m:and/><m:ci>H-has-2</m:ci> <m:ci>J-safe</m:ci></m:apply></m:math></entry><entry/><entry colname="c5">
+              Premise
+            </entry>
+</row>
+<row>
+<entry align="left">4.b</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:ci>J-safe</m:ci></m:math></entry><entry/><entry colname="c5">
+              ∧Elim (right), line 4.a
+            </entry>
+</row>
+<row>
+<entry align="left">4.c</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:apply><m:implies/>
+              <m:ci>J-safe</m:ci>
+              <m:apply><m:not/><m:ci>J-unsafe</m:ci></m:apply>
+            </m:apply></m:math></entry><entry/><entry colname="c5">
+              WaterWorld axiom
+            </entry>
+</row>
+<row>
+<entry align="left">4.d</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:apply><m:not/><m:ci>J-unsafe</m:ci></m:apply></m:math></entry><entry/><entry colname="c5">
+              ⇒Elim, lines 4.b,4.c
+            </entry>
+</row>
+<row>
+<entry align="left">5</entry><entry namest="c2" nameend="c4">subproof:<m:math><m:mrow><m:mo>⊢</m:mo> <m:apply><m:and/><m:ci>P-unsafe</m:ci> <m:ci>G-unsafe</m:ci></m:apply></m:mrow></m:math></entry><entry/><entry/><entry colname="c5"/>
+</row>
+<row>
+<entry align="left">5.a</entry><entry/> <entry namest="c3" nameend="c4">subproof:<m:math><m:mrow><m:apply><m:and/><m:ci>G-unsafe</m:ci> <m:ci>J-unsafe</m:ci></m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c5"/>
+</row>
+<row>
+<entry align="left">5.a.i</entry><entry/><entry/>  <entry namest="c4" nameend="c4"><m:math><m:apply><m:and/><m:ci>G-unsafe</m:ci> <m:ci>J-unsafe</m:ci></m:apply></m:math></entry><entry colname="c5"> Premise for subproof
+                  </entry>
+</row>
+<row>
+<entry align="left">5.a.ii</entry><entry/><entry/>  <entry namest="c4" nameend="c4"><m:math><m:ci>J-unsafe</m:ci></m:math></entry><entry colname="c5"> ∧Elim (right), line 5.a.1
+                  </entry>
+</row>
+<row>
+<entry align="left">5.a.iii</entry><entry/><entry/>  <entry namest="c4" nameend="c4"><m:math><m:false/></m:math></entry><entry colname="c5"> <m:math><m:false/></m:math>Intro, lines 4,5.a.2
+                  </entry>
+</row>
+<row>
+<entry align="left">5.b</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:apply><m:not/>
+              <m:apply><m:and/>
+                <m:ci>G-unsafe</m:ci>
+                <m:ci>J-unsafe</m:ci>
+              </m:apply>
+            </m:apply></m:math></entry><entry/><entry colname="c5"> RAA, line 5.a
+            </entry>
+</row>
+<row>
+<entry align="left">5.c</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:apply><m:or/>
+              <m:apply><m:and/>
+                <m:ci>P-unsafe</m:ci>
+                <m:ci>G-unsafe</m:ci>
+              </m:apply>
+              <m:apply><m:and/>
+                <m:ci>J-unsafe</m:ci>
+                <m:ci>P-unsafe</m:ci>
+              </m:apply>
+            </m:apply></m:math></entry><entry/><entry colname="c5"> CaseElim (right), lines 3,5.b
+            </entry>
+</row>
+<row>
+<entry align="left">5.d</entry><entry/> <entry namest="c3" nameend="c4">subproof:<m:math><m:mrow><m:apply><m:and/>
+                <m:ci>J-unsafe</m:ci>
+                <m:ci>P-unsafe</m:ci>
+              </m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c5"/>
+</row>
+<row>
+<entry align="left">5.d.i</entry><entry/><entry/>  <entry namest="c4" nameend="c4"><m:math><m:apply><m:and/>
+                    <m:ci>J-unsafe</m:ci>
+                    <m:ci>P-unsafe</m:ci>
+                  </m:apply></m:math></entry><entry colname="c5"> Premise for subproof
+                  </entry>
+</row>
+<row>
+<entry align="left">5.d.ii</entry><entry/><entry/>  <entry namest="c4" nameend="c4"><m:math><m:ci>J-unsafe</m:ci></m:math></entry><entry colname="c5"> ∧Elim (left), line 5.d.1
+                  </entry>
+</row>
+<row>
+<entry align="left">5.d.iii</entry><entry/><entry/>  <entry namest="c4" nameend="c4"><m:math><m:false/></m:math></entry><entry colname="c5"> <m:math><m:false/></m:math>Intro, lines 4,5.d.2
+                  </entry>
+</row>
+<row>
+<entry align="left">5.e</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:apply><m:not/>
+              <m:apply><m:and/>
+                <m:ci>J-unsafe</m:ci>
+                <m:ci>P-unsafe</m:ci>
+              </m:apply>
+            </m:apply></m:math></entry><entry/><entry colname="c5"> RAA, line 5.d
+            </entry>
+</row>
+<row>
+<entry align="left">5.f</entry><entry/> <entry namest="c3" nameend="c4"><m:math><m:apply><m:and/>
+              <m:ci>P-unsafe</m:ci>
+              <m:ci>G-unsafe</m:ci>
+            </m:apply></m:math></entry><entry/><entry colname="c5"> CaseElim (right), lines 5.c,5.e
+            </entry>
+</row>
+<row>
+<entry align="left">6</entry><entry namest="c2" nameend="c4"><m:math><m:ci>G-unsafe</m:ci></m:math></entry><entry/><entry/><entry colname="c5"> ∧Elim (right), line 5
+      </entry>
+</row></tbody>
+</tgroup>
+</table>
+</example>
+
+<para id="imp-id12765868">
+  A standard way of presenting proofs is by using <term>lemmas</term>
+  to show parts of the proofs.
+  Lemmas are simply formulas which we prove not as an end result,
+  but as intermediate steps in a larger proof.
+  So, they are simply another way of presenting subproofs.
+</para>
+
+<example id="b1g1j1-implies-k">
+  <figure id="nontrivial-board">
+    <media id="imp-id12765884" alt="a board" display="block">
+      <image mime-type="image/png" src="../../media/ww-nontrivial.png"/>
+    </media>
+  
+    <caption>Example WaterWorld board</caption>
+  </figure>
+
+  <para id="imp-id13020106">
+    Consider the
+    <link document="m12077" target-id="nontrivial-board">above figure</link>.
+    We'll show 
+    <m:math><m:mrow><m:apply><m:and/>
+        <m:ci>B-has-1</m:ci>
+        <m:apply><m:and/><m:ci>G-has-1</m:ci> <m:ci>J-has-1</m:ci></m:apply>
+      </m:apply> <m:mo>⊢</m:mo> <m:ci>K-unsafe</m:ci></m:mrow></m:math>.
+    We'll do this through the following series of lemmas:
+  </para>
+
+  <list id="imp-id13020140">
+    <item>
+      Lemma A:
+      <m:math><m:mrow><m:apply><m:not/><m:ci>A-unsafe</m:ci></m:apply><m:mtext>, </m:mtext><m:ci>G-has-1</m:ci> <m:mo>⊢</m:mo> <m:ci>H-unsafe</m:ci></m:mrow></m:math>
+    </item>
+    <item>
+      Lemma B:
+      <m:math><m:mrow><m:apply><m:not/><m:ci>A-unsafe</m:ci></m:apply><m:mtext>, </m:mtext><m:ci>B-has-1</m:ci> <m:mo>⊢</m:mo> <m:ci>C-unsafe</m:ci></m:mrow></m:math>
+    </item>
+    <item>
+      Lemma C:
+      <m:math><m:mrow><m:ci>H-unsafe</m:ci><m:mtext>, </m:mtext><m:ci>C-unsafe</m:ci><m:mtext>, </m:mtext><m:ci>J-has-1</m:ci> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math>
+    </item>
+    <item>
+      Lemma D:
+      <m:math><m:mrow><m:ci>A-unsafe</m:ci><m:mtext>, </m:mtext><m:ci>B-has-1</m:ci> <m:mo>⊢</m:mo> <m:ci>C-safe</m:ci></m:mrow></m:math>
+    </item>
+    <item>
+      Lemma E:
+      <m:math><m:mrow><m:ci>A-unsafe</m:ci><m:mtext>, </m:mtext><m:ci>G-has-1</m:ci> <m:mo>⊢</m:mo> <m:ci>H-safe</m:ci></m:mrow></m:math>
+    </item>
+    <item>
+      Lemma F:
+      <m:math><m:mrow><m:ci>C-safe</m:ci><m:mtext>, </m:mtext><m:ci>H-safe</m:ci><m:mtext>, </m:mtext><m:ci>J-has-1</m:ci> <m:mo>⊢</m:mo> <m:ci>K-unsafe</m:ci></m:mrow></m:math>
+    </item>
+  </list>
+
+  <para id="imp-id13020270">
+    First, we'll show the main proof, assuming each of
+    the lemmas.  Then, proofs of each of the lemmas will follow.
+  </para>
+
+  <table id="proof7" summary="A proof">
+
+<tgroup cols="4" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:and/><m:ci>B-has-1</m:ci> <m:apply><m:and/><m:ci>G-has-1</m:ci> <m:ci>J-has-1</m:ci></m:apply></m:apply></m:math></entry><entry/><entry colname="c4"> Premise
+           </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c3"><m:math><m:ci>B-has-1</m:ci></m:math></entry><entry/><entry colname="c4"> ∧Elim (left),
+                           line 1
+           </entry>
+</row>
+<row>
+<entry align="left">3</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:and/><m:ci>G-has-1</m:ci> <m:ci>J-has-1</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> ∧Elim (right),
+                           line 1
+           </entry>
+</row>
+<row>
+<entry align="left">4</entry><entry namest="c2" nameend="c3"><m:math><m:ci>G-has-1</m:ci></m:math></entry><entry/><entry colname="c4">
+        ∧Elim (left), line 3
+      </entry>
+</row>
+<row>
+<entry align="left">5</entry><entry namest="c2" nameend="c3"><m:math><m:ci>J-has-1</m:ci></m:math></entry><entry/><entry colname="c4">
+        ∧Elim (right), line 3
+      </entry>
+</row>
+<row>
+<entry align="left">6</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:mrow><m:apply><m:not/><m:ci>A-unsafe</m:ci></m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">6.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:not/><m:ci>A-unsafe</m:ci></m:apply></m:math></entry><entry colname="c4"> Premise for subproof
+                    </entry>
+</row>
+<row>
+<entry align="left">6.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>H-unsafe</m:ci></m:math></entry><entry colname="c4">
+                      Lemma A, lines 6.a,4
+                    </entry>
+</row>
+<row>
+<entry align="left">6.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>C-unsafe</m:ci></m:math></entry><entry colname="c4"> Lemma B,
+                                    lines 6.a,2
+                    </entry>
+</row>
+<row>
+<entry align="left">6.d</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:false/></m:math></entry><entry colname="c4"> Lemma C,
+                                    lines 6.b,6.c,5
+                    </entry>
+</row>
+<row>
+<entry align="left">7</entry><entry namest="c2" nameend="c3"><m:math><m:ci>A-unsafe</m:ci></m:math></entry><entry/><entry colname="c4"> RAA,
+                           line 6
+           </entry>
+</row>
+<row>
+<entry align="left">8</entry><entry namest="c2" nameend="c3"><m:math><m:ci>C-safe</m:ci></m:math></entry><entry/><entry colname="c4"> Lemma D,
+                           lines 7,2
+           </entry>
+</row>
+<row>
+<entry align="left">9</entry><entry namest="c2" nameend="c3"><m:math><m:ci>H-safe</m:ci></m:math></entry><entry/><entry colname="c4"> Lemma E,
+                           lines 7,3
+           </entry>
+</row>
+<row>
+<entry align="left">10</entry><entry namest="c2" nameend="c3"><m:math><m:ci>K-unsafe</m:ci></m:math></entry><entry/><entry colname="c4"> Lemma F,
+                           lines 8,9,5
+           </entry>
+</row></tbody>
+</tgroup>
+</table>
+
+  <para id="imp-id13007231">
+    And that's the desired proof!
+    Now it just remains to show each of the six lemmas.
+  </para>
+
+  <para id="imp-id13007236">
+    <emphasis> 
+      Lemma A:
+      <m:math><m:mrow><m:apply><m:not/><m:ci>A-unsafe</m:ci></m:apply><m:mtext>, </m:mtext><m:ci>G-has-1</m:ci> <m:mo>⊢</m:mo> <m:ci>H-unsafe</m:ci></m:mrow></m:math>
+    </emphasis>
+  </para>
+
+  <table id="proof8" summary="A proof">
+
+<tgroup cols="4" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/><m:ci>A-unsafe</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> Premise
+           </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c3"><m:math><m:ci>G-has-1</m:ci></m:math></entry><entry/><entry colname="c4"> Premise
+           </entry>
+</row>
+<row>
+<entry align="left">3</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:mrow><m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>H-safe</m:ci></m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">3.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>H-safe</m:ci></m:apply></m:math></entry><entry colname="c4"> Premise for subproof
+                    </entry>
+</row>
+<row>
+<entry align="left">3.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>A-unsafe</m:ci></m:math></entry><entry colname="c4"> ∧Elim
+                    </entry>
+</row>
+<row>
+<entry align="left">3.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:false/></m:math></entry><entry colname="c4"> <m:math><m:false/></m:math>Intro,
+                                    lines 1,3b
+                    </entry>
+</row>
+<row>
+<entry align="left">4</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/><m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>H-safe</m:ci></m:apply></m:apply></m:math></entry><entry/><entry colname="c4"> RAA,
+                           line 3
+           </entry>
+</row>
+<row>
+<entry align="left">5</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:implies/>
+        <m:ci>G-has-1</m:ci>
+        <m:apply><m:or/>
+          <m:apply><m:and/><m:ci>A-safe</m:ci> <m:ci>H-unsafe</m:ci></m:apply>
+          <m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>H-safe</m:ci></m:apply>
+        </m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4">
+        WaterWorld axiom
+      </entry>
+</row>
+<row>
+<entry align="left">6</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:or/> <m:apply><m:and/><m:ci>A-safe</m:ci> <m:ci>H-unsafe</m:ci></m:apply>
+                <m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>H-safe</m:ci></m:apply>
+           </m:apply></m:math></entry><entry/><entry colname="c4"> ⇒Elim, 
+                           lines 5,2
+           </entry>
+</row>
+<row>
+<entry align="left">7</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:or/>
+        <m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>H-safe</m:ci></m:apply>
+        <m:apply><m:and/><m:ci>A-safe</m:ci> <m:ci>H-unsafe</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4">
+        Theorem: ∨ commutes, line 6
+      </entry>
+</row>
+<row>
+<entry align="left">8</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:and/><m:ci>A-safe</m:ci> <m:ci>H-unsafe</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> CaseElim,
+                           lines 4,7
+           </entry>
+</row>
+<row>
+<entry align="left">9</entry><entry namest="c2" nameend="c3"><m:math><m:ci>H-unsafe</m:ci></m:math></entry><entry/><entry colname="c4">
+        ∧Elim (right), line 8
+      </entry>
+</row></tbody>
+</tgroup>
+</table>
+
+  <para id="imp-id12967155">
+    <emphasis> 
+      Lemma B:
+      <m:math><m:mrow><m:apply><m:not/><m:ci>A-unsafe</m:ci></m:apply><m:mtext>, </m:mtext><m:ci>B-has-1</m:ci> <m:mo>⊢</m:mo> <m:ci>C-unsafe</m:ci></m:mrow></m:math>
+    </emphasis>
+  </para>
+
+  <table id="proof9" summary="A proof">
+
+<tgroup cols="4" align="center" colsep="1" rowsep="1">
+<colspec colwidth="*" colname="c1"/>
+<colspec colwidth="*" colname="c2"/>
+<colspec colwidth="*" colname="c3"/>
+<colspec colwidth="*" colname="c4"/>
+
+<tbody>
+<row>
+<entry align="left">1</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/><m:ci>A-unsafe</m:ci></m:apply></m:math></entry><entry/><entry colname="c4"> Premise
+           </entry>
+</row>
+<row>
+<entry align="left">2</entry><entry namest="c2" nameend="c3"><m:math><m:ci>B-has-1</m:ci></m:math></entry><entry/><entry colname="c4"> Premise
+           </entry>
+</row>
+<row>
+<entry align="left">3</entry><entry namest="c2" nameend="c3">subproof:<m:math><m:mrow><m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>C-safe</m:ci></m:apply> <m:mo>⊢</m:mo> <m:false/></m:mrow></m:math></entry><entry/><entry colname="c4"/>
+</row>
+<row>
+<entry align="left">3.a</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>C-safe</m:ci></m:apply></m:math></entry><entry colname="c4"> Premise for subproof
+                    </entry>
+</row>
+<row>
+<entry align="left">3.b</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:ci>A-unsafe</m:ci></m:math></entry><entry colname="c4"> ∧Elim (left),
+                                    line 3a
+                    </entry>
+</row>
+<row>
+<entry align="left">3.c</entry><entry/> <entry namest="c3" nameend="c3"><m:math><m:false/></m:math></entry><entry colname="c4"> <m:math><m:false/></m:math>Intro,
+                                    lines 1,3b
+                    </entry>
+</row>
+<row>
+<entry align="left">4</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:not/><m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>C-safe</m:ci></m:apply></m:apply></m:math></entry><entry/><entry colname="c4"> RAA,
+                           line 3
+           </entry>
+</row>
+<row>
+<entry align="left">5</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:implies/>
+        <m:ci>B-has-1</m:ci>
+        <m:apply><m:or/>
+          <m:apply><m:and/><m:ci>A-safe</m:ci> <m:ci>C-unsafe</m:ci></m:apply>
+          <m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>C-safe</m:ci></m:apply>
+        </m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4">
+        WaterWorld axiom
+      </entry>
+</row>
+<row>
+<entry align="left">6</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:or/>
+        <m:apply><m:and/><m:ci>A-safe</m:ci> <m:ci>C-unsafe</m:ci></m:apply>
+        <m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>C-safe</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4">
+        ⇒Elim, lines 5,2
+      </entry>
+</row>
+<row>
+<entry align="left">7</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:or/>
+        <m:apply><m:and/><m:ci>A-unsafe</m:ci> <m:ci>C-safe</m:ci></m:apply>
+        <m:apply><m:and/><m:ci>A-safe</m:ci> <m:ci>C-unsafe</m:ci></m:apply>
+      </m:apply></m:math></entry><entry/><entry colname="c4">
+        Theorem: ∨ commutes, line 6
+      </entry>
+</row>
+<row>
+<entry align="left">8</entry><entry namest="c2" nameend="c3"><m:math><m:apply><m:and/><m:ci>A-safe</m:ci> <m:ci>C-unsafe</m:ci></m:apply></m:math></entry><entry/><entry colname="c4">
+        CaseElim, lines 4,7
+      </entry>
+</row>
+<row>
+<entry align="left">9</entry><entry namest="c2" nameend="c3"><m:math><m:ci>C-unsafe</m:ci></m:math></entry><entry/><entry colname="c4"> ∧Elim (right),
+                           line 8
+           </entry>
+</row></tbody>
+</tgroup>
+</table>
+
+  
+
+  <para id="imp-id12967551">
+    Proving the other lemmas is left as an exercise to the reader.
+  </para>
+</example>
+
+<para id="imp-id12967557">
+  Note that we took a little shortcut:  we used the lemmas as if 
+  they were inference rules.
+  According to our previous definition of proofs, we technically should
+  present the lemma as a subproof and then use an inference rule or two
+  to show how that applies, as we've done in previous examples.
+  This shorter form is common practice and much easier to read.
+</para>
+
+
+</section> 
+
+
+<para id="imp-id12967568">
+  In summary, we must state one of the following four possible reasons
+  for each step in a proof, allowing subproofs.
+</para>
+<list id="imp-id12967573">
+  <item> This step's WFF is a premise.
+  </item>
+  <item> This step's WFF is an axiom.
+  </item>
+  <item> This step's WFF follows from a inference rule
+         applied to previous steps' WFFs.
+         The reason includes a statement of which inference rule is used
+         and how.
+  </item>
+  <item> This step's WFF follows from a subproof, where that
+         subproof may temporarily introduces additional premises.
+         The reason includes the entire subproof.
+         When that subproof has been shown elsewhere, such as in
+         class or another exercise, it may simply be cited, for brevity.
+         Of course, subproofs may have additional embedded subproofs, in turn.
+  </item>
+</list>
+
+<para id="imp-id12967599">
+  Technically, when using subproofs, one must
+  be careful to rename variables, to avoid clashes.
+  Rather than formalize this notion, we'll leave it as
+  <quote display="inline">obvious</quote>.
+</para>
+
+</content>
+</document>

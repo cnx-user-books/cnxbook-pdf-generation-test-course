@@ -1,0 +1,490 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+<title>Propositional Logic: normal forms</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>b7087b8e-4904-4cd2-bd01-44817b00b579</md:uuid>
+</metadata>
+
+
+<content>
+<section id="section1">
+
+<title>CNF, DNF, … (ENufF already!)</title>
+
+
+<para id="para1">
+In high school algebra, you saw that while
+<m:math> <m:apply> <m:minus/>
+                   <m:apply> <m:power/>
+                             <m:ci>x</m:ci>
+                             <m:cn>3</m:cn>
+                   </m:apply>
+                   <m:apply> <m:times/>
+                             <m:cn>4</m:cn>
+                             <m:ci>x</m:ci>
+                   </m:apply>
+         </m:apply>
+</m:math>
+and
+<m:math> <m:apply> <m:times/>
+                   <m:ci>x</m:ci>
+                   <m:apply> <m:minus/>
+                             <m:ci>x</m:ci>
+                             <m:cn>2</m:cn>
+                   </m:apply>
+                   <m:apply> <m:plus/>
+                             <m:ci>x</m:ci>
+                             <m:cn>2</m:cn>
+                   </m:apply>
+         </m:apply>
+</m:math>
+are equivalent, the second form is particularly useful in
+letting you quickly know the roots of the equation.
+Similarly, in Boolean algebra 
+there are certain canonical  — “normal”  — forms
+which have nice properties.
+</para>
+
+<para id="para2">
+A formula in <term>Conjunctive Normal Form</term>, or <term>CNF</term>,
+is the conjunction of <term>CNF clauses</term>.
+Each clause is a formula of a simple form:
+a disjunction of possibly-negated propositions.
+</para>
+
+<example id="example1">
+  <para id="para3">
+    <m:math><m:apply><m:implies/> <m:ci>c</m:ci>
+         <m:apply><m:and/><m:ci>a</m:ci> <m:ci>b</m:ci></m:apply>
+    </m:apply></m:math>
+    is equivalent to
+    <m:math><m:apply><m:and/>
+      <m:apply><m:or/><m:ci>a</m:ci> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply>
+      <m:apply><m:or/><m:ci>b</m:ci> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply>
+    </m:apply></m:math>.
+    This latter formula is in CNF, since it is the conjunction of
+    disjunctions, and each disjunction consists only of propositions
+    and negated propositions.
+  </para>
+</example>
+
+<example id="example2">
+  <para id="para4">
+    The conjunctions and disjunctions need not be binary.
+    The following formula is also is CNF.
+  </para>
+
+  <para id="para5">
+    <m:math><m:apply><m:and/>
+      <m:apply><m:not/><m:ci>a</m:ci></m:apply>
+      <m:apply><m:or/> <m:ci>a</m:ci> <m:ci>b</m:ci> <m:apply><m:not/><m:ci>c</m:ci></m:apply> </m:apply>
+      <m:apply><m:or/> <m:ci>b</m:ci> <m:apply><m:not/><m:ci>d</m:ci></m:apply> <m:ci>e</m:ci> <m:ci>f</m:ci></m:apply>
+    </m:apply></m:math>
+  </para>
+
+  <para id="para6">
+    Note that its first clause is just one negated proposition.
+    It is still appropriate to think of this as a disjunction, since
+    <m:math><m:apply><m:equivalent/>
+      <m:ci>φ</m:ci>
+      <m:apply><m:or/><m:ci>φ</m:ci> <m:ci>φ</m:ci></m:apply>
+    </m:apply></m:math>.
+  </para>
+</example>
+
+<para id="para7">
+Another format, <term>Disjunctive Normal Form</term>, or <term>DNF</term>
+is the dual of conjunctive normal form.
+A DNF formula is the disjunction of <term>DNF clauses</term>,
+each a conjunction of possibly-negated propositions.
+</para>
+
+<example id="dnf-example">
+  <para id="para8">
+    <m:math><m:apply><m:implies/>
+      <m:apply><m:and/><m:ci>a</m:ci> <m:ci>b</m:ci></m:apply>
+      <m:ci>c</m:ci>
+    </m:apply></m:math>
+    is equivalent to
+    <m:math><m:apply><m:or/>
+      <m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:apply><m:not/><m:ci>b</m:ci></m:apply>
+      <m:ci>c</m:ci>
+    </m:apply></m:math>
+    which is in DNF: three disjunctions,
+    each being a clause with only one term.
+    (It also happens to be in CNF  — a single clause with three terms!)
+    It is also equivalent to the more fleshed out DNF formula
+    where we insist that each clause include all three variables.
+    We end up with a formula that includes each possible
+    clause <emphasis>except</emphasis>
+    <m:math><m:apply><m:and/><m:ci>a</m:ci> <m:ci>b</m:ci> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply></m:math>:
+    That is, the formula
+    <m:math><m:apply>
+      <m:or/>
+      <m:mfenced>
+        <m:apply><m:and/><m:ci>a</m:ci> <m:ci>b</m:ci> <m:ci>c</m:ci></m:apply>
+      </m:mfenced>
+      <m:mfenced>
+        <m:apply><m:and/><m:ci>a</m:ci> <m:apply><m:not/><m:ci>b</m:ci></m:apply> <m:ci>c</m:ci></m:apply>
+      </m:mfenced>
+      <m:mfenced>
+        <m:apply><m:and/><m:ci>a</m:ci> <m:apply><m:not/><m:ci>b</m:ci></m:apply> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply>
+      </m:mfenced>
+      <m:mfenced>
+        <m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci> <m:ci>c</m:ci></m:apply>
+      </m:mfenced>
+      <m:mfenced>
+        <m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply>
+      </m:mfenced>
+      <m:mfenced>
+        <m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:apply><m:not/><m:ci>b</m:ci></m:apply> <m:ci>c</m:ci></m:apply>
+      </m:mfenced>
+      <m:mfenced>
+        <m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:apply><m:not/><m:ci>b</m:ci></m:apply> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply>
+      </m:mfenced>
+    </m:apply></m:math>.
+  </para>
+</example>
+
+<para id="para9">
+  <note type="Aside" id="idm8962560"><label>Aside</label>
+    Electrical Engineering courses, coming from more of a circuit perspective,
+    sometimes call
+    CNF <term>product-of-sums</term>,
+    and call DNF <term>sum-of-products</term>,
+    based on
+    <m:math><m:mo>∨</m:mo></m:math>,<m:math><m:mo>∧</m:mo></m:math> being
+    <link document="m10717" target-id="bool-vs-Z/2">analogous to</link>
+  
+    +,*.
+  </note>
+</para>
+
+<para id="para10">
+  Any Boolean function can be represented in CNF and in DNF.
+  One way to obtain CNF and DNF formulas
+  is based upon the truth table for the function.
+  <list id="list1">
+    <item>
+      A DNF formula results from looking at a truth table,
+      and focusing on the rows where the function is true:
+      As if saying “I'm in this row, or in this row, or …”:
+      For each row where the function is true,
+      form a conjunction of the propositions.
+      (<foreign>E.g.</foreign>, for the row where <m:math><m:ci>a</m:ci></m:math> is <m:math><m:false/></m:math>,
+       and <m:math><m:ci>b</m:ci></m:math> is <m:math><m:true/></m:math>,
+       form <m:math><m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci></m:apply></m:math>.)
+      Now, form the disjunction of all those conjunctions.
+    </item>
+    <item>
+      A CNF formula is the pessimistic approach, focusing
+      on the rows where the function is false:
+      “I'm not in this row, and not in this row, and …”.
+      For each row where the function is false, 
+      create a formula for “not in this row”:
+      (<foreign>E.g.</foreign>, if in this row <m:math><m:ci>a</m:ci></m:math> is <m:math><m:false/></m:math> and
+       <m:math><m:ci>b</m:ci></m:math> is <m:math><m:true/></m:math>
+       form <m:math><m:apply><m:not/><m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci></m:apply></m:apply></m:math>;
+       then notice that by DeMorgan's law, this is
+       <m:math><m:apply><m:or/><m:ci>a</m:ci> <m:apply><m:not/><m:ci>b</m:ci></m:apply></m:apply></m:math>  — a disjunct.
+       Now, form the conjunction of all those disjunctions.
+    </item>
+  </list>
+</para>
+
+<example id="nf-example">
+  <table id="table1" summary="">
+<title>Truth table example</title>
+<tgroup cols="4">
+<thead><row><entry><m:math><m:ci>a</m:ci></m:math></entry><entry><m:math><m:ci>b</m:ci></m:math></entry><entry><m:math><m:ci>c</m:ci></m:math></entry><entry>Unknown function</entry></row></thead>
+<tbody><row><entry><m:math><m:false/></m:math></entry><entry><m:math><m:false/></m:math></entry><entry><m:math><m:false/></m:math></entry><entry><m:math><m:false/></m:math></entry></row>
+<row><entry><m:math><m:false/></m:math></entry><entry><m:math><m:false/></m:math></entry><entry><m:math><m:true/></m:math></entry><entry><m:math><m:false/></m:math></entry></row>
+<row><entry><m:math><m:false/></m:math></entry><entry><m:math><m:true/></m:math></entry><entry><m:math><m:false/></m:math></entry><entry><m:math><m:true/></m:math></entry></row>
+<row><entry><m:math><m:false/></m:math></entry><entry><m:math><m:true/></m:math></entry><entry><m:math><m:true/></m:math></entry><entry><m:math><m:true/></m:math></entry></row>
+<row><entry><m:math><m:true/></m:math></entry><entry><m:math><m:false/></m:math></entry><entry><m:math><m:false/></m:math></entry><entry><m:math><m:false/></m:math></entry></row>
+<row><entry><m:math><m:true/></m:math></entry><entry><m:math><m:false/></m:math></entry><entry><m:math><m:true/></m:math></entry><entry><m:math><m:true/></m:math></entry></row>
+<row><entry><m:math><m:true/></m:math></entry><entry><m:math><m:true/></m:math></entry><entry><m:math><m:false/></m:math></entry><entry><m:math><m:false/></m:math></entry></row>
+<row><entry><m:math><m:true/></m:math></entry><entry><m:math><m:true/></m:math></entry><entry><m:math><m:true/></m:math></entry><entry><m:math><m:false/></m:math></entry></row></tbody>
+</tgroup>
+</table>
+
+  <para id="para11">
+    For CNF, the false rows give us the following five clauses:
+    <list id="list2">
+      <item> <m:math><m:apply><m:or/><m:ci>a</m:ci> <m:ci>b</m:ci> <m:ci>c</m:ci></m:apply></m:math>
+      </item>
+      <item> <m:math><m:apply><m:or/><m:ci>a</m:ci> <m:ci>b</m:ci> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply></m:math>
+      </item>
+      <item> <m:math><m:apply><m:or/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci> <m:ci>c</m:ci></m:apply></m:math>
+      </item>
+      <item> <m:math><m:apply><m:or/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:apply><m:not/><m:ci>b</m:ci></m:apply> <m:ci>c</m:ci></m:apply></m:math>
+      </item>
+      <item> <m:math><m:apply><m:or/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:apply><m:not/><m:ci>b</m:ci></m:apply> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply></m:math>
+      </item>
+    </list>
+    and the full formula is the conjunction of these.
+    Essentially, each clause rules out one row as being true.
+  </para>
+
+  <para id="para12">
+    For DNF, the true rows give us the following three clauses:
+    <list id="list3">
+      <item> <m:math><m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci> <m:apply><m:not/><m:ci>c</m:ci></m:apply></m:apply></m:math>
+      </item>
+      <item> <m:math><m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci> <m:ci>c</m:ci></m:apply></m:math>
+      </item>
+      <item> <m:math><m:apply><m:and/><m:ci>a</m:ci> <m:apply><m:not/><m:ci>b</m:ci></m:apply> <m:ci>c</m:ci></m:apply></m:math>
+      </item>
+    </list>
+    and the full formula is the disjunction of these.
+    Essentially, each clause allows one row to be true.
+  </para>
+</example>
+
+<para id="para13">
+  This shows that, for any arbitrarily complicated WFF, we
+  can find an equivalent WFF in CNF or DNF.  These provide us
+  with two very regular and relatively uncomplicated forms to use.
+</para>
+
+<exercise id="simplest-nf">
+  <problem id="idm974464">
+    <para id="para14">
+      The above
+      <link document="m12075" target-id="nf-example">example</link>
+      produced CNF and DNF formulas for a Boolean function, but
+      they are <emphasis>not</emphasis> the simplest such formulas.
+      For fun, can you find simpler ones?
+    </para>
+  </problem>
+
+  <solution id="idp2981312">
+    <list id="list4">
+      <item>
+        CNF:
+        <m:math><m:apply>
+          <m:and/>
+          <m:apply><m:or/><m:ci>a</m:ci> <m:ci>b</m:ci></m:apply>
+          <m:apply><m:or/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci> <m:ci>c</m:ci></m:apply>
+          <m:apply><m:or/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:apply><m:not/><m:ci>b</m:ci></m:apply></m:apply>
+        </m:apply></m:math>
+      </item>
+      <item>
+        DNF:
+        <m:math><m:apply>
+          <m:or/>
+          <m:mfenced>
+            <m:apply><m:and/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci></m:apply>
+          </m:mfenced>
+          <m:mfenced>
+            <m:apply><m:and/><m:ci>a</m:ci> <m:apply><m:not/><m:ci>b</m:ci></m:apply> <m:ci>c</m:ci></m:apply>
+          </m:mfenced>
+        </m:apply></m:math>
+      </item>
+    </list>
+
+    <para id="para15">
+      <note type="aside" id="idp5747632">
+        <link url="http://www.ee.surrey.ac.uk/Projects/Labview/minimisation/karnaugh.html">Karnaugh maps</link>
+        are a general technique for finding minimal CNF and DNF formulas.
+        They are most easily used
+        when only a small number of variables are involved.
+        We won't worry about minimizing formulas ourselves, though.
+      </note>
+    </para>
+  </solution>
+</exercise>
+
+
+
+<section id="section2">
+<title>Notation for DNF, CNF</title>
+
+<para id="para16">
+  Sometimes you'll see the form of CNF and DNF expressed in
+  a notation with subscripts. 
+  <list id="list5">
+    <item>
+      DNF is 
+      <m:math>
+        <m:msub><m:mo>∨</m:mo><m:ci>i</m:ci></m:msub>
+        <m:msub><m:ci>ψ</m:ci><m:ci>i</m:ci></m:msub>
+      </m:math>,
+      
+      where each clause
+      <m:math>
+        <m:msub><m:ci>φ</m:ci><m:ci>i</m:ci></m:msub>
+      </m:math> 
+      is 
+      <m:math>
+        <m:msub><m:mo>∧</m:mo><m:ci>j</m:ci></m:msub>
+        <m:apply><m:selector/><m:ci>λ</m:ci><m:ci>j</m:ci></m:apply>
+      </m:math>,
+      where each
+      <m:math><m:ci>λ</m:ci></m:math>
+      is a propositional variable (<m:math><m:ci>Prop</m:ci></m:math>),
+      or a negation of one (<m:math><m:apply><m:not/><m:ci>Prop</m:ci></m:apply></m:math>).
+    </item>
+    <item>
+      CNF is
+      <m:math>
+         <m:msub><m:mo>∧</m:mo><m:ci>i</m:ci></m:msub>
+         <m:apply><m:selector/><m:ci>ψ</m:ci><m:ci>i</m:ci></m:apply>
+       </m:math>,
+       where each clause
+       <m:math><m:apply><m:selector/><m:ci>ψ</m:ci><m:ci>i</m:ci></m:apply></m:math>
+       is 
+       <m:math>
+         <m:msub><m:mo>∨</m:mo><m:ci>j</m:ci></m:msub>
+         <m:apply><m:selector/><m:ci>λ</m:ci><m:ci>j</m:ci> </m:apply>
+       </m:math>,
+       where each
+       <m:math><m:ci>λ</m:ci></m:math>
+       is again a propositional variable (<m:math><m:ci>Prop</m:ci></m:math>),
+       or a negation of one (<m:math><m:apply><m:not/><m:ci>Prop</m:ci></m:apply></m:math>).
+    </item>
+  </list>
+  For example, in the CNF formula
+  <m:math><m:apply><m:and/>
+    <m:apply><m:or/><m:ci>a</m:ci> <m:ci>b</m:ci></m:apply>
+    <m:apply><m:or/><m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:ci>b</m:ci> <m:ci>c</m:ci></m:apply>
+    <m:apply><m:or/>
+      <m:apply><m:not/><m:ci>a</m:ci></m:apply> <m:apply><m:not/><m:ci>b</m:ci></m:apply>
+    </m:apply>
+  </m:apply></m:math>
+  we have
+  <m:math><m:apply><m:eq/>
+    <m:apply><m:selector/><m:ci>φ</m:ci><m:cn>2</m:cn></m:apply>
+    <m:apply><m:or/>
+      <m:apply><m:not/><m:ci>a</m:ci></m:apply>
+      <m:ci>b</m:ci>
+      <m:ci>c</m:ci>
+    </m:apply>
+  </m:apply></m:math>
+  within that clause we have
+  <m:math><m:apply><m:eq/>
+    <m:apply><m:selector/><m:ci>λ</m:ci><m:mn>1</m:mn></m:apply>
+    <m:apply><m:not/><m:ci>a</m:ci></m:apply>
+  </m:apply></m:math>.
+</para>
+
+
+<para id="para17">
+  One question this notation brings up:
+  <list id="list6">
+    <item>
+      What is the disjunction of a single clause?
+      Well, it's reasonable to say that
+      <m:math><m:apply><m:equivalent/>
+        <m:apply><m:or/>
+          <m:ci>ψ</m:ci>
+        </m:apply>
+        <m:ci>ψ</m:ci>
+      </m:apply></m:math>.
+      Note that this is also equivalent to
+      <m:math><m:apply><m:or/><m:ci>ψ</m:ci> <m:false/></m:apply></m:math>.
+    </item>
+    <item>
+      What is the disjunction of zero clauses?
+      Well, if we start with
+      <m:math><m:apply><m:equivalent/>
+        <m:ci>ψ</m:ci>
+        <m:apply><m:or/><m:ci>ψ</m:ci> <m:false/></m:apply>
+      </m:apply></m:math>
+      and remove the <m:math><m:ci>ψ</m:ci></m:math>, that leaves us with <m:math><m:false/></m:math>!
+      Alternately, imagine writing a function which takes a list of booleans,
+      and returns the <m:math><m:mo>∨</m:mo></m:math> of all of them  — the natural base case
+      for this recursive list-processing program turns out to be <m:math><m:false/></m:math>.
+      Indeed, this is the accepted definition of the empty disjunction.
+      It follows from <m:math><m:false/></m:math> being the identity element for <m:math><m:mo>∨</m:mo></m:math>.
+      Correspondingly, a conjunction of zero clauses is true.
+    </item>
+  </list>
+  Actually, that subscript notation above isn't <emphasis>quite</emphasis>
+  correct: it forces each clause to be the same length, 
+  which isn't actually required for CNF or DNF.
+  For fun, you can think about how to patch it up.
+  (Hint: double-subscripting.)
+</para>
+
+
+
+</section> 
+
+<para id="para18">
+  Note that often one of these forms might be more
+  concise than the other.
+  Here are two equivalently verbose ways of encoding <m:math><m:true/></m:math>,
+  in CNF and DNF respectively:
+  <m:math><m:apply>
+    <m:and/>
+    <m:apply><m:or/><m:ci>a</m:ci> <m:apply><m:not/><m:ci>a</m:ci></m:apply></m:apply>
+    <m:apply><m:or/><m:ci>b</m:ci> <m:apply><m:not/><m:ci>b</m:ci></m:apply></m:apply>
+    <m:mtext>…</m:mtext>
+    <m:apply><m:or/><m:ci>z</m:ci> <m:apply><m:not/><m:ci>z</m:ci></m:apply></m:apply>
+  </m:apply></m:math>
+  is equivalent to
+  <m:math><m:apply>
+    <m:or/>
+    <m:mfenced>
+      <m:apply>
+        <m:and/>
+        <m:ci>a</m:ci>
+        <m:ci>b</m:ci>
+        <m:ci>c</m:ci>
+        <m:mtext>…</m:mtext>
+        <m:ci>y</m:ci>
+        <m:ci>z</m:ci>
+      </m:apply>
+    </m:mfenced>
+    <m:mfenced>
+      <m:apply>
+        <m:and/>
+        <m:ci>a</m:ci>
+        <m:ci>b</m:ci>
+        <m:ci>c</m:ci>
+        <m:mtext>…</m:mtext>
+        <m:ci>y</m:ci>
+        <m:apply><m:not/><m:ci>z</m:ci></m:apply>
+       </m:apply>
+    </m:mfenced>
+    <m:mfenced>
+      <m:apply>
+        <m:and/>
+        <m:ci>a</m:ci>
+        <m:ci>b</m:ci>
+        <m:ci>c</m:ci>
+        <m:mtext>…</m:mtext>
+        <m:apply><m:not/><m:ci>y</m:ci></m:apply>
+        <m:ci>z</m:ci>
+      </m:apply>
+    </m:mfenced>
+    <m:mtext>…</m:mtext>
+    <m:mfenced>
+      <m:apply>
+        <m:and/>
+        <m:apply><m:not/><m:ci>a</m:ci></m:apply>
+        <m:apply><m:not/><m:ci>b</m:ci></m:apply>
+        <m:mtext>…</m:mtext>
+        <m:apply><m:not/><m:ci>y</m:ci></m:apply>
+        <m:apply><m:not/><m:ci>z</m:ci></m:apply>
+      </m:apply>
+    </m:mfenced>
+  </m:apply></m:math>.
+  The first version corresponds to enumerating the choices for each location
+  of a WaterWorld board; it has 26 two-variable clauses.
+  This may seem like a lot, but compare it to the second version, which
+  corresponds to enumerating all possible
+  WaterWorld boards explicitly: it has all possible 26-variable clauses;
+  there are
+  <m:math><m:apply>
+    <m:power/>
+    <m:cn>2</m:cn>
+    <m:cn>26</m:cn>
+  </m:apply></m:math>
+  ≈ 64 billion of them!
+</para>
+
+</section> 
+
+</content>
+</document>

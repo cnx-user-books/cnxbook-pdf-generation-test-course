@@ -1,0 +1,227 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+
+
+<title>Basic Complex and Matrix Operations</title>
+<metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>bcc399bd-66ff-4317-a549-15718e42859d</md:uuid>
+</metadata>
+<content>
+
+
+  <section id="id31827532">
+    <title>Complex numbers</title>
+    <para id="id31827542">m-file environments have excellent support for complex
+    numbers. The imaginary
+    unit is denoted by <code>i</code> or (as preferred in Electrical Engineering) <code>j</code>.
+    To create complex variables 
+    <m:math>
+      <m:apply>
+        <m:eq/>
+        <m:ci><m:msub><m:mi>z</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+        <m:apply>
+          <m:plus/>
+          <m:cn>7</m:cn>
+          <m:imaginaryi/>
+        </m:apply> 
+      </m:apply>
+    </m:math>
+    and
+
+    <m:math>
+      <m:apply>
+        <m:eq/>
+        <m:ci><m:msub><m:mi>z</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+        <m:apply>
+          <m:times/>
+          <m:cn>2</m:cn>
+          <m:apply>
+            <m:power/>
+            <m:ci>e</m:ci>
+            <m:apply>
+              <m:times/>
+              <m:imaginaryi/>
+              <m:pi/>
+            </m:apply>
+          </m:apply> 
+        </m:apply>
+      </m:apply>
+    </m:math>
+    simply enter
+    <code>z1 = 7 + j</code> and <code>z2 = 2*exp(j*pi)</code></para>
+
+    <para id="id31827626">The <link target-id="complexNum">table</link>  gives an overview of the basic
+    functions for manipulating complex numbers, where <m:math><m:ci>z</m:ci></m:math> is a complex number.</para>
+
+    <table frame="all" id="complexNum" summary="">
+      <title>Manipulating complex numbers</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="2" colname="c2"/>
+        <colspec colnum="4" colname="c4"/>
+        <thead valign="top">
+          <row>
+            <entry align="center"/>
+            <entry align="center">m-file</entry>
+          </row>
+        </thead>
+        <tbody valign="top">
+          <row>
+            <entry align="center">Re(<m:math><m:ci>z</m:ci></m:math>)</entry>
+            <entry align="center"><code>real(z)</code></entry>
+          </row>
+          <row>
+            <entry align="center">Im(<m:math><m:ci>z</m:ci></m:math>)</entry>
+            <entry align="center"><code>imag(z)</code></entry>
+          </row>
+          <row>
+            <entry align="center"><m:math><m:apply><m:abs/><m:ci>z</m:ci></m:apply></m:math></entry>
+            <entry align="center"><code>abs(z)</code></entry>
+          </row>
+          <row>
+            <entry align="center">Angle(<m:math><m:ci>z</m:ci></m:math>)</entry>
+            <entry align="center"><code>angle(z)</code></entry>
+          </row>
+          <row>
+            <entry align="center"><m:math><m:apply><m:power/><m:ci>z</m:ci><m:cn>*</m:cn></m:apply></m:math></entry>
+            <entry align="center"><code>conj(z)</code></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+
+  </section>
+
+  <section id="id111">
+    <title>Operations on  Matrices</title>
+    <para id="id112">
+    In addition to scalars, m-file environments can operate on matrices. Some common matrix operations are shown in the <link target-id="commonMatM">Table</link> below; in this table, <code>M</code> and <code>N</code> are  matrices.
+    <table frame="all" id="commonMatM" summary="">
+      <title>Common matrix operations</title>
+      <tgroup cols="2" align="left" colsep="1" rowsep="1">
+        <colspec colnum="2" colname="c2"/>
+        <colspec colnum="4" colname="c4"/>
+        <thead valign="top">
+          <row>
+            <entry align="center">Operation</entry>
+            <entry align="center">m-file</entry>
+          </row>
+        </thead>
+        <tbody valign="top">
+          <row>
+            <entry align="center"><m:math><m:apply><m:times/><m:ci>M</m:ci><m:ci>N</m:ci></m:apply></m:math></entry>
+            <entry align="center"><code>M*N</code></entry>
+          </row>
+          <row>
+            <entry align="center"><m:math><m:apply><m:power/><m:ci>M</m:ci><m:cn>-1</m:cn></m:apply></m:math></entry>
+            <entry align="center"><code>inv(M)</code></entry>
+          </row>
+          <row>
+            <entry align="center"><m:math><m:apply><m:power/><m:ci>M</m:ci><m:ci>T</m:ci></m:apply></m:math></entry>
+            <entry align="center"><code>M'</code></entry>
+          </row>
+          <row>
+            <entry align="center">det(<m:math><m:ci>M</m:ci></m:math>)</entry>
+            <entry align="center"><code>det(M)</code></entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    </para>
+    
+    <para id="para120">
+    Some useful facts:
+    <list id="listx" list-type="bulleted">
+      <item>The functions <code>length</code> and <code>size</code> are used to
+      find the dimensions of vectors and matrices, respectively.</item>
+      <item>Operations can also be performed on each element of a vector or matrix  by proceeding the operator by
+      ".", e.g <code>.*</code>, <code>.^</code> and <code>./</code>.</item>
+    </list>
+    </para>
+    <example id="example4">
+      <para id="example4p2">
+        Let <m:math>
+        <m:apply>
+          <m:eq/>
+          <m:ci>A</m:ci>
+          <m:matrix>
+            <m:matrixrow>
+              <m:cn> 1 </m:cn>
+              <m:cn> 1 </m:cn>
+            </m:matrixrow>
+            <m:matrixrow>
+              <m:cn> 1 </m:cn>
+              <m:cn> 1 </m:cn>
+            </m:matrixrow>
+          </m:matrix>
+        </m:apply>
+        </m:math>. 
+        Then <code>A^2</code> will return
+        <m:math>
+          <m:apply>
+            <m:eq/>
+            <m:ci>AA</m:ci>
+            <m:matrix>
+              <m:matrixrow>
+                <m:cn> 2 </m:cn>
+                <m:cn> 2 </m:cn>
+              </m:matrixrow>
+              <m:matrixrow>
+                <m:cn> 2 </m:cn>
+                <m:cn> 2 </m:cn>
+              </m:matrixrow>
+            </m:matrix>
+          </m:apply>
+          </m:math>,
+          while <code>A.^2</code> will return
+          <m:math>
+            <m:apply>
+              <m:eq/>
+              <m:matrix>
+                <m:matrixrow>
+                  <m:apply><m:power/><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+                  <m:apply><m:power/><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+                </m:matrixrow>
+                <m:matrixrow>
+                  <m:apply><m:power/><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+                  <m:apply><m:power/><m:cn>1</m:cn><m:cn>2</m:cn></m:apply>
+                </m:matrixrow>
+              </m:matrix>
+              <m:matrix>
+                <m:matrixrow>
+                  <m:cn> 1 </m:cn>
+                  <m:cn> 1 </m:cn>
+                </m:matrixrow>
+                <m:matrixrow>
+                  <m:cn> 1 </m:cn>
+                  <m:cn> 1 </m:cn>
+                </m:matrixrow>
+              </m:matrix>
+              
+            </m:apply>
+            </m:math>.
+      </para>
+    </example>
+
+    <example id="example5">
+      <para id="example5p2">
+        Given a vector x, compute a vector y having elements
+        <m:math>
+          <m:apply>
+            <m:eq/>
+            <m:apply><m:ci>y</m:ci><m:ci>n</m:ci></m:apply>
+            <m:apply>
+              <m:divide/>
+              <m:cn>1</m:cn>
+              <m:apply><m:sin/><m:apply><m:ci>x</m:ci><m:ci>n</m:ci></m:apply></m:apply>
+            </m:apply>
+          </m:apply>
+          </m:math>.
+
+          This can be easily be done the command <code>y=1./sin(x)</code>
+          Note that using <code>/</code> in place of <code>./</code> would result in the (common) error
+          "<code>Matrix dimensions must agree</code>".
+      </para>
+    </example>
+
+  </section>
+</content>
+</document>

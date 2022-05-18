@@ -1,0 +1,2068 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  
+  <title>Use of Laplacian PDFs in Image Compression</title>
+  
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>298a012c-2d5f-45bd-9f72-1a02f09c76c9</md:uuid>
+</metadata>
+
+  <content>
+    <para id="para1">
+      It is found to be appropriate and convenient to model the
+      distribution of many types of transformed image coefficients by
+      Laplacian distributions. It is appropriate because much real
+      data is approximately modeled by the Laplacian probability
+      density function (PDF), and it is convenient because the
+      mathematical form of the Laplacian PDF is simple enough to allow
+      some useful analytical results to be derived.
+    </para>
+
+    <para id="para2">
+      A Laplacian PDF is a back-to-back pair of exponential decays and
+      is given by:
+
+      <equation id="eq6">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci>
+		    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:abs/>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		    <m:ci>
+		      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      where 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	</m:ci>
+      </m:math> is the equivalent of a <emphasis>time
+      constant</emphasis> which defines the <emphasis>width</emphasis>
+      of the PDF from the centre to the 
+      <m:math>
+	<m:apply>
+	  <m:divide/>
+	  <m:cn>1</m:cn>
+	  <m:exponentiale/>
+	</m:apply>
+      </m:math> points. The initial scaling factor ensures that the
+      area under 
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">p</m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math> is unity, so that it is a valid PDF. <link target-id="figure14" strength="2"/> shows the shape of 
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">p</m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math>.
+    </para>
+
+    <figure id="figure14">
+      <media id="idp1744160" alt=""><image src="../../media/figure14.png" mime-type="image/png"/></media>
+	<caption>
+	  Laplacian PDF, 
+	  <m:math>
+	<m:apply>
+	  <m:ci type="fn">p</m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math>, and typical quantiser decision thresholds, shown for
+      the case when the quantiser step size 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>Q</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:ci>
+		  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</caption>
+    </figure>      
+
+    <para id="para3">
+      The mean of this PDF is zero and the variance is given by:
+
+      <equation id="eq7">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">v</m:ci>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>x</m:ci></m:bvar>
+	      <m:lowlimit>
+		<m:apply>
+		  <m:minus/>
+		  <m:infinity/>
+		</m:apply>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:infinity/>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>x</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">p</m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>x</m:ci></m:bvar>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>x</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci>
+			<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>x</m:ci>
+			<m:ci>
+			  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:apply>
+		<m:power/>
+		<m:ci>
+		  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      (using integration by parts twice).
+    </para>
+
+    <para id="para4">
+      Hence the standard deviation is:
+
+      <equation id="eq8">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">σ</m:ci>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:root/>
+	      <m:apply>
+		<m:ci type="fn">v</m:ci>
+		<m:ci>
+		  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:root/>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      Given the variance (power) of a subimage of transformed pels, we
+      may calculate 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	</m:ci>
+      </m:math> and hence determine the PDF of the subimage, assuming
+      a Laplacian shape. We now show that, if we quantise the subimage
+      using a uniform quantiser with step size
+      <m:math><m:ci>Q</m:ci></m:math>, we can calculate the entropy of
+      the quantised samples and thus estimate the bit rate needed to
+      encode the subimage in bits/pel. This is a powerful analytical
+      tool as it shows how the compressed bit rate relates directly to
+      the energy of a subimage. The vertical dashed lines in <link target-id="figure14" strength="2"/> show the decision thresholds
+      for a typical quantiser for the case when 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>Q</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:ci>
+	      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+    </para>   
+    
+    <para id="para6">
+      First we analyse the probability of a pel being quantised to
+      each step of the quantiser. This is given by the area under  
+      <m:math>
+	<m:apply>
+	  <m:ci type="fn">p</m:ci>
+	  <m:ci>x</m:ci>
+	</m:apply>
+      </m:math> between each adjacent pair of quantiser thresholds.
+      
+      <list id="list1">
+	<item>
+	  Probability of being at step 0, 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/> 
+		<m:apply>
+		  <m:lt/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:cn>1</m:cn>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:ci>Q</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:ci>x</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:ci>Q</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>  
+		  <m:apply>
+		    <m:lt/>
+		    <m:cn>0</m:cn>
+		    <m:ci>x</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:divide/>
+			<m:cn>1</m:cn>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:ci>Q</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</item>
+
+	<item>
+	  Probability of being at step <m:math><m:ci>k</m:ci></m:math>,  
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci>
+		<m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>  
+		<m:apply>
+		  <m:lt/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>k</m:ci>
+		      <m:apply>
+			<m:divide/>
+			<m:cn>1</m:cn>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>Q</m:ci>
+		  </m:apply>
+		  <m:ci>x</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:plus/>
+		      <m:ci>k</m:ci>
+		      <m:apply>
+			<m:divide/>
+			<m:cn>1</m:cn>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		    <m:ci>Q</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</item>
+      </list>
+
+      First, for 
+      <m:math>
+	<m:apply>
+	  <m:geq/>
+	  <m:ci>
+	    <m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub>
+	  </m:ci>
+	  <m:ci>
+	    <m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub>
+	  </m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>, we calculate:
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>  
+	    <m:apply>
+	      <m:lt/>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub>
+	      </m:ci>
+	      <m:ci>x</m:ci>
+	       <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:int/>
+	    <m:bvar><m:ci>x</m:ci></m:bvar>
+	    <m:lowlimit>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub>
+	      </m:ci>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub>
+	      </m:ci>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:ci type="fn">p</m:ci>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#evaluateat"/> 
+	    <m:lowlimit>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub>
+	      </m:ci>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub>
+	      </m:ci>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>x</m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>
+		      <m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub>
+		    </m:ci>
+		    <m:ci>
+		      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      
+      Therefore, 
+
+      <equation id="eq9">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>Q</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci>
+			<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      and, for 
+      <m:math>
+	<m:apply>
+	  <m:geq/>
+	  <m:ci>k</m:ci>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math>, 
+
+      <equation id="eq10">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+	    </m:ci>
+
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:minus/>
+			  <m:ci>k</m:ci>
+			  <m:apply>
+			    <m:divide/>
+			    <m:cn>1</m:cn>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:ci>Q</m:ci>
+		      </m:apply>
+		      <m:ci>
+			<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:times/>
+			<m:apply>
+			  <m:plus/>
+			  <m:ci>k</m:ci>
+			  <m:apply>
+			    <m:divide/>
+			    <m:cn>1</m:cn>
+			    <m:cn>2</m:cn>
+			  </m:apply>
+			</m:apply>
+			<m:ci>Q</m:ci>
+		      </m:apply>
+		      <m:ci>
+			<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:sinh/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>Q</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci>
+		      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:times/>
+		      <m:ci>k</m:ci>
+		      <m:ci>Q</m:ci>
+		    </m:apply>
+		    <m:ci>
+		      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      By symmetry, if <m:math><m:ci>k</m:ci></m:math> is nonzero, 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub><m:mi>p</m:mi>
+	      <m:mrow>
+		<m:mo>-</m:mo>
+		<m:mi>k</m:mi>
+	      </m:mrow>
+	    </m:msub>
+	  </m:ci>
+	  <m:ci>
+	    <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:sinh/>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>Q</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:ci>
+		    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:abs/>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		    <m:ci>Q</m:ci>
+		  </m:apply>
+		  <m:ci>
+		    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> 	  
+    </para>
+    
+    <para id="para7">
+      Now we can calculate the entropy of the subimage:
+
+      <equation id="eq11">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>H</m:ci>
+	    
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar><m:ci>k</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>
+		    <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+		  </m:ci>
+		  <m:apply>
+		    <m:log/>
+		    <m:logbase><m:cn>2</m:cn></m:logbase>
+		    <m:ci>
+		      <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>
+		    <m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub>
+		  </m:ci>
+		  <m:apply>
+		    <m:log/>
+		    <m:logbase><m:cn>2</m:cn></m:logbase>
+		    <m:ci>
+		      <m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub>
+		    </m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>k</m:ci></m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>
+		      <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+		    </m:ci>
+		    <m:apply>
+		      <m:log/>
+		      <m:logbase><m:cn>2</m:cn></m:logbase>
+		      <m:ci>
+			<m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      To make the evaluation of the summation easier when we
+      substitute for 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+	</m:ci>
+      </m:math>, we let 
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>α</m:ci>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>r</m:ci>
+	      <m:ci>k</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      where 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>α</m:ci>
+	  <m:apply>
+	    <m:sinh/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>Q</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:ci>
+		  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply> 
+	</m:apply>
+      </m:math> and 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>r</m:ci>
+	  <m:apply>
+	    <m:exp/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>Q</m:ci>
+		<m:ci>
+		  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>. Therefore, 
+
+      <equation id="eq11a">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>k</m:ci></m:bvar>
+	      <m:lowlimit>
+		<m:cn>1</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:infinity/>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci>
+		  <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:ci>
+		    <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>k</m:ci></m:bvar>
+	      <m:lowlimit>
+		<m:cn>1</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:infinity/>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci>α</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>r</m:ci>
+		  <m:ci>k</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>α</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>r</m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>k</m:ci></m:bvar>
+	      <m:lowlimit>
+		<m:cn>1</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:infinity/>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci>α</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:ci>r</m:ci>
+		  <m:ci>k</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:log/>
+		    <m:logbase><m:cn>2</m:cn></m:logbase>
+		    <m:ci>α</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>k</m:ci>
+		    <m:apply>
+		      <m:log/>
+		      <m:logbase><m:cn>2</m:cn></m:logbase>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>α</m:ci>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:ci>α</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>k</m:ci></m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:power/>
+		    <m:ci>r</m:ci>
+		    <m:ci>k</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>α</m:ci>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:ci>r</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>k</m:ci></m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:infinity/>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>k</m:ci>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>r</m:ci>
+		      <m:ci>k</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      Now 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar><m:ci>k</m:ci></m:bvar>
+	    <m:lowlimit>
+	      <m:cn>1</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:infinity/>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:power/>
+	      <m:ci>r</m:ci>
+	      <m:ci>k</m:ci>
+	    </m:apply>
+	  </m:apply>  
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>r</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:ci>r</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> and, differentiating by
+      <m:math><m:ci>r</m:ci></m:math>: 
+
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:sum/>
+	    <m:bvar><m:ci>k</m:ci></m:bvar>
+	    <m:lowlimit>
+	      <m:cn>1</m:cn>
+	    </m:lowlimit>
+	    <m:uplimit>
+	      <m:infinity/>
+	    </m:uplimit>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>k</m:ci>
+	      <m:apply>
+		<m:power/>
+		<m:ci>r</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>k</m:ci>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:power/>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:ci>r</m:ci>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>. Therefore, 
+
+      <equation id="eq11B">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>k</m:ci></m:bvar>
+	      <m:lowlimit>
+		<m:cn>1</m:cn>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:infinity/>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:ci>
+		  <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+		</m:ci>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:ci>
+		    <m:msub><m:mi>p</m:mi><m:mi>k</m:mi></m:msub>
+		  </m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:ci>α</m:ci>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:ci>α</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>r</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:ci>α</m:ci>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:ci>r</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>r</m:ci>
+		  <m:apply>
+		    <m:power/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>1</m:cn>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:ci>α</m:ci>
+		  <m:ci>r</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:cn>1</m:cn>
+		  <m:ci>r</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:ci>α</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:log/>
+		    <m:logbase><m:cn>2</m:cn></m:logbase>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      and 
+
+      <equation id="eq11c">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>
+		<m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub>
+	      </m:ci>
+	      <m:apply>
+		<m:log/>
+		<m:logbase><m:cn>2</m:cn></m:logbase>
+		<m:ci>
+		  <m:msub><m:mi>p</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:root/>
+		  <m:ci>r</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:log/>
+		<m:logbase><m:cn>2</m:cn></m:logbase>
+		<m:apply>
+		  <m:minus/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:root/>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      Hence the entropy is given by:
+
+      <equation id="eq12">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>H</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:apply>
+		      <m:root/>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:log/>
+		    <m:logbase><m:cn>2</m:cn></m:logbase>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>1</m:cn>
+		      <m:apply>
+			<m:root/>
+			<m:ci>r</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:ci>α</m:ci>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:ci>r</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:log/>
+		    <m:logbase><m:cn>2</m:cn></m:logbase>
+		    <m:ci>α</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:log/>
+		      <m:logbase><m:cn>2</m:cn></m:logbase>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>1</m:cn>
+		      <m:ci>r</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      Because both <m:math><m:ci>α</m:ci></m:math> and
+      <m:math><m:ci>r</m:ci></m:math> are functions of 
+      <m:math>
+	<m:apply>
+	  <m:divide/>
+	  <m:ci>Q</m:ci>
+	  <m:ci>
+	    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	  </m:ci>
+	</m:apply>
+      </m:math>, then <m:math><m:ci>H</m:ci></m:math> is a function of
+      just 
+      <m:math>
+	<m:apply>
+	  <m:divide/>
+	  <m:ci>Q</m:ci>
+	  <m:ci>
+	    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	  </m:ci>
+	</m:apply>
+      </m:math> too. We expect that, for constant
+      <m:math><m:ci>Q</m:ci></m:math>, as the energy of the subimage
+      increases, the entropy will also increase approximately
+      logarithmically, so we plot <m:math><m:ci>H</m:ci></m:math>
+      against 
+       <m:math>
+	<m:apply>
+	  <m:divide/>
+	  <m:ci>
+	    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	  </m:ci>
+	  <m:ci>Q</m:ci>
+	</m:apply>
+      </m:math> in dB in <link target-id="figure15" strength="2"/>. This
+      shows that our expectations are born out.
+    </para>
+    
+    <figure id="figure15">
+      <media id="idp6069872" alt=""><image src="../../media/figure15.png" mime-type="image/png"/></media>
+      <caption>
+	Entropy <m:math><m:ci>H</m:ci></m:math> and approximate
+	entropy 
+	<m:math>
+	  <m:ci>
+	    <m:msub><m:mi>H</m:mi><m:mi>a</m:mi></m:msub>
+	  </m:ci>
+	</m:math> of a quantised subimage with Laplacian PDF, as a
+	function of 
+	<m:math>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>
+	      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	    </m:ci>
+	    <m:ci>Q</m:ci>
+	  </m:apply>
+	</m:math> in dB.
+      </caption>
+    </figure>
+    
+    <para id="para8">
+      We can show this in theory by considering the case when 
+      <m:math>
+	<m:apply>
+	  <m:mo>≫</m:mo>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>
+	      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	    </m:ci>
+	    <m:ci>Q</m:ci>
+	  </m:apply>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math>, when we find that:
+
+      <m:math display="block">
+	<m:apply>
+	  <m:approx/>
+	  <m:ci>α</m:ci>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>Q</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:ci>
+		<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">
+	<m:apply>
+	  <m:approx/>
+	  <m:ci>r</m:ci>
+	  <m:apply>
+	    <m:approx/>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>Q</m:ci>
+		<m:ci>
+		  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:ci>α</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      <m:math display="block">
+	<m:apply>
+	  <m:approx/>
+	  <m:apply>
+	    <m:root/>
+	    <m:ci>r</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:minus/>
+	    <m:cn>1</m:cn>
+	    <m:ci>α</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      Using the approximation 
+      <m:math>
+	<m:apply>
+	  <m:approx/>
+	  <m:apply>
+	    <m:log/>
+	    <m:logbase><m:cn>2</m:cn></m:logbase>
+	    <m:apply>
+	      <m:minus/>
+	      <m:cn>1</m:cn>
+	      <m:ci>ε</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>ε</m:ci>
+	      <m:apply>
+		<m:ln/>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> for small <m:math><m:ci>ε</m:ci></m:math>, it is
+      then fairly straightforward to show that 
+
+      <m:math display="block">
+	<m:apply>
+	  <m:approx/>
+	  <m:ci>H</m:ci>
+	  <m:apply>
+	    <m:approx/>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase><m:cn>2</m:cn></m:logbase>
+		  <m:ci>α</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:ln/>
+		  <m:cn>2</m:cn>
+		</m:apply> 
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:log/>
+	      <m:logbase><m:cn>2</m:cn></m:logbase>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:exponentiale/>
+		  <m:ci>
+		    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		  </m:ci>
+		</m:apply>
+		<m:ci>Q</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      We denote this approximation as 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>H</m:mi><m:mi>a</m:mi></m:msub>
+	</m:ci>
+      </m:math> in <link target-id="figure15" strength="2"/>, which shows
+      how close to <m:math><m:ci>H</m:ci></m:math> the approximation
+      is, for 
+      <m:math>
+	<m:apply>
+	  <m:gt/>
+	  <m:ci>
+	    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	  </m:ci>
+	  <m:ci>Q</m:ci>
+	</m:apply>
+      </m:math> (i.e. for 
+      <m:math>
+	<m:apply>
+	  <m:gt/>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>
+	      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	    </m:ci>
+	    <m:ci>Q</m:ci>
+	  </m:apply>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math> dB).
+    </para>
+    
+    <para id="para9">
+      We can compare the entropies calculated using <link target-id="eq12" strength="2"/> with those that were calculated
+      from the bandpass subimage histograms, as given in these figures
+      describing Haar transform energies and entropies; <link document="m11088" target-id="figure5" strength="2">level 1
+      energies</link>, <link document="m11089" target-id="figure8" strength="2">level 2 energies</link>, <link document="m11089" target-id="figure9" strength="2">level 3 energies</link>, and <link document="m11089" target-id="figure10" strength="2">level 4
+      energies</link>. (The Lo-Lo subimages have PDFs which are more
+      uniform and do not fit the Laplacian model well.) The values of
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	</m:ci>
+      </m:math> are calculated from:
+
+      <m:math display="block">
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:divide/>
+	    <m:ci>std.  dev.</m:ci>
+	    <m:apply>
+	      <m:root/>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:root/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>subimage  energy</m:ci>
+	      <m:ci>2  (no  of  pels  in  subimage)</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+
+      The following table shows this comparison:
+    </para>
+    
+    <!-- This CALS table template is generated by `table.el' version 1.5.32 -->
+    <table frame="all" id="table1" summary="">
+      <tgroup cols="7" align="left" colsep="1" rowsep="1">
+	<thead valign="top">
+	  <row>
+	    <entry align="center">
+	      Transform level
+	    </entry>
+	    <entry align="center">
+	      Subimage type
+	    </entry>
+	    <entry align="center">
+	      Energy (×
+	      <m:math>
+		<m:apply>
+		  <m:power/>
+		  <m:cn>10</m:cn>
+		  <m:cn>6</m:cn>
+		</m:apply>
+	      </m:math>)
+	    </entry>
+	    <entry align="center">
+	      No of pels
+	    </entry>
+	    <entry align="center">
+	      <m:math> 
+		<m:ci>
+		  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		</m:ci>
+	      </m:math>
+	    </entry>
+	    <entry align="center">
+	      Laplacian entropy
+	    </entry>
+	    <entry align="center">
+	      Measured entropy
+	    </entry>
+	  </row>
+	</thead>
+	<tbody valign="top">
+	  <row>
+	    <entry align="center">
+	      1
+	    </entry>
+	    <entry align="center">
+	      Hi-Lo
+	    </entry>
+	    <entry align="center">
+	      4.56
+	    </entry>
+	    <entry align="center">
+	      16384
+	    </entry>
+	    <entry align="center">
+	      11.80
+	    </entry>
+	    <entry align="center">
+	      2.16
+	    </entry>
+	    <entry align="center">
+	      1.71
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      1
+        </entry>
+	    <entry align="center">
+	      Lo-Hi
+	    </entry>
+	    <entry align="center">
+	      1.89
+	    </entry>
+	    <entry align="center">
+	      16384
+	    </entry>
+	    <entry align="center">
+	      7.59
+	    </entry>
+	    <entry align="center">
+	      1.58
+	    </entry>
+	    <entry align="center">
+	      1.15
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      1
+	    </entry>
+	    <entry align="center">
+	      Hi-Hi
+	    </entry>
+	    <entry align="center">
+	      0.82
+	    </entry>
+	    <entry align="center">
+	      16384
+	    </entry>
+	    <entry align="center">
+	      5.09
+	    </entry>
+	    <entry align="center">
+	      1.08
+	    </entry>
+	    <entry align="center">
+	      0.80
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      2
+	    </entry>
+	    <entry align="center">
+	      Hi-Lo
+	    </entry>
+	    <entry align="center">
+	      7.64
+	    </entry>
+	    <entry align="center">
+	      4096
+	    </entry>
+	    <entry align="center">
+	      30.54
+	    </entry>
+	    <entry align="center">
+	      3.48
+	    </entry>
+	    <entry align="center">
+	      3.00
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      2
+	    </entry>
+	    <entry align="center">
+	      Lo-Hi
+	    </entry>
+	    <entry align="center">
+	      2.95
+	    </entry>
+	    <entry align="center">
+	      4096
+	    </entry>
+	    <entry align="center">
+	      18.98
+	    </entry>
+	    <entry align="center">
+	      2.81
+	    </entry>
+	    <entry align="center">
+	      2.22
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      2
+	    </entry>
+	    <entry align="center">
+	      Hi-Hi
+	    </entry>
+	    <entry align="center">
+	      1.42
+	    </entry>
+	    <entry align="center">
+	      4096
+	    </entry>
+	    <entry align="center">
+	      13.17
+	    </entry>
+	    <entry align="center">
+	      2.31
+	    </entry>
+	    <entry align="center">
+	      1.75
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      3
+	    </entry>
+	    <entry align="center">
+	      Hi-Lo
+	    </entry>
+	    <entry align="center">
+	      13.17
+	    </entry>
+	    <entry align="center">
+	      1024
+	    </entry>
+	    <entry align="center">
+	      80.19
+	    </entry>
+	    <entry align="center">
+	      4.86
+	    </entry>
+	    <entry align="center">
+	      4.52
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      3
+	    </entry>
+	    <entry align="center">
+	      Lo-Hi
+	    </entry>
+	    <entry align="center">
+	      3.90
+	    </entry>
+	    <entry align="center">
+	      1024
+	    </entry>
+	    <entry align="center">
+	      43.64
+	    </entry>
+	    <entry align="center">
+	      3.99
+	    </entry>
+	    <entry align="center">
+	      3.55
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      3
+	    </entry>
+	    <entry align="center">
+	      Hi-Hi
+	    </entry>
+	    <entry align="center">
+	      2.49
+	    </entry>
+	    <entry align="center">
+	      1024
+	    </entry>
+	    <entry align="center">
+	      34.87
+	    </entry>
+	    <entry align="center">
+	      3.67
+	    </entry>
+	    <entry align="center">
+	      3.05
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      4
+	    </entry>
+	    <entry align="center">
+	      Hi-Lo
+	    </entry>
+	    <entry align="center">
+	      15.49
+	    </entry>
+	    <entry align="center">
+	      256
+	    </entry>
+	    <entry align="center">
+	      173.9
+	    </entry>
+	    <entry align="center">
+	      5.98
+	    </entry>
+	    <entry align="center">
+	      5.65
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      4
+	    </entry>
+	    <entry align="center">
+	      Lo-Hi
+	    </entry>
+	    <entry align="center">
+	      6.46
+	    </entry>
+	    <entry align="center">
+	      256
+	    </entry>
+	    <entry align="center">
+	      112.3
+	    </entry>
+	    <entry align="center">
+	      5.35
+	    </entry>
+	    <entry align="center">
+	      4.75
+	    </entry>
+	  </row>
+	  <row>
+	    <entry align="center">
+	      4
+	    </entry>
+	    <entry align="center">
+	      Hi-Hi
+	    </entry>
+	    <entry align="center">
+	      3.29
+	    </entry>
+	    <entry align="center">
+	      256
+	    </entry>
+	    <entry align="center">
+	      80.2
+	    </entry>
+	    <entry align="center">
+	      4.86
+	    </entry>
+	    <entry align="center">
+	      4.38
+	    </entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </table>
+
+    <para id="para10">
+      We see that the entropies calculated from the energy via the
+      Laplacian PDF method (second column from the right) are
+      approximately 0.5 bit/pel greater than the entropies measured
+      from the Lenna subimage histograms. This is due to the heavier
+      tails of the actual PDFs compared with the Laplacian
+      exponentially decreasing tails. More accurate entropies can be
+      obtained if 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	</m:ci>
+      </m:math> is obtained from the mean absolute values of the pels
+      in each subimage. For a Laplacian PDF we can show that 
+
+      <equation id="eq13">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>Mean  absolute  value</m:ci>
+	    <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>x</m:ci></m:bvar>
+	      <m:lowlimit>
+		<m:apply>
+		  <m:minus/>
+		  <m:infinity/>
+		</m:apply>
+	      </m:lowlimit>
+	      <m:uplimit>
+		<m:infinity/>
+	      </m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:abs/>
+		  <m:ci>x</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">p</m:ci>
+		  <m:ci>x</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:apply>
+		<m:int/>
+		<m:bvar><m:ci>x</m:ci></m:bvar>
+		<m:lowlimit>
+		  <m:cn>0</m:cn>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:ci>x</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:ci>
+			<m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+		      </m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>x</m:ci>
+			<m:ci>
+			  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:ci>
+	      <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	    </m:ci>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      This gives values of 
+      <m:math>
+	<m:ci>
+	  <m:msub><m:mi>x</m:mi><m:mn>0</m:mn></m:msub>
+	</m:ci>
+      </m:math> that are about 20% lower than those calculated from
+      the energies and the calculated entropies are then within
+      approximately 0.2 bit/pel of the measured entropies.
+    </para>
+
+  </content>
+  
+</document>

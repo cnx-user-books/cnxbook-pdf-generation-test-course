@@ -1,0 +1,311 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>CALS Table Samples</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>2559452e-f095-4ca7-8e8d-03b0dc156666</md:uuid>
+</metadata>
+
+  <content>
+    <table id="table01" summary="">
+      <title>Simple table with small cell contents, and colspans for all columns (all widths are '*')</title>
+      <tgroup cols="5">
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <tbody>
+          <row>
+            <entry>a</entry>
+            <entry>b</entry>
+            <entry>c</entry>
+            <entry>d</entry>
+            <entry>e</entry>
+          </row>
+          <row>
+            <entry>f</entry>
+            <entry>g</entry>
+            <entry>h</entry>
+            <entry>i</entry>
+            <entry>j</entry>
+          </row>
+          <row>
+            <entry>k</entry>
+            <entry>l</entry>
+            <entry>m</entry>
+            <entry>n</entry>
+            <entry>o</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <table id="table02" summary="">
+      <title>Simple table with wide cell contents</title>
+      <tgroup cols="4">
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <tbody>
+          <row>
+            <entry>
+            A Sultan sat on his oriental mat, 
+            in his harem in downtown Persia,
+            </entry>
+            <entry>
+            He took a sip of his coffee, 
+            just a drip, and he said to his servant Kersia,
+            </entry>
+            <entry>
+            "Ah, curse ya, curse ya, curse ya, 
+            That's the worst cup of coffee in Persia!"
+            </entry>
+            <entry>
+            </entry>
+          </row>
+          <row>
+            <entry>
+            "Cause...
+            All I want is a proper cup of coffee, 
+            made from a proper copper coffee pot,
+            </entry>
+            <entry>
+            I may be off my nut, 
+            but I want a proper cup of coffee 
+            from a proper copper pot.
+            </entry>
+            <entry>
+            Iron coffee pots and tin coffee pots, 
+            they're no good to me!
+            </entry>
+            <entry>
+            If I can't have a proper cup of coffee 
+            from a proper copper coffee pot, 
+            I'll Throw you in the sea
+            </entry>
+          </row>
+          <row>
+            <entry>
+            In old Baghdad in old Baghdad, in old Baghdad
+            </entry>
+            <entry>
+            Very often I have had cups of coffee by the dozen 
+            </entry>
+            <entry>
+            And you all should make my coffee just as good 
+            and without my blasted cussing 
+            </entry>
+            <entry>
+            "Ah, curse ya, curse ya, curse ya, 
+            That's the worst cup of coffee in  Persia!"
+            </entry>
+          </row>
+          <row>
+            <entry>
+            Oh All I want is a proper cup of coffee, 
+            made from a proper copper coffee pot,
+            </entry>
+            <entry>
+            I may be off my nut,
+            but I want a proper cup of coffee 
+            from a proper copper pot.
+            </entry>
+            <entry>
+            Brass coffee pots, glass coffee pots
+            They're no good to me 
+            </entry>
+            <entry>
+            If I can't have a proper cup of coffee 
+            From a proper copper coffee pot, 
+            I'll have a cup of tea!"
+            </entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <table id="table03" summary="">
+      <title>Simple table with explicit colwidths</title>
+      <tgroup cols="3">
+        <colspec colnum="1" colwidth="1in"/>
+        <colspec colnum="2" colwidth="2in"/>
+        <colspec colnum="3" colwidth="1in"/>
+        <tbody>
+          <row>
+            <entry>col1,1</entry>
+            <entry>col1,2</entry>
+            <entry>col1,3</entry>
+          </row>
+          <row>
+            <entry>col2,1</entry>
+            <entry>col2,2</entry>
+            <entry>col2,3</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <table id="table04" summary="">
+      <title>Simple table with mixed colwidths and a colspan</title>
+      <tgroup cols="3">
+        <colspec colname="first" colnum="1" colwidth="1in"/>
+        <colspec colname="second" colnum="2" colwidth="2*"/>
+        <colspec colname="third" colnum="3" colwidth="1*"/>
+        <spanspec spanname="span1" namest="second" nameend="third"/>
+        <spanspec spanname="span2" namest="first" nameend="second"/>
+        <spanspec spanname="span3" namest="first" nameend="third"/>
+        <tbody>
+          <row>
+            <entry>col1,1</entry>
+            <entry>col1,2</entry>
+            <entry>col1,3</entry>
+          </row>
+          <row>
+            <entry>col2,1</entry>
+            <entry>col2,2</entry>
+            <entry>col2,3</entry>
+          </row>
+          <row>
+            <entry>col3,1</entry>
+            <entry spanname="span1">col3,2-3; I'm using a spanname attribute to refer to a spanspec in my containing tgroup.  The spanspec in turn refers to the starting and ending colspecs, which I need to compute my width correctly.</entry>
+          </row>
+          <row>
+            <entry spanname="span2">col4,1-2; I'm using a spanname attribute to refer to a spanspec in my containing tgroup.  The spanspec in turn refers to the starting and ending colspecs, which I need to compute my width correctly.</entry>
+            <entry>col4,3</entry>
+          </row>
+          <row>
+            <entry>col5,1</entry>
+            <entry namest="second" nameend="third">col5,2-3; I'm using namest and nameend attributes to refer directly to the starting and ending colspecs for this span, which I need to compute my width correctly.</entry>
+          </row>
+          <row>
+            <entry namest="first" nameend="second">col6,1-2; I'm using namest and nameend attributes to refer directly to the starting and ending colspecs for this span, which I need to compute my width correctly.</entry>
+            <entry>col6,3</entry>
+          </row>
+          <row>
+            <entry namest="first" nameend="third">col7,1-3; I'm using namest and nameend attributes to refer directly to the starting and ending colspecs for this span, which I need to compute my width correctly.</entry>
+          </row>
+          <row>
+            <entry spanname="span3">col8,1-3; I'm using a spanname attribute to refer to a spanspec in my containing tgroup.  The spanspec in turn refers to the starting and ending colspecs, which I need to compute my width correctly.</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <table id="table05" summary="">
+      <title>Simple table with small cell contents; no colspans, so this table should be set in LR mode</title>
+      <tgroup cols="5">
+        <tbody>
+          <row>
+            <entry>a</entry>
+            <entry>b</entry>
+            <entry>c</entry>
+            <entry>d</entry>
+            <entry>e</entry>
+          </row>
+          <row>
+            <entry>f</entry>
+            <entry>g</entry>
+            <entry>h</entry>
+            <entry>i</entry>
+            <entry>j</entry>
+          </row>
+          <row>
+            <entry>k</entry>
+            <entry>l</entry>
+            <entry>m</entry>
+            <entry>n</entry>
+            <entry>o</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <table id="table03a" summary="">
+      <title>Simple table with explicit colwidths, and thead</title>
+      <tgroup cols="3">
+        <colspec colname="c1" colnum="1" colwidth="1in"/>
+        <colspec colname="c2" colnum="2" colwidth="2in"/>
+        <colspec colname="c3" colnum="3" colwidth="1in"/>
+        <thead>
+          <row>
+            <entry>colH,1</entry>
+            <entry>colH,2</entry>
+            <entry>colH,3</entry>
+          </row>
+          <row>
+            <entry namest="c1" nameend="c2">colH,1-2</entry>
+            <entry>colH,3</entry>
+          </row>
+        </thead>
+        <tbody>
+          <row>
+            <entry>col1,1</entry>
+            <entry>col1,2</entry>
+            <entry>col1,3</entry>
+          </row>
+          <row>
+            <entry>col2,1</entry>
+            <entry>col2,2</entry>
+            <entry>col2,3</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <table id="table03b" summary="">
+      <title>Simple table with explicit colwidths, and thead</title>
+      <tgroup cols="3">
+        <colspec colname="c1" colnum="1" colwidth="1in"/>
+        <colspec colname="c2" colnum="2" colwidth="2in"/>
+        <colspec colname="c3" colnum="3" colwidth="1in"/>
+        <tfoot>
+          <row>
+            <entry>colF,1</entry>
+            <entry>colF,2</entry>
+            <entry>colF,3</entry>
+          </row>
+          <row>
+            <entry namest="c1" nameend="c3">colF,1-3</entry>
+          </row>
+        </tfoot>
+        <tbody>
+          <row>
+            <entry>col1,1</entry>
+            <entry>col1,2</entry>
+            <entry>col1,3</entry>
+          </row>
+          <row>
+            <entry>col2,1</entry>
+            <entry>col2,2</entry>
+            <entry>col2,3</entry>
+          </row>
+        </tbody>
+      </tgroup>
+    </table>
+    <section id="s02"><title>Max's samples</title>
+      <table id="max01" summary="">
+        <tgroup cols="3">
+          <colspec colname="c1" align="right"/>
+          <colspec colname="c2"/>
+          <colspec colname="c3"/>
+          <spanspec spanname="span1" namest="c1" nameend="c2"/>
+          <spanspec spanname="span2" namest="c2" nameend="c3"/>
+          <tbody>
+            <row>
+              <entry>long long</entry>
+              <entry>long long</entry>
+              <entry>long long</entry>
+            </row>
+            <row>
+              <entry spanname="span1">a</entry>
+              <entry>b</entry>
+            </row>
+            <row>
+              <entry>c</entry>
+              <entry spanname="span2">d</entry>
+            </row>
+            <row>
+              <entry align="left">e</entry>
+              <entry>f</entry>
+              <entry>g</entry>
+            </row>
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+  </content>
+ 
+</document>

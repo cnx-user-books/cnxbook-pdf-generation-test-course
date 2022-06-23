@@ -1,11 +1,11 @@
 <col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:md="http://cnx.rice.edu/mdml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">
   <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
-    <md:content-id>col10278</md:content-id>
-    <md:title>PDF Generation Test Course</md:title>
+    <md:content-id>col11436</md:content-id>
+    <md:title>PDF Generation Test Course - alternate pdf style</md:title>
     <md:language>en</md:language>
-    <md:license url="http://creativecommons.org/licenses/by/1.0">Creative Commons Attribution License</md:license>
-    <md:uuid>9661f1f3-10e6-4930-a8a7-b441b2e91822</md:uuid>
-<md:slug>pdf-generation-test-course</md:slug>
+    <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</md:license>
+    <md:uuid>96f7038f-142c-47b0-9030-b5b912c341fa</md:uuid>
+<md:slug>pdf-generation-test-course-alternate-pdf-style</md:slug>
 </metadata>
   <col:content>
     <col:subcollection>
